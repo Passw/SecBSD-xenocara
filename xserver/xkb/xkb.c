@@ -2433,7 +2433,7 @@ _XkbSetMapCheckLength(xkbSetMapReq *req)
     }
     /* actions */
     if (req->present & XkbKeyActionsMask) {
-        _add_check_len(req->totalActs * sz_xkbActionWireDesc 
+        _add_check_len(req->totalActs * sz_xkbActionWireDesc
                        + XkbPaddedSize(req->nKeyActs));
     }
     /* behaviours */

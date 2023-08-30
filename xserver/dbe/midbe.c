@@ -56,7 +56,7 @@
 
 #include <stdio.h>
 
-
+
 /******************************************************************************
  *
  * DBE MI Procedure: miDbeGetVisualInfo

@@ -325,8 +325,8 @@ int (*xf86ReadMmio32) (void *Base, unsigned long Offset)
     = readDense32;
 
 /*
- * Do all things that need root privileges early 
- * and revoke those priviledges 
+ * Do all things that need root privileges early
+ * and revoke those priviledges
  */
 _X_EXPORT void
 xf86PrivilegedInit(void)

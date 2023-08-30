@@ -796,7 +796,7 @@ void
 xf86DropPriv(void)
 {
     struct passwd *pw;
-    
+
     /* revoke privileges */
     if (getuid() == 0) {
         /* Running as root */
@@ -807,7 +807,7 @@ xf86DropPriv(void)
         if (ChownLock(pw->pw_uid, pw->pw_gid) == -1) {
             FatalError("Chown Lock");
         }
-        
+
         /* Start privileged child */
         if (priv_init(pw->pw_uid, pw->pw_gid) == -1) {
             FatalError("priv_init");

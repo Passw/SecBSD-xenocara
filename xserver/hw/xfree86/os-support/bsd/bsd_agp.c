@@ -85,7 +85,7 @@ GARTInit(int screenNum)
 		return FALSE;
 	}
 	xf86ReleaseGART(-1);
-	
+
 	return TRUE;
 }
 
