@@ -227,7 +227,7 @@ void NukeToken(char **pstr)
 /****************************************************************************
  *
  * Gets the next "word" of input from string indata.
- * "word" is a string with no spaces, or a qouted string.
+ * "word" is a string with no spaces, or a quoted string.
  * Return value is ptr to indata,updated to point to text after the word
  * which is extracted.
  * token is the extracted word, which is copied into a malloced
@@ -273,7 +273,7 @@ char *DoGetNextToken(char *indata, char **token, char *spaces, char *delims,
 	     (dnum &&
 	      strchr(delims, *t)) ) )
     {
-      /* Check for qouted text */
+      /* Check for quoted text */
       if (IsQuote(*t))
 	{
 	  char c = *t;
@@ -307,7 +307,7 @@ char *DoGetNextToken(char *indata, char **token, char *spaces, char *delims,
   /* copy token */
   while(start < end)
     {
-      /* Check for qouted text */
+      /* Check for quoted text */
       if(IsQuote(*start))
 	{
 	  char c = *start;
