@@ -1,2 +1,0 @@
-# These take so long that cause caselist batches to timeout
-dEQP-VK.pipeline.monolithic.*
