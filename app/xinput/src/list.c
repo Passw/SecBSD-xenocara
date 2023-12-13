@@ -315,7 +315,7 @@ list_xi2(Display *display,
                 else
                     printf("+ ");
             }
-   
+
             print_info_xi2(display, dev, format);
             for (j = 0; j < ndevices; j++)
             {

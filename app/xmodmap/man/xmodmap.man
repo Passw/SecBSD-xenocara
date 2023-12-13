@@ -20,16 +20,16 @@
 .\" DEALINGS IN THE SOFTWARE.
 .\"
 .\" Copyright 1988, 1989, 1990, 1998  The Open Group
-.\" 
+.\"
 .\" Permission to use, copy, modify, distribute, and sell this software and its
 .\" documentation for any purpose is hereby granted without fee, provided that
 .\" the above copyright notice appear in all copies and that both that
 .\" copyright notice and this permission notice appear in supporting
 .\" documentation.
-.\" 
+.\"
 .\" The above copyright notice and this permission notice shall be included
 .\" in all copies or substantial portions of the Software.
-.\" 
+.\"
 .\" THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
 .\" OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 .\" MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -37,12 +37,12 @@
 .\" OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 .\" ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 .\" OTHER DEALINGS IN THE SOFTWARE.
-.\" 
+.\"
 .\" Except as contained in this notice, the name of The Open Group shall
 .\" not be used in advertising or otherwise to promote the sale, use or
 .\" other dealings in this Software without prior written authorization
 .\" from The Open Group.
-.\" 
+.\"
 .de EX		\"Begin example
 .ne 5
 .if n .sp 1
@@ -64,10 +64,10 @@ xmodmap - utility for modifying keymaps and pointer button mappings in X
 [-options ...] [filename]
 .SH DESCRIPTION
 .PP
-The \fIxmodmap\fP program is used to edit and display the 
-keyboard \fImodifier map\fP and \fIkeymap table\fP that are used by client 
-applications to convert event keycodes into keysyms.  It is usually run from 
-the user's session startup script to configure the keyboard according to 
+The \fIxmodmap\fP program is used to edit and display the
+keyboard \fImodifier map\fP and \fIkeymap table\fP that are used by client
+applications to convert event keycodes into keysyms.  It is usually run from
+the user's session startup script to configure the keyboard according to
 personal tastes.
 .SH OPTIONS
 .PP
@@ -83,7 +83,7 @@ unhandled argument is given to
 .I xmodmap.
 .TP 8
 .B \-grammar
-This option indicates that a help message describing the expression grammar 
+This option indicates that a help message describing the expression grammar
 used in files and with \-e expressions should be printed on the standard error.
 .TP 8
 .B \-version
@@ -92,7 +92,7 @@ This option indicates that
 should print its version information and exit.
 .TP 8
 .B \-verbose
-This option indicates that 
+This option indicates that
 .I xmodmap
 should print logging information as it parses its input.
 .TP 8
@@ -100,7 +100,7 @@ should print logging information as it parses its input.
 This option turns off the verbose logging.  This is the default.
 .TP 8
 .B \-n
-This option indicates that 
+This option indicates that
 .I xmodmap
 should not change the mappings, but should display what it would do, like
 \fImake(__appmansuffix__)\fP does when given this option.
@@ -148,8 +148,8 @@ Keysyms matching Unicode characters may be specified as "U0020" to "U007E"
 and "U00A0" to "U10FFFF" for all possible Unicode characters.
 .TP 8
 .B keycode \fINUMBER\fP = \fIKEYSYMNAME ...\fP
-The list of keysyms is assigned to the indicated keycode 
-(which may be specified in decimal, hex or octal and can be determined by 
+The list of keysyms is assigned to the indicated keycode
+(which may be specified in decimal, hex or octal and can be determined by
 running the
 .I xev
 program).  Up to eight keysyms may be attached to a key, however the last four
@@ -170,7 +170,7 @@ if the same keysym is bound to multiple keys, the expression is executed
 for each matching keycode.
 .TP 8
 .B clear \fIMODIFIERNAME\fP
-This removes all entries in the modifier map for the given modifier, where 
+This removes all entries in the modifier map for the given modifier, where
 valid name are:
 .BR Shift ,
 .BR Lock ,
@@ -179,7 +179,7 @@ valid name are:
 .BR Mod2 ,
 .BR Mod3 ,
 .BR Mod4 ,
-and \fBMod5\fP (case 
+and \fBMod5\fP (case
 does not matter in modifier names, although it does matter for all other
 names).  For example, ``clear Lock'' will remove
 all any keys that were bound to the shift lock modifier.
@@ -199,7 +199,7 @@ remove keys from a modifier without having to worry about whether or not they
 have been reassigned.
 .TP 8
 .B "pointer = default"
-This sets the pointer map back to its default settings (button 1 generates a 
+This sets the pointer map back to its default settings (button 1 generates a
 code of 1, button 2 generates a 2, etc.).
 .TP 8
 .B pointer = \fINUMBER ...\fP
@@ -222,12 +222,12 @@ This could be done on a 3 button pointer as follows:
 %  xmodmap -e "pointer = 3 2 1"
 .EE
 .PP
-Many applications support the notion of Meta keys (similar to Control 
+Many applications support the notion of Meta keys (similar to Control
 keys except that Meta is held down instead of Control).  However,
 some servers do not have a Meta keysym in the default keymap table, so one
 needs to be added by hand.
 The following command will attach Meta to the Multi-language key (sometimes
-labeled Compose Character).  It also takes advantage of the fact that 
+labeled Compose Character).  It also takes advantage of the fact that
 applications that need a Meta key simply need to get the keycode and don't
 require the keysym to be in the first column of the keymap table.  This
 means that applications that are looking for a Multi_key (including the
@@ -245,7 +245,7 @@ In that case the following may be useful:
 One of the more simple, yet convenient, uses of \fIxmodmap\fP is to set the
 keyboard's "rubout" key to generate an alternate keysym.  This frequently
 involves exchanging Backspace with Delete to be more comfortable to the user.
-If the \fIttyModes\fP resource in \fIxterm\fP is set as well, all terminal 
+If the \fIttyModes\fP resource in \fIxterm\fP is set as well, all terminal
 emulator windows will use the same key for erasing characters:
 .EX
 %  xmodmap -e "keysym BackSpace = Delete"
@@ -279,13 +279,13 @@ add Lock = Caps_Lock
 add Control = Control_L
 .EE
 .PP
-This example can be run again to swap the keys back to their previous 
+This example can be run again to swap the keys back to their previous
 assignments.
 .PP
 The \fIkeycode\fP command is useful for assigning the same keysym to
 multiple keycodes.  Although unportable, it also makes it possible to write
 scripts that can reset the keyboard to a known state.  The following script
-sets the backspace key to generate Delete (as shown above), flushes all 
+sets the backspace key to generate Delete (as shown above), flushes all
 existing caps lock bindings, makes the CapsLock
 key be a control key, make F5 generate Escape, and makes Break/Reset be a
 shift lock.

@@ -59,7 +59,7 @@ static struct _QueryResources {
 
 #define offset(field) XtOffsetOf(struct _QueryResources, field)
 static XtResource resources[] = {
-    { "file", "File", XtRString, sizeof (char *), 
+    { "file", "File", XtRString, sizeof (char *),
       offset(file), XtRString, (XtPointer) NULL },
     { "buttons", "Buttons", XtRString, sizeof (char *),
       offset(button_list), XtRString, (XtPointer) "okay:0" },
@@ -100,7 +100,7 @@ static String fallback_resources[] = {
  * usage
  */
 
-static void 
+static void
 usage (FILE *outf)
 {
     static const char *options[] = {
@@ -136,7 +136,7 @@ exit_action(Widget w, XEvent *event, String *params, Cardinal *num_params)
     if(event->type == ClientMessage
        && event->xclient.data.l[0] != wm_delete_window)
 	return;
-    
+
     if (*num_params == 1)
 	exit_status = atoi(params[0]);
     exit(exit_status);
@@ -146,7 +146,7 @@ int default_exitstatus = -1;		/* value of button named by -default */
 
 /* ARGSUSED */
 static void
-default_exit_action(Widget w, XEvent *event, String *params, 
+default_exit_action(Widget w, XEvent *event, String *params,
     Cardinal *num_params)
 {
     if (default_exitstatus >= 0)
@@ -160,7 +160,7 @@ detab (char **messagep, int *lengthp)
 {
   int   i, n, col, psize;
   char  *p;
-  
+
   /* count how many tabs there are */
   n = 0;
   for (i = 0; i < *lengthp; i++)

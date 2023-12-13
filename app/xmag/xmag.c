@@ -56,7 +56,7 @@ from The Open Group.
 #define max(a, b) ((a) > (b) ? (a) : (b))
 #endif
 
-
+
 
 /* highlight interval (in milliseconds) */
 #define HLINTERVAL  100
@@ -101,7 +101,7 @@ typedef struct {
   Widget    scaleShell, scaleInstance, pixShell, pixLabel, cmapWinList [2];
   } hlStruct, *hlPtr;
 
-
+
 
 /* global variables */
 static XtAppContext app;
@@ -179,7 +179,7 @@ static XrmOptionDescRec optionDesc[] = {
   {"-title",    "*title",              XrmoptionSepArg, (XtPointer)NULL},
 };
 
-
+
 
 /* action table */
 
@@ -195,7 +195,7 @@ static XtActionsRec actions_table[] = {
   {"select-region", SelectRegionAP}
 };
 
-
+
 
 /*
  * Error() -- Error handler:  Catch a bad match in magnifying an
@@ -228,7 +228,7 @@ CloseAP(Widget w, XEvent *event, String *params, Cardinal *num_params)
   XtDestroyWidget(w);
 }
 
-
+
 
 /*
  * SetCmapPropsAP() -- Put the scale widget first in WM_COLORMAP_WINDOWS
@@ -248,7 +248,7 @@ SetCmapPropsAP(Widget w, XEvent *event, String *params, Cardinal *num_params)
   }
 }
 
-
+
 
 /*
  * UnsetCmapPropsAP() -- Put the shell first in WM_COLORMAP_WINDOWS
@@ -268,7 +268,7 @@ UnsetCmapPropsAP(Widget w, XEvent *event, String *params, Cardinal *num_params)
   }
 }
 
-
+
 
 /*
  * NewAP() -- Create an additional xmag dialog. THIS IS A COPY OF NewEH
@@ -280,7 +280,7 @@ NewAP(Widget w, XEvent *event, String *params, Cardinal *num_params)
   StartRootPtrGrab(True, NULL);
 }
 
-
+
 
 /*
  * ReplaceAP() -- Replace this particular xmag dialog.
@@ -295,7 +295,7 @@ ReplaceAP(Widget w, XEvent *event, String *params, Cardinal *num_params)
   StartRootPtrGrab(False, data);
 }
 
-
+
 
 /*
  * PopupPixelAP() -- Show pixel information.
@@ -343,7 +343,7 @@ PopupPixelAP(Widget w, XEvent *event, String *params, Cardinal *num_params)
     UpdatePixelAP(w, event, NULL, NULL);
 }
 
-
+
 
 /*
  * UpdatePixelAP() -- Update pixel information.
@@ -379,7 +379,7 @@ UpdatePixelAP(Widget w, XEvent *event, String *params, Cardinal *num_params)
     }
 }
 
-
+
 
 /*
  * PopdownPixelAP() -- Remove pixel info.
@@ -399,7 +399,7 @@ PopdownPixelAP(Widget w, XEvent *event, String *params, Cardinal *num_params)
     XtPopdown(data->pixShell);
 }
 
-
+
 
 static void			/* ARGSUSED */
 SelectRegionAP(Widget w, XEvent *event, String *params, Cardinal *num_params)
@@ -419,7 +419,7 @@ SelectRegionAP(Widget w, XEvent *event, String *params, Cardinal *num_params)
 ******/
 }
 
-
+
 
 /*
  * CheckPoints() -- Change the cursor for the correct quadrant.
@@ -445,7 +445,7 @@ CheckPoints(Position *x1, Position *x2, Position *y1, Position *y2)
   if (*y2 < *y1) { tmp = *y1; *y1 = *y2; *y2 = tmp; }
 }
 
-
+
 
 /*
  * HighlightTO() -- Timer to highlight the selection box
@@ -481,7 +481,7 @@ HighlightTO(XtPointer closure, XtIntervalId *id)	/* ARGSUSED */
     XtAppAddTimeOut(app, HLINTERVAL, HighlightTO, (XtPointer)data);
 }
 
-
+
 
 /*
  * CloseCB() -- Delete this xmag dialog.  If its the only one on the screen
@@ -496,7 +496,7 @@ CloseCB(Widget w, XtPointer clientData, XtPointer callData)
   XtDestroyWidget(shell);
 }
 
-
+
 
 /*
  * ReplaceCB() -- Replace this particular xmag dialog.
@@ -508,7 +508,7 @@ ReplaceCB(Widget w, XtPointer clientData, XtPointer callData)
   StartRootPtrGrab(False, data);
 }
 
-
+
 
 /*
  * NewCB() -- Create an additional xmag dialog.
@@ -519,7 +519,7 @@ NewCB(Widget w, XtPointer clientData, XtPointer callData)
   StartRootPtrGrab(True, NULL);
 }
 
-
+
 
 /*
  * SelectCB() -- Own the primary selection.
@@ -531,7 +531,7 @@ SelectCB(Widget w, XtPointer clientData, XtPointer callData)
   SWGrabSelection(data->scaleInstance, XtLastTimestampProcessed(dpy));
 }
 
-
+
 
 /*
  * PasteCB() -- Paste from the primary selection into xmag.
@@ -543,7 +543,7 @@ PasteCB(Widget w, XtPointer clientData, XtPointer callData)
   SWRequestSelection(data->scaleInstance, XtLastTimestampProcessed(dpy));
 }
 
-
+
 
 /*
  * SetupGC() -- Graphics context for magnification selection.
@@ -558,7 +558,7 @@ SetupGC(void)
 		       &selectGCV);
 }
 
-
+
 
 /*
  * FindWindow() -- Determine window the pointer is over.
@@ -589,7 +589,7 @@ FindWindow(int x, int y)	/* Location of cursor */
   return findW;
 }
 
-
+
 
 /*
  * ResizeEH() -- Event Handler for resize of selection box.
@@ -628,7 +628,7 @@ ResizeEH(Widget w, XtPointer closure, XEvent *event,
   }
 }
 
-
+
 
 /*
  * DragEH() -- Event Handler for dragging selection box.
@@ -689,7 +689,7 @@ DragEH(Widget w, XtPointer closure, XEvent *event,
 }
 
 
-
+
 
 /*
  * StartRootPtrGrab() -- Bring up the selection box.
@@ -727,7 +727,7 @@ StartRootPtrGrab(int new, 	/* do we create a new scale instance? */
   (void) XtAppAddTimeOut(app, HLINTERVAL, HighlightTO, (XtPointer)hlData);
 }
 
-
+
 
 /*
  * CreateRoot() -- Create a root window widget. If the user specified x and y
@@ -837,7 +837,7 @@ GetImageAndAttributes(Window w, int x, int y, int width, int height,
     }
 }
 
-
+
 
 /*
  * Get_XColors() Get the XColors of all pixels in image - returns # of colors
@@ -889,7 +889,7 @@ Get_XColors(XWindowAttributes *win_info, XColor **colors)
     return(ncolors);
 }
 
-
+
 
 #define Intensity(cptr) (3.0*cptr->red+0.59*cptr->green+0.11*cptr->blue)
 
@@ -943,7 +943,7 @@ GetMinIntensity(hlPtr data)
     return BlackPixel(dpy, scr);
 }
 
-
+
 
 
 static Widget pane1, pane2, pane3, cclose, replace, new, select_w, paste;
@@ -1027,7 +1027,7 @@ PopupNewScale(hlPtr data)
   }
 }
 
-
+
 
 /*
  * RedoOldScale() -- If the visual, depth, or colormap has changed, unrealize
@@ -1071,7 +1071,7 @@ RedoOldScale(hlPtr data)
   XtManageChild(data->scaleInstance);
 }
 
-
+
 
 /*
  * InitCursors() -- Create our cursors for area selection.
@@ -1085,7 +1085,7 @@ InitCursors(void)
   llAngle = XCreateFontCursor(dpy, XC_ll_angle);
 }
 
-
+
 
 /*
  * ParseSourceGeom() -- Determine dimensions of area to magnify from resources.
@@ -1103,7 +1103,7 @@ ParseSourceGeom(void)
 				/* mag */
 }
 
-
+
 
 /*
  * Main program.

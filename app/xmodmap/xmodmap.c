@@ -104,7 +104,7 @@ asprintf(char ** ret, const char *format, ...)
 }
 #endif /* HAVE_ASPRINTF */
 
-static const char help_message[] = 
+static const char help_message[] =
 "\nwhere options include:\n"
 "    -display host:dpy            X server to use\n"
 "    -verbose, -quiet             turn logging on or off\n"
@@ -146,7 +146,7 @@ unknown_arg(const char *arg)
     usage(1);
 }
 
-static const char grammar_message[] = 
+static const char grammar_message[] =
 "    pointer = default              reset pointer buttons to default\n"
 "    pointer = NUMBER ...           set pointer button codes\n"
 "    keycode NUMBER = [KEYSYM ...]  map keycode to given keysyms\n"
@@ -167,7 +167,7 @@ static const char grammar_message[] =
 "\n";
 
 
-static void 
+static void
 _X_NORETURN
 grammar_usage(void)
 {
