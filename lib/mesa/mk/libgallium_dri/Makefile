@@ -1,4 +1,4 @@
-#	$OpenBSD: Makefile,v 1.8 2023/03/03 06:32:18 jsg Exp $
+#	$OpenBSD: Makefile,v 1.10 2024/04/03 22:10:09 jsg Exp $
 
 LIB=	gallium_dri
 
@@ -79,6 +79,7 @@ SLIBS=	libdri \
 	libmesa_util \
 	libmesa_format \
 	libmesa_util_sse41 \
+	libblake3 \
 	libmesa_util_c11 \
 	libnir \
 	libcompiler \
@@ -92,6 +93,10 @@ SLIBS=	libdri \
 	libswdri \
 	libswkmsdri \
 	libsoftpipe
+
+.if ${WITH_AMD_VK} == "yes" || ${WITH_INTEL_VK} == "yes"
+SLIBS+=	libvtn
+.endif
 
 .if ${WITH_SSE41} == "yes"
 SLIBS+=	libmesa_sse41
@@ -115,6 +120,7 @@ SLIBS+= libamdgpuwinsys \
 	libaddrlib \
 	libamd_common \
 	libamd_common_llvm \
+	libaco \
 	libradeonsi_gfx6 \
 	libradeonsi_gfx7 \
 	libradeonsi_gfx8 \
@@ -122,6 +128,7 @@ SLIBS+= libamdgpuwinsys \
 	libradeonsi_gfx10 \
 	libradeonsi_gfx103 \
 	libradeonsi_gfx11 \
+	libradeonsi_gfx115 \
 	libradeonsi
 .endif
 
@@ -148,6 +155,7 @@ SLIBS+= libiris_gen80 \
 	libiris_gen110 \
 	libiris_gen120 \
 	libiris_gen125 \
+	libiris_gen200 \
 	libintel_compiler \
 	libintel_dev \
 	libisl \
@@ -161,6 +169,7 @@ SLIBS+= libiris_gen80 \
 	libisl_gfx110 \
 	libisl_gfx120 \
 	libisl_gfx125 \
+	libisl_gfx200 \
 	libisl_tiled_memcpy \
 	libisl_tiled_memcpy_sse41 \
 	libblorp \
@@ -199,7 +208,7 @@ LDADD+=		-ldrm_amdgpu
 LDADD+=		${BUILD_ID_SHA1} -Wl,--gc-sections \
 		-Wl,--version-script ${MESA_SRC}/src/gallium/targets/dri/dri.sym
 .if ${WITH_LD_DYNAMIC_LIST} == "yes"
-LDADD+=		-Wl,--dynamic-list ${MESA_SRC}/src/gallium/targets/dri-vdpau.dyn
+LDADD+=		-Wl,--dynamic-list ${MESA_SRC}/src/gallium/targets/dri.dyn
 .endif
 LDADD+=		-Wl,--end-group
 
