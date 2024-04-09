@@ -71,7 +71,7 @@ os_c_args = []
 if get_option('xres')
     # Only the XRes extension cares about the client ID.
     os_c_args += '-DCLIENTIDS'
-    if host_machine.system() == 'openbsd'
+    if host_machine.system() == 'secbsd'
         os_dep += cc.find_library('kvm')
     endif
 endif

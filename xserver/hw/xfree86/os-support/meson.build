@@ -103,12 +103,12 @@ elif host_machine.system().endswith('bsd')
         srcs_xorg_os_support += 'bsd/i386_video.c'
         if host_machine.system() == 'netbsd'
             os_dep += cc.find_library('x86_64')
-        elif host_machine.system() == 'openbsd'
+        elif host_machine.system() == 'secbsd'
             os_dep += cc.find_library('amd64')
         endif
     elif host_machine.cpu_family() == 'x86'
         srcs_xorg_os_support += 'bsd/i386_video.c'
-        if host_machine.system() == 'netbsd' or host_machine.system() == 'openbsd'
+        if host_machine.system() == 'netbsd' or host_machine.system() == 'secbsd'
             os_dep += cc.find_library('i386')
         endif
     elif host_machine.cpu_family() == 'arm'

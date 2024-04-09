@@ -4097,7 +4097,7 @@ drmmode_handle_uevents(int fd, void *closure)
     struct udev_device *dev;
     Bool found = FALSE;
 
-#ifdef CONFIG_UDEV_KMS
+#ifdef CONFIG_UDEV_KMS    
     while ((dev = udev_monitor_receive_device(drmmode->uevent_monitor))) {
         udev_device_unref(dev);
         found = TRUE;
@@ -4146,7 +4146,7 @@ drmmode_uevent_init(ScrnInfoPtr scrn, drmmode_ptr drmmode)
                               drmmode_handle_uevents, drmmode);
 
     drmmode->uevent_monitor = mon;
-#elif CONFIG_KEVENT_KMS
+#elif CONFIG_KEVENT_KMS 
     int kq;
     struct kevent ev;
 

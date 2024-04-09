@@ -47,7 +47,7 @@ BUILTIN_SRCS  += $(SCREENSAVER_SRCS)
 endif
 
 # Xinerama extension: making multiple video devices act as one virtual screen
-XINERAMA_SRCS = panoramiX.c panoramiX.h panoramiXh.h panoramiXsrv.h panoramiXprocs.c panoramiXSwap.c
+XINERAMA_SRCS = panoramiX.c panoramiX.h panoramiXh.h panoramiXsrv.h panoramiXprocs.c panoramiXSwap.c 
 if XINERAMA
 BUILTIN_SRCS += $(XINERAMA_SRCS)
 if XORG
@@ -75,7 +75,7 @@ endif
 
 # Security extension: multi-level security to protect clients from each other
 XCSECURITY_SRCS = security.c securitysrv.h
-if XCSECURITY
+if XCSECURITY   
 BUILTIN_SRCS += $(XCSECURITY_SRCS)
 endif
 

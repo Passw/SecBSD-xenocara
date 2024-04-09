@@ -12,4 +12,4 @@ libcomposite_la_SOURCES = 	\
 	compint.h		\
 	compinit.c		\
 	compoverlay.c		\
-	compwindow.c
+	compwindow.c		

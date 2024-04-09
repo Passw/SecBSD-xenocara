@@ -56,7 +56,7 @@
 
 #include <stdio.h>
 
-
+
 /******************************************************************************
  *
  * DBE MI Procedure: miDbeGetVisualInfo
@@ -118,7 +118,7 @@ miDbeGetVisualInfo(ScreenPtr pScreen, XdbeScreenVisualInfo * pScrVisInfo)
     return TRUE;                /* success */
 
 }                               /* miDbeGetVisualInfo() */
-
+
 /******************************************************************************
  *
  * DBE MI Procedure: miAllocBackBufferName
@@ -211,7 +211,7 @@ miDbeAllocBackBufferName(WindowPtr pWin, XID bufId, int swapAction)
     return Success;
 
 }                               /* miDbeAllocBackBufferName() */
-
+
 /******************************************************************************
  *
  * DBE MI Procedure: miDbeAliasBuffers
@@ -234,7 +234,7 @@ miDbeAliasBuffers(DbeWindowPrivPtr pDbeWindowPriv)
     }
 
 }                               /* miDbeAliasBuffers() */
-
+
 /******************************************************************************
  *
  * DBE MI Procedure: miDbeSwapBuffers
@@ -364,7 +364,7 @@ miDbeSwapBuffers(ClientPtr client, int *pNumWindows, DbeSwapInfoPtr swapInfo)
     return Success;
 
 }                               /* miSwapBuffers() */
-
+
 /******************************************************************************
  *
  * DBE MI Procedure: miDbeWinPrivDelete
@@ -436,7 +436,7 @@ miDbeWinPrivDelete(DbeWindowPrivPtr pDbeWindowPriv, XID bufId)
          DestroyPixmap) (pDbeWindowPriv->pBackBuffer);
     }
 }                               /* miDbeWinPrivDelete() */
-
+
 /******************************************************************************
  *
  * DBE MI Procedure: miDbePositionWindow
@@ -658,7 +658,7 @@ miDbePositionWindow(WindowPtr pWin, int x, int y)
     return ret;
 
 }                               /* miDbePositionWindow() */
-
+
 /******************************************************************************
  *
  * DBE MI Procedure: miDbeInit

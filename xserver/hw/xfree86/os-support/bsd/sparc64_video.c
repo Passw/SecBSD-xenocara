@@ -48,8 +48,8 @@ xf86OSInitVidMem(VidMemInfoPtr pVidMem)
 
 #ifdef X_PRIVSEP
 /*
- * Do all things that need root privileges early
- * and revoke those privileges
+ * Do all things that need root privileges early 
+ * and revoke those privileges 
  */
 _X_EXPORT void
 xf86PrivilegedInit(void)

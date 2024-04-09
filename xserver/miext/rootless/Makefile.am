@@ -13,4 +13,4 @@ EXTRA_DIST = \
 	rootless.h \
 	rootlessCommon.h \
 	rootlessConfig.h \
-	rootlessWindow.h
+	rootlessWindow.h 

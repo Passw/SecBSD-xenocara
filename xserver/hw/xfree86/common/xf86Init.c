@@ -112,7 +112,7 @@ static Bool formatsDone = FALSE;
 
 #ifdef X_PRIVSEP
 static Bool xf86KeepPriv = FALSE;
-#endif
+#endif 
 
 
 static void

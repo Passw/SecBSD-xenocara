@@ -95,7 +95,7 @@ DbeStubScreen(DbeScreenPrivPtr pDbeScreenPriv, int *nStubbedScreens)
     (*nStubbedScreens)++;
 
 }                               /* DbeStubScreen() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: ProcDbeGetVersion
@@ -135,7 +135,7 @@ ProcDbeGetVersion(ClientPtr client)
     return Success;
 
 }                               /* ProcDbeGetVersion() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: ProcDbeAllocateBackBufferName
@@ -353,7 +353,7 @@ ProcDbeAllocateBackBufferName(ClientPtr client)
     return status;
 
 }                               /* ProcDbeAllocateBackBufferName() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: ProcDbeDeallocateBackBufferName
@@ -416,7 +416,7 @@ ProcDbeDeallocateBackBufferName(ClientPtr client)
     return Success;
 
 }                               /* ProcDbeDeallocateBackBufferName() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: ProcDbeSwapBuffers
@@ -541,7 +541,7 @@ ProcDbeSwapBuffers(ClientPtr client)
     return Success;
 
 }                               /* ProcDbeSwapBuffers() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: ProcDbeGetVisualInfo
@@ -701,7 +701,7 @@ ProcDbeGetVisualInfo(ClientPtr client)
     return rc;
 
 }                               /* ProcDbeGetVisualInfo() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: ProcDbeGetbackBufferAttributes
@@ -751,7 +751,7 @@ ProcDbeGetBackBufferAttributes(ClientPtr client)
     return Success;
 
 }                               /* ProcDbeGetbackBufferAttributes() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: ProcDbeDispatch
@@ -797,7 +797,7 @@ ProcDbeDispatch(ClientPtr client)
     }
 
 }                               /* ProcDbeDispatch() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: SProcDbeGetVersion
@@ -823,7 +823,7 @@ SProcDbeGetVersion(ClientPtr client)
     return (ProcDbeGetVersion(client));
 
 }                               /* SProcDbeGetVersion() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: SProcDbeAllocateBackBufferName
@@ -862,7 +862,7 @@ SProcDbeAllocateBackBufferName(ClientPtr client)
     return (ProcDbeAllocateBackBufferName(client));
 
 }                               /* SProcDbeAllocateBackBufferName() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: SProcDbeDeallocateBackBufferName
@@ -893,7 +893,7 @@ SProcDbeDeallocateBackBufferName(ClientPtr client)
     return (ProcDbeDeallocateBackBufferName(client));
 
 }                               /* SProcDbeDeallocateBackBufferName() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: SProcDbeSwapBuffers
@@ -945,7 +945,7 @@ SProcDbeSwapBuffers(ClientPtr client)
     return (ProcDbeSwapBuffers(client));
 
 }                               /* SProcDbeSwapBuffers() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: SProcDbeGetVisualInfo
@@ -977,7 +977,7 @@ SProcDbeGetVisualInfo(ClientPtr client)
     return (ProcDbeGetVisualInfo(client));
 
 }                               /* SProcDbeGetVisualInfo() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: SProcDbeGetbackBufferAttributes
@@ -1007,7 +1007,7 @@ SProcDbeGetBackBufferAttributes(ClientPtr client)
     return (ProcDbeGetBackBufferAttributes(client));
 
 }                               /* SProcDbeGetBackBufferAttributes() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: SProcDbeDispatch
@@ -1053,7 +1053,7 @@ SProcDbeDispatch(ClientPtr client)
     }
 
 }                               /* SProcDbeDispatch() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: DbeSetupBackgroundPainter
@@ -1115,7 +1115,7 @@ DbeSetupBackgroundPainter(WindowPtr pWin, GCPtr pGC)
 
     return ChangeGC(NullClient, pGC, gcmask, gcvalues) == 0;
 }                               /* DbeSetupBackgroundPainter() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: DbeDrawableDelete
@@ -1138,7 +1138,7 @@ DbeDrawableDelete(void *pDrawable, XID id)
     return Success;
 
 }                               /* DbeDrawableDelete() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: DbeWindowPrivDelete
@@ -1235,7 +1235,7 @@ DbeWindowPrivDelete(void *pDbeWinPriv, XID id)
     return Success;
 
 }                               /* DbeWindowPrivDelete() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: DbeResetProc
@@ -1266,7 +1266,7 @@ DbeResetProc(ExtensionEntry * extEntry)
         }
     }
 }                               /* DbeResetProc() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: DbeDestroyWindow
@@ -1346,7 +1346,7 @@ DbeDestroyWindow(WindowPtr pWin)
     return ret;
 
 }                               /* DbeDestroyWindow() */
-
+
 /******************************************************************************
  *
  * DBE DIX Procedure: DbeExtensionInit

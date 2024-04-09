@@ -54,8 +54,8 @@ conf_data.set('_GNU_SOURCE', '1')
 
 # autoconf checks for /dev/xf86 here, but the test should be based on
 # the target, not the build system.  Could we get rid of this and just
-# ifdef for openbsd?
-conf_data.set('HAS_APERTURE_DRV', host_machine.system() == 'openbsd' ? '1' : false)
+# ifdef for secbsd?
+conf_data.set('HAS_APERTURE_DRV', host_machine.system() == 'secbsd' ? '1' : false)
 
 if get_option('input_thread') == 'false'
   enable_input_thread = false
@@ -98,7 +98,7 @@ conf_data.set('HAVE_DBUS', build_dbus ? '1' : false)
 conf_data.set('CONFIG_HAL', build_hal ? '1' : false)
 conf_data.set('SYSTEMD_LOGIND', build_systemd_logind ? '1' : false)
 conf_data.set('NEED_DBUS', build_systemd_logind or build_hal ? '1' : false)
-conf_data.set('CONFIG_WSCONS', host_machine.system() == 'openbsd' ? '1' : false)
+conf_data.set('CONFIG_WSCONS', host_machine.system() == 'secbsd' ? '1' : false)
 
 conf_data.set('HAVE_XSHMFENCE', xshmfence_dep.found() ? '1' : false)
 conf_data.set('WITH_LIBDRM', libdrm_required ? '1' : false)
@@ -298,7 +298,7 @@ if host_machine.system() == 'netbsd'
   csrg_based = true
 endif
 
-if host_machine.system() == 'openbsd'
+if host_machine.system() == 'secbsd'
   supports_pcvt = true
   supports_wscons = true
   csrg_based = true
@@ -372,7 +372,7 @@ xorg_data.set('XSERVER_LIBPCIACCESS', get_option('pciaccess') ? '1' : false)
 xorg_data.set_quoted('PCI_TXT_IDS_PATH', '')
 xorg_data.set('XSERVER_PLATFORM_BUS', build_udev_kms ? '1' : false)
 xorg_data.set('WSCONS_SUPPORT',
-              host_machine.system() == 'netbsd' or host_machine.system() == 'openbsd' ? '1' : false)
+              host_machine.system() == 'netbsd' or host_machine.system() == 'secbsd' ? '1' : false)
 xorg_data.set('HAVE_STROPTS_H', cc.has_header('stropts.h') ? '1' : false)
 xorg_data.set('HAVE_SYS_KD_H', cc.has_header('sys/kd.h') ? '1' : false)
 xorg_data.set('HAVE_SYS_VT_H', cc.has_header('sys/vt.h') ? '1' : false)
@@ -385,7 +385,7 @@ elif host_machine.system() == 'netbsd'
     if host_machine.cpu_family() == 'x86' or host_machine.cpu_family() == 'x86_64'
         xorg_data.set('USE_I386_IOPL', '1')
     endif
-elif host_machine.system() == 'openbsd'
+elif host_machine.system() == 'secbsd'
     if host_machine.cpu_family() == 'x86'
         xorg_data.set('USE_I386_IOPL', '1')
     endif

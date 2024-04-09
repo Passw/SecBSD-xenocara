@@ -78,14 +78,14 @@ checkDevMem(Bool warn)
     if (devMemChecked)
         return;
     devMemChecked = TRUE;
-
+    
 #ifdef HAS_APERTURE_DRV
     /* Try the aperture driver first */
     if ((fd = open(DEV_APERTURE, O_RDWR)) >= 0) {
         /* Try to map a page at the VGA address */
         base = mmap((caddr_t)0, 4096, PROT_READ | PROT_WRITE,
                     MAP_FLAGS, fd, (off_t)0xA0000);
-
+        
         if (base != MAP_FAILED) {
             munmap((caddr_t)base, 4096);
             devMemFd = fd;
@@ -106,7 +106,7 @@ checkDevMem(Bool warn)
         /* Try to map a page at the VGA address */
         base = mmap((caddr_t)0, 4096, PROT_READ | PROT_WRITE,
                     MAP_FLAGS, fd, (off_t)0xA0000);
-
+        
         if (base != MAP_FAILED) {
             munmap((caddr_t)base, 4096);
             devMemFd = fd;
@@ -134,7 +134,7 @@ checkDevMem(Bool warn)
                 "\t(%s)\n%s", DEV_APERTURE, DEV_MEM, strerror(errno),
                 SYSCTL_MSG);
 #endif /* __OpenBSD__ */
-
+        
         xf86ErrorF("\tlinear framebuffer access unavailable\n");
     }
     useDevMem = FALSE;
@@ -228,13 +228,13 @@ xf86DisableIO()
 {
     if (!ExtendedEnabled)
         return;
-
+    
     if (amd64_iopl(FALSE) == 0) {
         ExtendedEnabled = FALSE;
     }
     /* Otherwise, the X server has revoqued its root uid,
        and thus cannot give up IO privileges any more */
-
+    
     return;
 }
 
@@ -280,7 +280,7 @@ xf86SetTVOut(int mode)
     switch (xf86Info.consType) {
 #ifdef PCCONS_SUPPORT
       case PCCONS:{
-
+          
           if (ioctl (xf86Info.consoleFd, CONSOLE_X_TV_ON, &mode) < 0) {
               xf86Msg(X_WARNING,
                       "xf86SetTVOut: Could not set console to TV output, %s\n",
@@ -303,7 +303,7 @@ xf86SetRGBOut()
     switch (xf86Info.consType) {
 #ifdef PCCONS_SUPPORT
       case PCCONS:{
-
+          
           if (ioctl (xf86Info.consoleFd, CONSOLE_X_TV_OFF, 0) < 0) {
               xf86Msg(X_WARNING,
                       "xf86SetTVOut: Could not set console to RGB output, %s\n",
@@ -332,7 +332,7 @@ _X_EXPORT void
 xf86PrivilegedInit(void)
 {
     checkDevMem(TRUE);
-
+    
     pci_system_init();
     pci_legacy_open_io(NULL, 0, 64*1024);
     ExtendedEnabled = TRUE;	/* Will die with xf86EnableIO() */

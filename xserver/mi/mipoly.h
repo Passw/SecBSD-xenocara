@@ -122,7 +122,7 @@ typedef struct _ScanLineListBlock {
  * to scanlines() :  Must be an even number
  */
 #define NUMPTSTOBUFFER 200
-
+
 /*
  *
  *     a few macros for the inner loops of the fill code where
