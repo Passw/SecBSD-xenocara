@@ -7,7 +7,7 @@ DIST= ${.CURDIR}
 # Machines for which we don't build the Xorg Xserver
 NO_XORG_MACHINES=	alpha landisk octeon
 
-.for M in ${NO_XORG_MACHINES} 
+.for M in ${NO_XORG_MACHINES}
 NO_XORG_${M} = --disable-xorg
 .endfor
 NO_XORG_OPTION=${NO_XORG_${MACHINE}}
