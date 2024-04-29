@@ -66,7 +66,7 @@ usage (int exitcode)
 "    -V                             print version and exit\n"
 "\n"
 "and commands have the following syntax:\n";
-    static const char suffixmsg[] = 
+    static const char suffixmsg[] =
 "A dash may be used with the \"merge\" and \"source\" to read from the\n"
 "standard input.  Commands beginning with \"n\" use numeric format.\n";
 
@@ -85,7 +85,6 @@ usage (int exitcode)
 int
 main (int argc, char *argv[])
 {
-    int i;
     const char *sourcename = defsource;
     const char **arglist = defcmds;
     int nargs = ndefcmds;
@@ -93,13 +92,11 @@ main (int argc, char *argv[])
 
     ProgramName = argv[0];
 
-    for (i = 1; i < argc; i++) {
+    for (int i = 1; i < argc; i++) {
 	const char *arg = argv[i];
 
 	if (arg[0] == '-') {
-	    const char *flag;
-
-	    for (flag = (arg + 1); *flag; flag++) {
+	    for (const char *flag = (arg + 1); *flag; flag++) {
 		switch (*flag) {
 		  case 'f':		/* -f authfilename */
 		    if (++i >= argc) {

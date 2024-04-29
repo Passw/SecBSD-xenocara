@@ -215,7 +215,7 @@ COLUMNS, LINES
 .IR \*N 's
 generated shell command
 sets these variables on systems using terminfo.
-Many applications (including the curses library) 
+Many applications (including the curses library)
 use those variables when set to override their screensize.
 .SH "SEE ALSO"
 use_env(3x)

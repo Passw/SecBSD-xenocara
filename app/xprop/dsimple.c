@@ -126,7 +126,7 @@ void Setup_Display_And_Screen(
     char **argv)    /* MODIFIED */
 {
         char *displayname = NULL;
-        
+
         displayname = Get_Display_Name(argc, argv);
         dpy = Open_Display (displayname);
         screen = XDefaultScreen(dpy);
@@ -139,7 +139,7 @@ void Close_Display(void)
 {
     if (dpy == NULL)
       return;
-      
+
     XCloseDisplay(dpy);
     dpy = NULL;
 }
@@ -231,7 +231,7 @@ Window Select_Window_Args(
 		COPYOPT;
 	}
 	ARGC = nargc;
-	
+
 	return(w);
 }
 
@@ -282,7 +282,7 @@ Window Select_Window(Display *display, int descend)
 	buttons--;
        break;
     }
-  } 
+  }
 
   XUngrabPointer(display, CurrentTime);      /* Done with pointer */
 

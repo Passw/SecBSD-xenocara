@@ -30,7 +30,7 @@ in this Software without prior written authorization from The Open Group.
 
 #include <X11/Intrinsic.h>
 
-extern void DisplayLogXtProc(Widget w, XtPointer client_data, 
+extern void DisplayLogXtProc(Widget w, XtPointer client_data,
 			     XtPointer callData);
 extern void add_log_text(char *str);
 extern void create_log_popup(void);

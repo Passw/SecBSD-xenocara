@@ -189,7 +189,7 @@ readFile(char *filename, FontPtr font)
         if(strcmp(face->style_name, "Regular") == 0)
             full_name = sprintf_alloc("%s", family_name);
         else
-            full_name = sprintf_alloc("%s %s", 
+            full_name = sprintf_alloc("%s %s",
                                       family_name, face->style_name);
 
         /* The unique name doesn't actually need to be globally
@@ -202,12 +202,12 @@ readFile(char *filename, FontPtr font)
                 face->available_sizes[0].height)
             unique_name = sprintf_alloc("%s "XVENDORNAMESHORT
 					   " bitmap size %d",
-                                           full_name, 
+                                           full_name,
                                            face->available_sizes[0].height);
         else
             unique_name = sprintf_alloc("%s "XVENDORNAMESHORT
                                         " bitmap size %dx%d",
-                                        full_name, 
+                                        full_name,
                                         face->available_sizes[0].width,
                                         face->available_sizes[0].height);
 

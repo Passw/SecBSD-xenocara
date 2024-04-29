@@ -642,7 +642,7 @@ init_flow(ModeInfo * mi)
 	flowstruct *sp;
 	char       *name;
 
-#ifdef WIN32 
+#ifdef WIN32
 	/* This is needed because we don't have resource management
 	   working on Windows yet so all the defaults are being
 	   ignored. */

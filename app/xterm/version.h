@@ -42,7 +42,7 @@
 #define XTERM_DATE    2023-01-09
 
 #ifndef __vendorversion__
-#define __vendorversion__ "XTerm/OpenBSD"
+#define __vendorversion__ "XTerm/SecBSD"
 #endif
 
 extern const char *xtermVersion(void);

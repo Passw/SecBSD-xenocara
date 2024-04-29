@@ -247,7 +247,7 @@ static void
 free_toneclock(Display *display, toneclockstruct *tclock)
 {
 	ModeInfo *mi = tclock->mi;
-   
+
 	if (MI_IS_INSTALL(mi) && MI_NPIXELS(mi) > 2) {
 		MI_WHITE_PIXEL(mi) = tclock->whitepixel;
 		MI_BLACK_PIXEL(mi) = tclock->blackpixel;
@@ -270,7 +270,7 @@ free_toneclock(Display *display, toneclockstruct *tclock)
 		XFreeGC(display, tclock->gc);
 		tclock->gc = None;
 	}
-	free_hour(tclock);   
+	free_hour(tclock);
 #ifndef NO_DBUF
 	if (tclock->dbuf != None) {
 		XFreePixmap(display, tclock->dbuf);

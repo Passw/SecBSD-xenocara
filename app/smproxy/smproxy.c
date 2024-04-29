@@ -521,7 +521,7 @@ ConnectClientToSM(WinInfo *winInfo)
 
     if (debug)
     {
-	printf ("Connected to SM, window = 0x%x\n", 
+	printf ("Connected to SM, window = 0x%x\n",
 		(unsigned int)winInfo->window);
 	printf ("\n");
     }

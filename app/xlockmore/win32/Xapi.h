@@ -40,7 +40,7 @@ extern RECT rc;                           /* coords of the screen */
 /* -------------------------------------------------------------------- */
 
 /*****************************************************************
- * ERROR CODES 
+ * ERROR CODES
  *****************************************************************/
 
 #define Success            0    /* everything's okay */
@@ -55,9 +55,9 @@ extern RECT rc;                           /* coords of the screen */
 #define BadDrawable        9    /* parameter not a Pixmap or Window */
 #define BadAccess         10    /* depending on context:
                                  - key/button already grabbed
-                                 - attempt to free an illegal 
-                                   cmap entry 
-                                - attempt to store into a read-only 
+                                 - attempt to free an illegal
+                                   cmap entry
+                                - attempt to store into a read-only
                                    color map entry.
                                 - attempt to modify the access control
                                    list from other than the local host.
@@ -157,30 +157,30 @@ extern RECT rc;                           /* coords of the screen */
 #define GrabFrozen      (4)
 
 #define NoEventMask                     0L
-#define KeyPressMask                    (1L<<0)  
-#define KeyReleaseMask                  (1L<<1)  
-#define ButtonPressMask                 (1L<<2)  
-#define ButtonReleaseMask               (1L<<3)  
-#define EnterWindowMask                 (1L<<4)  
-#define LeaveWindowMask                 (1L<<5)  
-#define PointerMotionMask               (1L<<6)  
-#define PointerMotionHintMask           (1L<<7)  
-#define Button1MotionMask               (1L<<8)  
-#define Button2MotionMask               (1L<<9)  
-#define Button3MotionMask               (1L<<10) 
-#define Button4MotionMask               (1L<<11) 
-#define Button5MotionMask               (1L<<12) 
-#define ButtonMotionMask                (1L<<13) 
-#define KeymapStateMask                 (1L<<14) 
-#define ExposureMask                    (1L<<15) 
-#define VisibilityChangeMask            (1L<<16) 
-#define StructureNotifyMask             (1L<<17) 
-#define ResizeRedirectMask              (1L<<18) 
-#define SubstructureNotifyMask          (1L<<19) 
-#define SubstructureRedirectMask        (1L<<20) 
-#define FocusChangeMask                 (1L<<21) 
-#define PropertyChangeMask              (1L<<22) 
-#define ColormapChangeMask              (1L<<23) 
+#define KeyPressMask                    (1L<<0)
+#define KeyReleaseMask                  (1L<<1)
+#define ButtonPressMask                 (1L<<2)
+#define ButtonReleaseMask               (1L<<3)
+#define EnterWindowMask                 (1L<<4)
+#define LeaveWindowMask                 (1L<<5)
+#define PointerMotionMask               (1L<<6)
+#define PointerMotionHintMask           (1L<<7)
+#define Button1MotionMask               (1L<<8)
+#define Button2MotionMask               (1L<<9)
+#define Button3MotionMask               (1L<<10)
+#define Button4MotionMask               (1L<<11)
+#define Button5MotionMask               (1L<<12)
+#define ButtonMotionMask                (1L<<13)
+#define KeymapStateMask                 (1L<<14)
+#define ExposureMask                    (1L<<15)
+#define VisibilityChangeMask            (1L<<16)
+#define StructureNotifyMask             (1L<<17)
+#define ResizeRedirectMask              (1L<<18)
+#define SubstructureNotifyMask          (1L<<19)
+#define SubstructureRedirectMask        (1L<<20)
+#define FocusChangeMask                 (1L<<21)
+#define PropertyChangeMask              (1L<<22)
+#define ColormapChangeMask              (1L<<23)
 #define OwnerGrabButtonMask             (1L<<24)
 
 #define KeyPress                2
@@ -216,7 +216,7 @@ extern RECT rc;                           /* coords of the screen */
 #define ColormapNotify          32
 #define ClientMessage           33
 #define MappingNotify           34
-#define LASTEvent               35      
+#define LASTEvent               35
 
 #define VisibilityUnobscured        (0)
 #define VisibilityPartiallyObscured (1)
@@ -654,7 +654,7 @@ typedef struct {
 
 /* XrmBinding & XrmBindingList types: not needed for WIN32 */
 typedef enum {
-	XrmBindTightly, 
+	XrmBindTightly,
 	XrmBindLoosely
 } XrmBinding, *XrmBindingList;
 
@@ -783,7 +783,7 @@ int WhitePixelOfScreen(Screen *screen);
 
 
 void XAddHosts(Display *display, XHostAddress *hosts, int num_hosts);
-Status XAllocColor(Display *display, Colormap colormap, 
+Status XAllocColor(Display *display, Colormap colormap,
 				   XColor *screen_in_out);
 Status XAllocColorCells(Display *display, Colormap colormap,
 					    Bool contig, unsigned long plane_masks_return[],
@@ -795,31 +795,31 @@ Status XAllocNamedColor(Display *display, Colormap colormap,
 void XBell(Display *display, int percent);
 void XChangeGC(Display *display, GC gc, unsigned long valuemask,
 			   XGCValues *values);
-Bool XCheckMaskEvent(Display *display, long event_mask, 
+Bool XCheckMaskEvent(Display *display, long event_mask,
 					 XEvent *event_return);
 void XClearArea(Display *display, Window w, int x, int y,
 				unsigned int width, unsigned int height, Bool exposures);
 void XClearWindow(Display *display, Window w);
 void XCloseDisplay(Display *display);
-void XConfigureWindow(Display *display, Window w, 
-					  unsigned int value_mask, 
+void XConfigureWindow(Display *display, Window w,
+					  unsigned int value_mask,
 					  XWindowChanges *values);
-int XCopyArea(Display *display, Drawable src, Drawable dest, GC gc, 
+int XCopyArea(Display *display, Drawable src, Drawable dest, GC gc,
               int src_x, int src_y, unsigned int width, unsigned height,
 			  int dest_x, int dest_y);
 int XCopyPlane(Display *display, Drawable src, Drawable dest, GC gc,
               int src_x, int src_y, unsigned width, int height, int dest_x,
               int dest_y, unsigned long plane);
-Colormap XCopyColormapAndFree(Display *display, Colormap colormap);	
-Pixmap XCreateBitmapFromData(Display *display, Drawable drawable, 
+Colormap XCopyColormapAndFree(Display *display, Colormap colormap);
+Pixmap XCreateBitmapFromData(Display *display, Drawable drawable,
                              char *data, unsigned int width,
                              unsigned int height);
-Colormap XCreateColormap(Display *display, Window w, 
+Colormap XCreateColormap(Display *display, Window w,
 						 Visual *visual, int alloc);
 Cursor XCreateFontCursor(Display *display, unsigned int shape);
-GC XCreateGC(Display *display, Drawable drawable, 
+GC XCreateGC(Display *display, Drawable drawable,
 			 unsigned long valuemask, XGCValues *values);
-XImage *XCreateImage(Display *display, Visual *visual, 
+XImage *XCreateImage(Display *display, Visual *visual,
 					 unsigned int depth, int format, int offset,
 					 char *data, unsigned int width,
 					 unsigned int height, int bitmap_pad,
@@ -839,20 +839,20 @@ void XDisableAccessControl(Display *display);
 void XDrawArc(Display *display, Drawable d, GC gc, int x, int y,
 			  unsigned int width, unsigned int height,
 			  int angle1, int angle2);
-void XDrawImageString(Display *display, Drawable d, GC gc, 
+void XDrawImageString(Display *display, Drawable d, GC gc,
 					  int x, int y, char *string, int length);
-void XDrawLine(Display *display, Drawable d, GC gc, 
+void XDrawLine(Display *display, Drawable d, GC gc,
 			   int x1, int y1, int x2, int y2);
 void XDrawLines(Display *display, Drawable d, GC gc,
 				XPoint *points, int npoints, int mode);
 void XDrawPoint(Display *display, Drawable d, GC gc, int x, int y);
-void XDrawPoints(Display *display, Drawable d, GC gc, 
+void XDrawPoints(Display *display, Drawable d, GC gc,
 				 XPoint *pts, int numpts, int mode);
 void XDrawRectangle(Display *display, Drawable d, GC gc, int x, int y,
                     unsigned int width, unsigned int height);
 void XDrawSegments(Display *display, Drawable d, GC gc,
 				 XSegment *segs, int numsegs);
-void XDrawString(Display *display, Drawable d, GC gc, int x, int y, 
+void XDrawString(Display *display, Drawable d, GC gc, int x, int y,
 				 char *string, int length);
 void XEnableAccessControl(Display *display);
 void XFillArc(Display *display, Drawable d, GC gc, int x, int y,
@@ -862,15 +862,15 @@ void XFillArcs(Display *display, Drawable d, GC gc,
 			   XArc *arcs, int narcs);
 void XFillPolygon(Display *display, Drawable d, GC gc, XPoint *points,
 				  int npoints, int shape, int mode);
-void XFillRectangle(Display *display, Drawable d, GC gc, int x, int y, 
+void XFillRectangle(Display *display, Drawable d, GC gc, int x, int y,
 					unsigned int width, unsigned int height);
 void XFillRectangles(Display *display, Drawable d, GC gc,
 					 XRectangle *rectangles, int nrectangles);
 void XFlush(Display *display);
 void XFree(void *data);
 void XFreeColormap(Display *display, Colormap colormap);
-void XFreeColors(Display *display, Colormap colormap, 
-				 unsigned long pixels[], int npixels, 
+void XFreeColors(Display *display, Colormap colormap,
+				 unsigned long pixels[], int npixels,
 				 unsigned long planes);
 void XFreeCursor(Display *display, Cursor cursor);
 int XFreeFont(Display *display, XFontStruct *font_struct);
@@ -883,11 +883,11 @@ XVisualInfo *XGetVisualInfo(Display *display, long vinfo_mask,
 							int *nitems_return);
 Status XGetWindowAttributes(Display *display, Window w,
 							XWindowAttributes *window_attr_return);
-int XGrabKeyboard(Display *display, Window grab_window, 
+int XGrabKeyboard(Display *display, Window grab_window,
 				  Bool owner_events, int pointer_mode,
 				  int keyboard_mode, Time time);
 int XGrabPointer(Display *display, Window grab_window, Bool owner_events,
-				 unsigned int event_mask, int pointer_mode, 
+				 unsigned int event_mask, int pointer_mode,
 				 int keyboard_mode, Window confine_to, Cursor cursor,
 				 Time time);
 void XGrabServer(Display *display);
@@ -901,7 +901,7 @@ int XLookupString(XKeyEvent *event_struct, char *buffer_return,
 void XMapWindow(Display *display, Window w);
 void XNextEvent(Display *display, XEvent *event_return);
 Display *XOpenDisplay(char *display_name);
-Status XParseColor(Display *display, Colormap colormap, 
+Status XParseColor(Display *display, Colormap colormap,
 				   char *spec, XColor *exact_def_return);
 int XPending(Display *display);
 void XPutBackEvent(Display *display, XEvent *event);
@@ -915,7 +915,7 @@ Bool XQueryPointer(Display *display, Window w, Window *root_return,
 				   Window *child_return, int *root_x_return, int *root_y_return,
 				   int *win_x_return, int *win_y_return,
 				   unsigned int *mask_return);
-Status XQueryTree(Display *display, Window w, Window *root_return, 
+Status XQueryTree(Display *display, Window w, Window *root_return,
                  Window *parent_return, Window **children_return,
                  unsigned int *nchildren_return);
 void XRaiseWindow(Display *display, Window w);
@@ -927,7 +927,7 @@ char *XResourceManagerString(Display *display);
 void XrmDestroyDatabase(XrmDatabase database);
 XrmDatabase XrmGetFileDatabase(char *filename);
 Bool XrmGetResource(XrmDatabase database, char *str_name,
-					char *str_class, char **str_type_return, 
+					char *str_class, char **str_type_return,
 					XrmValue *value_return);
 XrmDatabase XrmGetStringDatabase(char *data);
 void XrmInitialize(void);
@@ -942,7 +942,7 @@ void XSetFont(Display *display, GC gc, Font font);
 void XSetForeground(Display *display, GC gc, unsigned long foreground);
 void XSetFunction(Display *display, GC gc, int function);
 int XSetGraphicsExposures(Display *display, GC gc, Bool graphics_exposures);
-void XSetLineAttributes(Display *display, GC gc, 
+void XSetLineAttributes(Display *display, GC gc,
 						unsigned int line_width, int line_style,
 						int cap_style, int join_style);
 void XSetScreenSaver(Display *display, int timeout, int interval,
@@ -951,10 +951,10 @@ void XSetStipple(Display *display, GC gc, Pixmap stipple);
 void XSetTSOrigin(Display *display, GC gc, int ts_x_origin, int ts_y_origin);
 void XSetWindowColormap(Display *display, Window w, Colormap colormap);
 void XSetWMName(Display *display, Window w, XTextProperty *text_prop);
-Status XStringListToTextProperty(char **list, int count, 
+Status XStringListToTextProperty(char **list, int count,
 								 XTextProperty *text_prop_return);
 void XStoreColors(Display *display, Colormap colormap, XColor color[],
-                  int ncolors); 
+                  int ncolors);
 void XSync(Display *display, Bool discard);
 int XTextWidth(XFontStruct *font_struct, char *string, int count);
 Bool XTranslateCoordinates(Display* display, Window src_w, Window dest_w,

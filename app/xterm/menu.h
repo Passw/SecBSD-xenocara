@@ -61,7 +61,7 @@
 
 #include <xterm.h>
 
-#ifndef OPT_MENU_KEEPCLIPBOARD 
+#ifndef OPT_MENU_KEEPCLIPBOARD
 #define OPT_MENU_KEEPCLIPBOARD 0	/* useful for debugging */
 #endif
 

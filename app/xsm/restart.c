@@ -30,7 +30,7 @@ in this Software without prior written authorization from The Open Group.
 #include "restart.h"
 #include "saveutil.h"
 
-
+
 /*
  * Until XSMP provides a better way to know which clients are "managers",
  * we have to hard code the list.
@@ -43,7 +43,7 @@ CheckIsManager(char *program)
 }
 
 
-
+
 /*
  * GetRestartInfo() will determine which method should be used to
  * restart a client.
@@ -133,7 +133,7 @@ GetRestartInfo(char *restart_service_prop, char *client_host_name,
 }
 
 
-
+
 /*
  * Restart clients.  The flag indicates RESTART_MANAGERS or
  * RESTART_REST_OF_CLIENTS.
@@ -330,7 +330,7 @@ Restart(int flag)
 }
 
 
-
+
 /*
  * Clone a client
  */
@@ -513,7 +513,7 @@ Clone(ClientRec *client, Bool useSavedState)
 }
 
 
-
+
 void
 StartDefaultApps (void)
 {
@@ -576,7 +576,7 @@ StartDefaultApps (void)
 }
 
 
-
+
 void
 StartNonSessionAwareApps(void)
 {

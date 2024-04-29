@@ -63,7 +63,7 @@ putenv(char *s)
 	    }
 	}
     }
-    
+
     /* add to environment (unless no value; then just return) */
     if(v[1] == 0)
 	return 0;
@@ -86,14 +86,14 @@ putenv(char *s)
     environ = newenv;
     environ[idx] = s;
     environ[idx+1] = 0;
-    
+
     return 0;
 }
 
 #endif /* NOPUTENV */
 
 
-
+
 int
 strbw(const char *a, const char *b)
 {
@@ -101,7 +101,7 @@ strbw(const char *a, const char *b)
 }
 
 
-
+
 void
 nomem(void)
 {

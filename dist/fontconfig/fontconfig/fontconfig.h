@@ -285,7 +285,7 @@ typedef struct _FcObjectSet {
     int		sobject;
     const char	**objects;
 } FcObjectSet;
-    
+
 typedef enum _FcMatchKind {
     FcMatchPattern, FcMatchFont, FcMatchScan,
     FcMatchKindEnd,
@@ -400,7 +400,7 @@ FcConfigGetFilename (FcConfig      *config,
 
 FcPublic FcChar8 *
 FcConfigFilename (const FcChar8 *url);
-    
+
 FcPublic FcConfig *
 FcConfigCreate (void);
 
@@ -418,7 +418,7 @@ FcConfigGetCurrent (void);
 
 FcPublic FcBool
 FcConfigUptoDate (FcConfig *config);
-    
+
 FcPublic FcBool
 FcConfigBuildFonts (FcConfig *config);
 
@@ -548,12 +548,12 @@ FcCharSetIsSubset (const FcCharSet *a, const FcCharSet *b);
 #define FC_CHARSET_DONE	((FcChar32) -1)
 
 FcPublic FcChar32
-FcCharSetFirstPage (const FcCharSet *a, 
+FcCharSetFirstPage (const FcCharSet *a,
 		    FcChar32	    map[FC_CHARSET_MAP_SIZE],
 		    FcChar32	    *next);
 
 FcPublic FcChar32
-FcCharSetNextPage (const FcCharSet  *a, 
+FcCharSetNextPage (const FcCharSet  *a,
 		   FcChar32	    map[FC_CHARSET_MAP_SIZE],
 		   FcChar32	    *next);
 
@@ -609,7 +609,7 @@ FcDirCacheLoad (const FcChar8 *dir, FcConfig *config, FcChar8 **cache_file);
 
 FcPublic FcCache *
 FcDirCacheRescan (const FcChar8 *dir, FcConfig *config);
-    
+
 FcPublic FcCache *
 FcDirCacheRead (const FcChar8 *dir, FcBool force, FcConfig *config);
 
@@ -772,7 +772,7 @@ FcFontSetMatch (FcConfig    *config,
 
 FcPublic FcPattern *
 FcFontMatch (FcConfig	*config,
-	     FcPattern	*p, 
+	     FcPattern	*p,
 	     FcResult	*result);
 
 FcPublic FcPattern *
@@ -890,10 +890,10 @@ FcPatternHash (const FcPattern *p);
 
 FcPublic FcBool
 FcPatternAdd (FcPattern *p, const char *object, FcValue value, FcBool append);
-    
+
 FcPublic FcBool
 FcPatternAddWeak (FcPattern *p, const char *object, FcValue value, FcBool append);
-    
+
 FcPublic FcResult
 FcPatternGet (const FcPattern *p, const char *object, int id, FcValue *v);
 
@@ -956,7 +956,7 @@ FcPatternGetRange (const FcPattern *p, const char *object, int id, FcRange **r);
 
 FcPublic FcPattern *
 FcPatternVaBuild (FcPattern *p, va_list va);
-    
+
 FcPublic FcPattern *
 FcPatternBuild (FcPattern *p, ...) FC_ATTRIBUTE_SENTINEL(0);
 
@@ -1025,10 +1025,10 @@ FcStrCopy (const FcChar8 *s);
 
 FcPublic FcChar8 *
 FcStrCopyFilename (const FcChar8 *s);
-    
+
 FcPublic FcChar8 *
 FcStrPlus (const FcChar8 *s1, const FcChar8 *s2);
-    
+
 FcPublic void
 FcStrFree (FcChar8 *s);
 
@@ -1145,7 +1145,7 @@ _FCFUNCPROTOEND
  * Deprecated functions are placed here to help users fix their code without
  * digging through documentation
  */
- 
+
 #define FcConfigGetRescanInverval   FcConfigGetRescanInverval_REPLACE_BY_FcConfigGetRescanInterval
 #define FcConfigSetRescanInverval   FcConfigSetRescanInverval_REPLACE_BY_FcConfigSetRescanInterval
 

@@ -36,17 +36,17 @@ extern void LetClientInteract(List *cl);
 extern void StartPhase2(void);
 extern void FinishUpSave(void);
 extern void SetSaveSensitivity(Bool on);
-extern void SavePopupStructureNotifyXtHandler(Widget w, XtPointer closure, 
-					      XEvent *event, 
+extern void SavePopupStructureNotifyXtHandler(Widget w, XtPointer closure,
+					      XEvent *event,
 					      Boolean *continue_to_dispatch);
 extern void create_save_popup(void);
 extern void PopupSaveDialog(void);
-extern void CheckPointXtProc(Widget w, XtPointer client_data, 
+extern void CheckPointXtProc(Widget w, XtPointer client_data,
 			     XtPointer callData);
-extern void ShutdownSaveXtProc(Widget w, XtPointer client_data, 
+extern void ShutdownSaveXtProc(Widget w, XtPointer client_data,
 			       XtPointer callData);
 extern void PopupBadSave(void);
-extern void ShutdownDontSaveXtProc(Widget w, XtPointer client_data, 
+extern void ShutdownDontSaveXtProc(Widget w, XtPointer client_data,
 				   XtPointer callData);
 
 #endif

@@ -55,14 +55,14 @@ get_string_resource (char *res_name, char *res_class)
   char full_name [1024], full_class [1024];
   int result;
 
-  result = snprintf(full_name, sizeof(full_name), "%s.%s", 
+  result = snprintf(full_name, sizeof(full_name), "%s.%s",
       progname, res_name);
   if (result == -1 || result >= sizeof(full_name)) {
 	  fprintf(stderr, "%s: resource name too long: %s.%s\n", progname,
 	      progname, res_name);
 	  return 0;
   }
-  result = snprintf(full_class, sizeof(full_class), "%s.%s", 
+  result = snprintf(full_class, sizeof(full_class), "%s.%s",
       progclass, res_class);
   if (result == -1 || result >= sizeof(full_class)) {
 	 fprintf(stderr, "%s: resource name too long: %s.%s\n", progname,

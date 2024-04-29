@@ -3,14 +3,14 @@
 .SH NAME
 FvwmForm - input form module for Fvwm
 .SH SYNOPSIS
-FvwmForm must be spawned by Fvwm.  
+FvwmForm must be spawned by Fvwm.
 It will not work from the command line.
 .SH DESCRIPTION
 FvwmForm provides a mechanism to get user input and act accordingly.
 This is achieved by means of a form that the user can fill out,
 and from which the user can select actions he wants Fvwm to take.
 A form consists of five types of items:
-text labels, 
+text labels,
 single-line text inputs,
 mutually-exclusive selections,
 multiple-choice selections,
@@ -162,7 +162,7 @@ FvwmForm will assure only one is selected.
 .TP 4
 .B *FvwmFormButton \fItype\fP "\fIstring\fP" [\fIkey\fP]
 This option specifies an action button.
-The button has \fIstring\fP as a label, 
+The button has \fIstring\fP as a label,
 and excutes a set of Fvwm \fIcommand\fP when it is activated.
 The commands should be specified using the *FvwmFormCommand option.
 
@@ -180,7 +180,7 @@ continue
 FvwmForm will resume execution after sending the commands.
 .TP 16
 restart
-After sending the commands, 
+After sending the commands,
 FvwmForm will reset all the values to the initial ones,
 and then resume execution.
 .TP 16
@@ -263,7 +263,7 @@ This example simulates the mwm way of confirming logout.
 Style "QuitVerify" NoTitle, NoHandles, BorderWidth 3
 
 .SH EXAMPLE 2 - Remote Login
-This example lets the user type in a hostname, 
+This example lets the user type in a hostname,
 and optionally a user name on the remote machine,
 and opens an xterm window from the remote host.
 

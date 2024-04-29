@@ -652,7 +652,7 @@ extern int  dpmsoff;
 #ifdef USE_PRIVSEP
 extern int priv_init(gid_t);
 #endif
-	
+
 
 #ifdef HAVE_KRB5
 #include <krb5.h>
@@ -2876,7 +2876,7 @@ justDisplay(Display * display)
 				timetodie = True;
 				/* not_done = False; */
 		    }
-		    else if (unlockdelay && (unlockdelay > (int) (seconds() - start_time))) 
+		    else if (unlockdelay && (unlockdelay > (int) (seconds() - start_time)))
 		    {
 				not_done = True;
 		    }

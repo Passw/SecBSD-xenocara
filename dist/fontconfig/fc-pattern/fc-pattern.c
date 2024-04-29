@@ -133,7 +133,7 @@ main (int argc, char **argv)
 	    format = (FcChar8 *) strdup (optarg);
 	    break;
 	case 'V':
-	    fprintf (stderr, "fontconfig version %d.%d.%d\n", 
+	    fprintf (stderr, "fontconfig version %d.%d.%d\n",
 		     FC_MAJOR, FC_MINOR, FC_REVISION);
 	    exit (0);
 	case 'h':

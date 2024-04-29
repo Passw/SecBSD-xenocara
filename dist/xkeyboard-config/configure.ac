@@ -15,7 +15,7 @@ AC_SUBST(VERSION)
 
 AC_ARG_WITH( xkb_base,
              [AS_HELP_STRING([--with-xkb-base=DIR],[XKB base path @<:@DATADIR/X11/xkb@:>@])],
-             xkb_base="$withval", 
+             xkb_base="$withval",
              xkb_base="${datadir}/X11/xkb" )
 
 AC_ARG_WITH( xkb_rules_symlink,

@@ -324,7 +324,7 @@ do_normal(GLfloat x1, GLfloat y1, GLfloat z1,
 	}
 #endif /* DEBUG */
 }
-
+
 
 
 /* Shorthand utilities for making faces, with proper normals.
@@ -410,7 +410,7 @@ face5(GLint texture, GLfloat * color, Bool wire,
 	glVertex3f(x5, y5, z5);
 	glEnd();
 }
-
+
 
 
 /* Creating object models
@@ -1655,7 +1655,7 @@ taser(ModeInfo * mi, Bool wire)
 
 	glEndList();
 }
-
+
 
 
 /* Rendering and animating object models
@@ -2161,7 +2161,7 @@ rotate(GLfloat * pos, GLfloat * v, GLfloat * dv, GLfloat max_v, Bool verbose)
 			*dv *= 0.8;
 	}
 }
-
+
 
 
 /* Window management, etc

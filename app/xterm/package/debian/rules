@@ -123,7 +123,7 @@ install-indep:
 install-arch:
 	dh_testdir
 	dh_testroot
-	dh_prep -s 
+	dh_prep -s
 	dh_installdirs -s
 
 	$(MAKE) install-bin \

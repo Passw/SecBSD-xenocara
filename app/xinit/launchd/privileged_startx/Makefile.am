@@ -51,7 +51,7 @@ BUILT_SOURCES = \
 	privileged_startxServer.h \
 	privileged_startx.h
 
-$(bundleidprefix).privileged_startx.plist.cpp: privileged_startx.plist.cpp  
+$(bundleidprefix).privileged_startx.plist.cpp: privileged_startx.plist.cpp
 	cp $< $@
 
 launchdaemons_PRE = $(bundleidprefix).privileged_startx.plist.cpp

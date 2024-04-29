@@ -3661,7 +3661,7 @@ main (int argc, char **argv)
 		    printf (" (0x%x)", (int)cur_mode->id);
 		if (output->rotation != RR_Rotate_0 || verbose)
 		{
-		    printf (" %s",
+		    printf (" %s", 
 			    rotation_name (output->rotation));
 		    if (output->rotation & (RR_Reflect_X|RR_Reflect_Y))
 			printf (" %s", reflection_name (output->rotation));

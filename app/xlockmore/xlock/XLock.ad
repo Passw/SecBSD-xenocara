@@ -91,8 +91,8 @@ XLock.logoutAuto: 0
 ! 0 defaults to maximum defined value
 XLock.logoutButton: 0
 
-XLock.username: Name: 
-XLock.password: Password: 
+XLock.username: Name:
+XLock.password: Password:
 XLock.info: Enter password to unlock; select icon to lock.
 XLock.validate: Validating login...
 XLock.invalid: Invalid login.
@@ -108,8 +108,8 @@ Logout attempt FAILED.\n\
 Current user could not be automatically logged out.
 
 !! French by: Eric LASSAUGE <lassauge AT users.sourceforge.net>
-!XLock.username: Nom: 
-!XLock.password: Mot de Passe: 
+!XLock.username: Nom:
+!XLock.password: Mot de Passe:
 !XLock.info: Entrez le mot de passe ou choisissez l'icône pour verrouiller.
 !XLock.validate: Validation ...
 !XLock.invalid: Mot de passe invalide.
@@ -139,7 +139,7 @@ Current user could not be automatically logged out.
 ! Mode options: If count, cycles, or size options are set to 1 ...
 ! they are probably not used by the mode.
 XLock.anemone.delay: 5000
-!XLock.anemone.count: 1 
+!XLock.anemone.count: 1
 !XLock.anemone.cycles: 1
 !XLock.anemone.size: 1
 XLock.anemone.arms: 256

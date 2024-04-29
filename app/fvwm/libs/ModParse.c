@@ -167,7 +167,7 @@ char *GetNextArgument(char *indata,char **token)
 /****************************************************************************
  *
  * Gets the next "word" of input from char string indata.
- * "word" is a string with no spaces, or a quoted string.
+ * "word" is a string with no spaces, or a qouted string.
  * Return value is ptr to indata,updated to point to text after the word
  * which is extracted.
  * token is the extracted word, which is copied into a malloced
@@ -188,7 +188,7 @@ char *GetNextArgument(char *indata,char **token)
   start = t;
   while(!isspace(*t)&&(*t != 0))
     {
-      /* Check for quoted text */
+      /* Check for qouted text */
       if(*t == '"')
 	{
 	  t++;
@@ -217,7 +217,7 @@ char *GetNextArgument(char *indata,char **token)
 
   while(start < end)
     {
-      /* Check for quoted text */
+      /* Check for qouted text */
       if(*start == '"')
 	{
 	  start++;

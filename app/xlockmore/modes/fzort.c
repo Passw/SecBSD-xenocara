@@ -209,7 +209,7 @@ fp_mul(long a, long b)
     asm volatile("imull %2; shrdl %3,%%edx,%%eax"
 		: "=a"(c)
 		: "0"(a), "m"(b), "i"(FP_SHIFT)
-		: "edx"); 
+		: "edx");
 	return c;
 }
 #else
@@ -229,7 +229,7 @@ fp_mul_add(long s, long a, long b)
     asm volatile("imull %2; shrdl %3,%%edx,%%eax; addl %4,%%eax"
 		: "=a"(c)
 		: "0"(a), "m"(b), "i"(FP_SHIFT), "m"(s)
-		: "edx"); 
+		: "edx");
 	return c;
 }
 #else
@@ -394,7 +394,7 @@ mat_make_rotation_around_x(struct matrix *m, float ang)
 	mat_make_identity(m);
 
 	m->m22 = c; m->m23 = -s;
-	m->m32 = s; m->m33 = c; 
+	m->m32 = s; m->m33 = c;
 }
 
 static void
@@ -554,7 +554,7 @@ init_edge(fzort_ctx *ctx, struct edge *edge,
 		edge->lines = (int) (y_max - edge->sy);
 		edge->dxdy = fp_div(edge->dx, edge->dy);
 		edge->sx = INT_TO_FP(v0->x_scr) + edge->adjy*edge->dxdy;
-	} 
+	}
 }
 
 #define CONCAT(a, b) a ## b
@@ -636,7 +636,7 @@ render_process_mesh(fzort_ctx *ctx, struct matrix *m)
 	for (v = ctx->mesh->vtx; v != vend; v++) {
 		struct vector normal;
 		float w;
-		
+
 		mat_transform_copy(&pv->p, m, &v->p);
 		mat_rotate_copy(&normal, m, &v->normal);
 		vec_normalize(&normal);
@@ -645,22 +645,22 @@ render_process_mesh(fzort_ctx *ctx, struct matrix *m)
 		  (TEXTURE_SIZE/2)*normal.y + 0.5);
 		pv->v_txt = FLOAT_TO_FP((TEXTURE_SIZE/2) +
 		  (TEXTURE_SIZE/2)*normal.x + 0.5);
-	
+
 		w = ctx->lx/pv->p.z;
 		pv->x_scr = (int) (ctx->cx + w*pv->p.x + 0.5);
 		pv->y_scr = (int) (ctx->cy + w*pv->p.y + 0.5);
 
 		if (pv->x_scr < x_scr_min)
-			x_scr_min = pv->x_scr; 
+			x_scr_min = pv->x_scr;
 
 		if (pv->x_scr > x_scr_max)
-			x_scr_max = pv->x_scr; 
+			x_scr_max = pv->x_scr;
 
 		if (pv->y_scr < y_scr_min)
-			y_scr_min = pv->y_scr; 
+			y_scr_min = pv->y_scr;
 
 		if (pv->y_scr > y_scr_max)
-			y_scr_max = pv->y_scr; 
+			y_scr_max = pv->y_scr;
 
 		pv++;
 	}
@@ -704,13 +704,13 @@ render_process_mesh(fzort_ctx *ctx, struct matrix *m)
 
 		for (idx = &pin->vtx_index[0]; idx != iend; idx++) {
 			pv = &ctx->pvtx[*idx];
-	
+
 			nclip_x_min += (pv->x_scr < ctx->clip.x_min);
 			nclip_x_max += (pv->x_scr > ctx->clip.x_max);
 			nclip_y_min += (pv->x_scr < ctx->clip.y_min);
 			nclip_y_max += (pv->y_scr > ctx->clip.y_max);
 		}
-	
+
 		if (nclip_x_min != pin->nvtx && nclip_x_max != pin->nvtx &&
 		  nclip_y_min != pin->nvtx && nclip_y_max != pin->nvtx) {
 			struct pvertex *p0, *p1, *p2, *p3;
@@ -745,27 +745,27 @@ render_process_mesh(fzort_ctx *ctx, struct matrix *m)
 		struct polygon *poly;
 
 		z_min = z_max = 0.f;
-	
+
 		for (i = 0; i < npoly; i++) {
 			z = ctx->order_in[i].z;
-	
+
 			if (i == 0 || z < z_min)
 				z_min = z;
-	
+
 			if (i == 0 || z > z_max)
 				z_max = z;
 		}
-	
+
 		z_scale = 255.f/(z_max - z_min);
-	
+
 		for (i = 0; i < npoly; i++)
 			ctx->order_in[i].zi = (unsigned int) (z_scale*(ctx->order_in[i].z - z_min));
-	
+
 		radix_sort(ctx->order_out, ctx->order_in, 0, npoly);
-	
+
 		for (i = npoly - 1; i >= 0; i--) {
 			poly = ctx->order_out[i].poly;
-	
+
 			for (j = 1; j < poly->nvtx - 1; j++) {
 				ctx->fill_triangle_fn(ctx,
 				  &ctx->pvtx[poly->vtx_index[0]],
@@ -795,8 +795,8 @@ mesh_free(struct mesh *m)
 static inline float
 radius_offset(float phi, float theta, float phase, float amp)
 {
-	return (amp + 4.*amp*sin(3.*phase + theta))*sin(phase + 5.*phi) + 
-	  (amp + 4.*amp*sin(2.*phase + 2.*phi))*sin(phase + 3.*theta); 
+	return (amp + 4.*amp*sin(3.*phase + theta))*sin(phase + 5.*phi) +
+	  (amp + 4.*amp*sin(2.*phase + 2.*phi))*sin(phase + 3.*theta);
 }
 
 static inline void
@@ -876,9 +876,9 @@ calc_mesh_vertices(struct mesh *mesh, int density, float radius,
 
 			/*
 				(amp + 4.*amp*sin(3.*phase + theta))*
-				  sin(phase + 5.*phi) + 
+				  sin(phase + 5.*phi) +
 				(amp + 4.*amp*sin(2.*phase + 2.*phi))*
-				  sin(phase + 3.*theta); 
+				  sin(phase + 3.*theta);
 	  		*/
 
 			offs = (amp + 4.*amp*
@@ -1287,7 +1287,7 @@ static int
 make_image(ModeInfo *mi, struct fzort_ctx *fz)
 {
 	int img_width, img_height;
-	
+
 	img_width = MIN(MI_WIDTH(mi), MI_HEIGHT(mi));
 
 	if (img_width > MAX_WIDTH)
@@ -1623,7 +1623,7 @@ draw_fzort(ModeInfo *mi)
 		        ;
 	} else {
 		XPutImage(MI_DISPLAY(mi), MI_WINDOW(mi), MI_GC(mi),
-		  fz->image, 
+		  fz->image,
 		  src_x_min, src_y_min, x0 + src_x_min, y0 + src_y_min,
 		  src_x_max - src_x_min + 1, src_y_max - src_y_min + 1);
 	}

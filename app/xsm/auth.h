@@ -31,9 +31,9 @@ in this Software without prior written authorization from The Open Group.
 #include <X11/ICE/ICEutil.h>
 
 extern Bool HostBasedAuthProc(char *hostname);
-extern Status SetAuthentication(int count, IceListenObj *listenObjs, 
+extern Status SetAuthentication(int count, IceListenObj *listenObjs,
 				IceAuthDataEntry **authDataEntries);
-extern void FreeAuthenticationData(int count, 
+extern void FreeAuthenticationData(int count,
 				   IceAuthDataEntry *authDataEntries);
 
 #endif

@@ -74,7 +74,7 @@
  * These are derived from the data at
  *  ftp://www.unicode.org/Public/MAPPINGS/ISO8859/
  *
- * Note: the "figure A-xx" comments refer to EK–PPLV2–PM. 
+ * Note: the "figure A-xx" comments refer to EK–PPLV2–PM.
  */
 
 /*

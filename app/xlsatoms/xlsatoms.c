@@ -186,7 +186,7 @@ strtoatom(char *s, xcb_atom_t *atom)
     return 0;
 }
 
-static int
+static int 
 parse_range(char *range, xcb_atom_t *lowp, xcb_atom_t *highp)
 {
     char *dash;

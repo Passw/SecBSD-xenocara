@@ -229,8 +229,8 @@ WildcatFBSetup(pointer module, pointer opts, int *errmaj, int *errmin)
 	static Bool setupDone = FALSE;
 	struct utsname name;
 
-	/* Check that we're being loaded on a OpenBSD system. */
-	if (uname(&name) == -1 || strcmp(name.sysname, "OpenBSD") != 0) {
+	/* Check that we're being loaded on a SecBSD system. */
+	if (uname(&name) == -1 || strcmp(name.sysname, "SecBSD") != 0) {
 		if (errmaj)
 			*errmaj = LDR_BADOS;
 		if (errmin)

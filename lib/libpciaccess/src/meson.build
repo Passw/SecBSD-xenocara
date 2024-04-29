@@ -28,6 +28,8 @@ elif host == 'netbsd'
   _pci_access_host_files += ['netbsd_pci.c', 'common_vgaarb_stub.c']
 elif host == 'openbsd'
   _pci_access_host_files += ['openbsd_pci.c']  # VGA arbiter code is in netbsd_pci.c
+elif host == 'secbsd'
+  _pci_access_host_files += ['openbsd_pci.c']
 elif host == 'cygwin'
   _pci_access_host_files += ['x86_pci.c', 'common_vgaarb_stub.c']
 elif host == 'sunos'

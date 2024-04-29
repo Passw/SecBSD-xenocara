@@ -120,31 +120,31 @@ static char *cmd_line_display = NULL;
 /*
  * Forward declarations
  */
-static void PropertyChangeXtHandler(Widget w, XtPointer closure, 
-				    XEvent *event, 
+static void PropertyChangeXtHandler(Widget w, XtPointer closure,
+				    XEvent *event,
 				    Boolean *continue_to_dispatch);
 static void GetEnvironment(void);
-static Status RegisterClientProc(SmsConn smsConn, SmPointer managerData, 
+static Status RegisterClientProc(SmsConn smsConn, SmPointer managerData,
 				 char *previousId);
 static Bool OkToEnterInteractPhase(void);
-static void InteractRequestProc(SmsConn smsConn, SmPointer managerData, 
+static void InteractRequestProc(SmsConn smsConn, SmPointer managerData,
 				int dialogType);
-static void InteractDoneProc(SmsConn smsConn, SmPointer managerData, 
+static void InteractDoneProc(SmsConn smsConn, SmPointer managerData,
 			     Bool cancelShutdown);
-static void SaveYourselfReqProc(SmsConn smsConn, SmPointer managerData, 
-				int saveType, Bool shutdown, 
+static void SaveYourselfReqProc(SmsConn smsConn, SmPointer managerData,
+				int saveType, Bool shutdown,
 				int interactStyle, Bool fast, Bool global);
 static Bool OkToEnterPhase2(void);
 static void SaveYourselfPhase2ReqProc(SmsConn smsConn, SmPointer managerData);
-static void SaveYourselfDoneProc(SmsConn smsConn, SmPointer managerData, 
+static void SaveYourselfDoneProc(SmsConn smsConn, SmPointer managerData,
 				 Bool success);
-static void CloseConnectionProc(SmsConn smsConn, SmPointer managerData, 
+static void CloseConnectionProc(SmsConn smsConn, SmPointer managerData,
 				int count, char **reasonMsgs);
-static Status NewClientProc(SmsConn smsConn, SmPointer managerData, 
-			    unsigned long *maskRet, 
-			    SmsCallbacks *callbacksRet, 
+static Status NewClientProc(SmsConn smsConn, SmPointer managerData,
+			    unsigned long *maskRet,
+			    SmsCallbacks *callbacksRet,
 			    char **failureReasonRet);
-static void NewConnectionXtProc(XtPointer client_data, int *source, 
+static void NewConnectionXtProc(XtPointer client_data, int *source,
 				XtInputId *id);
 static void MyIoErrorHandler(IceConn ice_conn);
 static void InstallIOErrorHandler(void);
@@ -153,7 +153,7 @@ static void CloseListeners(void);
 
 static IceListenObj *listenObjs;
 
-
+
 /*
  * Main program
  */
@@ -170,6 +170,8 @@ main(int argc, char *argv[])
 
     for (i = 1; i < argc; i++)
     {
+	int exit_val = EXIT_FAILURE;
+
 	if (argv[i][0] == '-')
 	{
 	    switch (argv[i][1])
@@ -183,6 +185,13 @@ main(int argc, char *argv[])
 		cmd_line_display = (char *) XtNewString (argv[i]);
 		continue;
 
+	    case 'h':
+		if (strcmp (argv[i], "-help") == 0) {
+		    exit_val = EXIT_SUCCESS;
+		    goto usage;
+		}
+		break; /* goto unrecognized argument errror */
+
 	    case 's':					/* -session */
 		if (++i >= argc) {
 		    fprintf (stderr, "%s: -session requires an argument\n",
@@ -192,8 +201,14 @@ main(int argc, char *argv[])
 		session_name = XtNewString (argv[i]);
 		continue;
 
-	    case 'v':					/* -verbose */
-		verbose = 1;
+	    case 'v':
+		if (strcmp (argv[i], "-version") == 0) {
+		    puts (PACKAGE_STRING);
+		    exit (0);
+		}
+		else {					/* -verbose */
+		    verbose = 1;
+		}
 		continue;
 	    }
 	}
@@ -202,8 +217,9 @@ main(int argc, char *argv[])
 
     usage:
 	fprintf (stderr,
-	 "Usage: xsm [-display display] [-session sessionName] [-verbose]\n");
-	exit (1);
+	 "Usage: xsm [-display display] [-session sessionName] [-verbose]\n"
+         "       xsm [-help|-version]\n");
+	exit (exit_val);
     }
 
     topLevel = XtVaAppInitialize (&appContext, "XSm", NULL, 0,
@@ -211,7 +227,7 @@ main(int argc, char *argv[])
 	XtNmappedWhenManaged, False,
 	XtNwindowRole, "xsm main window",
 	NULL);
-	
+
     wmStateAtom = XInternAtom (
 	XtDisplay (topLevel), "WM_STATE", False);
     wmDeleteAtom = XInternAtom (
@@ -368,7 +384,7 @@ main(int argc, char *argv[])
     {
 	ChooseSession ();
     }
-    
+
 
     /*
      * Main loop
@@ -379,9 +395,9 @@ main(int argc, char *argv[])
 }
 
 
-
+
 static void
-PropertyChangeXtHandler(Widget w, XtPointer closure, XEvent *event, 
+PropertyChangeXtHandler(Widget w, XtPointer closure, XEvent *event,
 			Boolean *continue_to_dispatch)
 {
     if (w == topLevel && event->type == PropertyNotify &&
@@ -407,7 +423,7 @@ PropertyChangeXtHandler(Widget w, XtPointer closure, XEvent *event,
 }
 
 
-
+
 void
 SetWM_DELETE_WINDOW(Widget widget, const _XtString delAction)
 {
@@ -422,7 +438,7 @@ SetWM_DELETE_WINDOW(Widget widget, const _XtString delAction)
 }
 
 
-
+
 static void
 GetEnvironment(void)
 {
@@ -510,7 +526,7 @@ GetEnvironment(void)
 }
 
 
-
+
 Status
 StartSession(char *name, Bool use_default)
 {
@@ -603,7 +619,7 @@ StartSession(char *name, Bool use_default)
     XtVaSetValues (shutdownButton,
 	XtNwidth, width,
 	NULL);
-    
+
 
     XtMapWidget (topLevel);
 
@@ -643,7 +659,7 @@ StartSession(char *name, Bool use_default)
 	     * Start apps that aren't session aware that were specified
 	     * by the user.
 	     */
-	    
+
 	    StartNonSessionAwareApps ();
 	}
     }
@@ -652,7 +668,7 @@ StartSession(char *name, Bool use_default)
 }
 
 
-
+
 void
 EndSession(int status)
 {
@@ -686,7 +702,7 @@ EndSession(int status)
 }
 
 
-
+
 void
 FreeClient(ClientRec *client, Bool freeProps)
 {
@@ -714,7 +730,7 @@ FreeClient(ClientRec *client, Bool freeProps)
 }
 
 
-
+
 /*
  * Session Manager callbacks
  */
@@ -848,7 +864,7 @@ RegisterClientProc(SmsConn smsConn, SmPointer managerData, char *previousId)
 }
 
 
-
+
 static Bool
 OkToEnterInteractPhase(void)
 {
@@ -857,7 +873,7 @@ OkToEnterInteractPhase(void)
 }
 
 
-
+
 static void
 InteractRequestProc(SmsConn smsConn, SmPointer managerData, int dialogType)
 {
@@ -884,7 +900,7 @@ InteractRequestProc(SmsConn smsConn, SmPointer managerData, int dialogType)
 }
 
 
-
+
 static void
 InteractDoneProc(SmsConn smsConn, SmPointer managerData, Bool cancelShutdown)
 {
@@ -920,7 +936,7 @@ InteractDoneProc(SmsConn smsConn, SmPointer managerData, Bool cancelShutdown)
 
 	    SmsShutdownCancelled (client->smsConn);
 
-	    if (verbose) 
+	    if (verbose)
 	    {
 		printf ("Client Id = %s, sent SHUTDOWN CANCELLED\n",
 			client->clientId);
@@ -951,17 +967,17 @@ InteractDoneProc(SmsConn smsConn, SmPointer managerData, Bool cancelShutdown)
 }
 
 
-
+
 static void
 SaveYourselfReqProc(SmsConn smsConn, SmPointer managerData, int saveType,
     Bool shutdown, int interactStyle, Bool fast, Bool global)
 {
-    if (verbose) 
+    if (verbose)
 	printf("SAVE YOURSELF REQUEST not supported!\n");
 }
 
 
-
+
 static Bool
 OkToEnterPhase2(void)
 
@@ -970,7 +986,7 @@ OkToEnterPhase2(void)
 }
 
 
-
+
 static void
 SaveYourselfPhase2ReqProc(SmsConn smsConn, SmPointer managerData)
 {
@@ -989,7 +1005,7 @@ SaveYourselfPhase2ReqProc(SmsConn smsConn, SmPointer managerData)
 	 * started the client and sent the initial save yourself), just
 	 * send the save yourself phase2 now.
 	 */
-	 
+
 	SmsSaveYourselfPhase2 (client->smsConn);
     }
     else
@@ -1008,13 +1024,13 @@ SaveYourselfPhase2ReqProc(SmsConn smsConn, SmPointer managerData)
 }
 
 
-
+
 static void
 SaveYourselfDoneProc(SmsConn smsConn, SmPointer managerData, Bool success)
 {
     ClientRec	*client = (ClientRec *) managerData;
 
-    if (verbose) 
+    if (verbose)
     {
 	printf("Client Id = %s, received SAVE YOURSELF DONE [Success = %s]\n",
 	       client->clientId, success ? "True" : "False");
@@ -1050,7 +1066,7 @@ SaveYourselfDoneProc(SmsConn smsConn, SmPointer managerData, Bool success)
 }
 
 
-
+
 void
 CloseDownClient(ClientRec *client)
 {
@@ -1164,9 +1180,9 @@ CloseDownClient(ClientRec *client)
 
 
 
-
+
 static void
-CloseConnectionProc(SmsConn smsConn, SmPointer managerData, 
+CloseConnectionProc(SmsConn smsConn, SmPointer managerData,
 		    int count, char **reasonMsgs)
 {
     ClientRec	*client = (ClientRec *) managerData;
@@ -1189,9 +1205,9 @@ CloseConnectionProc(SmsConn smsConn, SmPointer managerData,
 }
 
 
-
+
 static Status
-NewClientProc(SmsConn smsConn, SmPointer managerData, unsigned long *maskRet, 
+NewClientProc(SmsConn smsConn, SmPointer managerData, unsigned long *maskRet,
 	      SmsCallbacks *callbacksRet, char **failureReasonRet)
 {
     ClientRec *newClient = (ClientRec *) XtMalloc (sizeof (ClientRec));
@@ -1278,7 +1294,7 @@ NewClientProc(SmsConn smsConn, SmPointer managerData, unsigned long *maskRet,
 }
 
 
-
+
 /*
  * Xt callback invoked when a client attempts to connect.
  */
@@ -1335,7 +1351,7 @@ NewConnectionXtProc(XtPointer client_data, int *source, XtInputId *id)
 }
 
 
-
+
 void
 SetAllSensitive(Bool on)
 {
@@ -1349,7 +1365,7 @@ SetAllSensitive(Bool on)
 }
 
 
-
+
 /*
  * The real way to handle IO errors is to check the return status
  * of IceProcessMessages.  xsm properly does this.
@@ -1375,7 +1391,7 @@ MyIoErrorHandler(IceConn ice_conn)
 {
     if (prev_handler)
 	(*prev_handler) (ice_conn);
-}    
+}
 
 static void
 InstallIOErrorHandler(void)

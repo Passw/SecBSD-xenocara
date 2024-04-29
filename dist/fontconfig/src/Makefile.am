@@ -44,7 +44,7 @@ else
 install-libtool-import-lib:
 uninstall-libtool-import-lib:
 
-fontconfig_def_dependency = 
+fontconfig_def_dependency =
 
 endif
 

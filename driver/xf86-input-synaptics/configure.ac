@@ -110,7 +110,7 @@ case "${host}" in
 	AC_MSG_RESULT([ps2comm alpscomm])
 	BUILD_PS2COMM="yes"
 	;;
-*openbsd* | *secbsd*)
+*openbsd*)
 	AC_MSG_RESULT([wsconscomm])
 	BUILD_WSCONSCOMM="yes"
 	;;

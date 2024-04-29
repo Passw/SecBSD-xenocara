@@ -157,7 +157,7 @@
 #endif
 #endif
 
-#if defined(__OpenBSD__)
+#if defined(__OpenBSD__) || (__SecBSD__)
 #define USE_UTMP_SETGID True
 #define DEFDELETE_DEL True
 #define DEF_BACKARO_ERASE True
@@ -1583,7 +1583,7 @@ extern Bool TabIsSet (Tabs /* tabs */, int /* col */);
 extern Boolean isDefaultBackground (const char * /* name */);
 extern Boolean isDefaultForeground (const char * /* name */);
 extern CgsEnum whichXtermCgs (XtermWidget /* xw */, unsigned /* attr_flags */, Bool /* hilite */);
-extern GC updatedXtermGC (XtermWidget /* xw */, unsigned  /* flags */, CellColor /* fg_bg */, Bool  /* hilite */);  
+extern GC updatedXtermGC (XtermWidget /* xw */, unsigned  /* flags */, CellColor /* fg_bg */, Bool  /* hilite */);
 extern Pixel getXtermBackground (XtermWidget /* xw */, unsigned /* flags */, int /* color */);
 extern Pixel getXtermForeground (XtermWidget /* xw */, unsigned /* flags */, int /* color */);
 extern char * xtermSetLocale (int /* category */, String /* after */);

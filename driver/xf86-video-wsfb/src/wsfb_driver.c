@@ -210,7 +210,7 @@ WsfbSetup(pointer module, pointer opts, int *errmaj, int *errmin)
 	struct utsname name;
 
 	/* Check that we're being loaded on a OpenBSD or NetBSD system. */
-	if (uname(&name) == -1 || (strcmp(name.sysname, "OpenBSD") != 0 &&
+	if (uname(&name) == -1 || (strcmp(name.sysname, "SecBSD") != 0 &&
 			strcmp(name.sysname, "NetBSD") != 0)) {
 		if (errmaj)
 			*errmaj = LDR_BADOS;

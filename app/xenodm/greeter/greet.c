@@ -363,7 +363,7 @@ greet_user_rtn AutoLogin(
         LogError("Autologin %s failed\n", d->autoLogin);
         SessionExit(d, UNMANAGE_DISPLAY, true);
     }
-    
+
     /*
      * Run system-wide initialization file
      */

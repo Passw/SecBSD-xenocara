@@ -360,7 +360,7 @@ reps(complex c, double p, int r, Bool binary, interior_t interior, double demran
 		if (zsin)
 			add(&t, complex_sin(t1));
 		l2 = t.real * t.real + t.imag * t.imag;
-		if (l2 <= alpha2) { 
+		if (l2 <= alpha2) {
 			alpha2 = l2;
 			index = rep;
 		}
@@ -372,7 +372,7 @@ reps(complex c, double p, int r, Bool binary, interior_t interior, double demran
 			   attractor, the more negative the exponent will be. */
 			/*                     n=N
 			L = lim        1/N *  Sum    log(abs(dx(n+1)/dx(n)))/ln(2)
-                   N->inf          n=1     
+                   N->inf          n=1
 			*/
 		    L += log(sqrt(l2));
 		}
@@ -388,7 +388,7 @@ reps(complex c, double p, int r, Bool binary, interior_t interior, double demran
 			if(p > 2) ipow(&t1, (int) (p - 1));
 			mult(&dt, t1);
 			dt.real += 1;
-			dl2 = dt.real * dt.real + dt.imag * dt.imag;			
+			dl2 = dt.real * dt.real + dt.imag * dt.imag;
 			if (dl2 >= 1e300) {
 				escaped = 2;
 				break;

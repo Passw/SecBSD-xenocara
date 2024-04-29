@@ -13,9 +13,9 @@ static const char sccsid[] = "@(#)deluxe.c	5.22 2006/03/07 xlockmore";
  * the above copyright notice appear in all copies and that both that
  * copyright notice and this permission notice appear in supporting
  * documentation.  No representations are made about the suitability of this
- * software for any purpose.  It is provided "as is" without express or 
+ * software for any purpose.  It is provided "as is" without express or
  * implied warranty.
- * 
+ *
  * adapted for xlockmore : March 2006
  */
 
@@ -66,11 +66,11 @@ static const char sccsid[] = "@(#)deluxe.c	5.22 2006/03/07 xlockmore";
 #define DEF_TRANSPARENT "False"
 #define DEF_DB "True"
 #ifdef HAVE_DOUBLE_BUFFER_EXTENSION
-#define DEF_USEDBECLEAR "True" 
+#define DEF_USEDBECLEAR "True"
 #endif
 #define DEF_MONO "False"
 #define DEF_PLANES "0"
-  
+
 static int st_thickness;
 static int st_speed;
 static Bool st_transparent;
@@ -179,7 +179,7 @@ static void
 free_deluxe(Display *dpy, deluxestruct *dlp)
 {
    int i;
-   
+
    for (i = 0; i < dlp->count; i++)
      if ( dlp->throbbers[i] )
        {
@@ -511,7 +511,7 @@ void draw_deluxe (ModeInfo * mi)
    Display *dpy = MI_DISPLAY(mi);
    Window window = MI_WINDOW(mi);
    int i;
-   
+
    if (deluxes == NULL)
 	return;
    MI_IS_DRAWN(mi) = True;

@@ -120,7 +120,7 @@ static void set_draw_mode (WinManager *man, int flag)
   else if (man->we_are_drawing && !flag) {
     the_manager = man;
     num = accumulate_walk_hashtab (count_nonsticky_in_hashtab);
-    ConsoleDebug (FVWM, "SetDrawMode on 0x%lx, num = %d\n", 
+    ConsoleDebug (FVWM, "SetDrawMode on 0x%lx, num = %d\n",
 		  (unsigned long)man, num);
 
     if (num == 0)

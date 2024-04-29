@@ -864,7 +864,7 @@ cf_prefer_openpt=no
 case $host_os in
 (darwin[[0-9]].*)
 	;;
-(openbsd[[0-9]].*)
+(openbsd[0-9].* | secbsd[[0-9]].*)
 	# The POSIX entrypoints exist, but have never worked.
 	;;
 (linux*)
@@ -1784,7 +1784,7 @@ then
 	(linux*|gnu*|k*bsd*-gnu|freebsd*)
 		LD_RPATH_OPT="-Wl,-rpath,"
 		;;
-	(openbsd[[2-9]].*|mirbsd*)
+	(openbsd[[2-9]].*|secbsd[[1-9]].*|mirbsd*)
 		LD_RPATH_OPT="-Wl,-rpath,"
 		;;
 	(dragonfly*)
@@ -4734,7 +4734,7 @@ case "$host_os" in
 (netbsd*)
 	cf_xopen_source="-D_NETBSD_SOURCE" # setting _XOPEN_SOURCE breaks IPv6 for lynx on NetBSD 1.6, breaks xterm, is not needed for ncursesw
 	;;
-(openbsd[[6-9]]*|secbsd[[6-9]]*)
+(openbsd[[6-9]]* | secbsd[[1-9]]*)
 	# OpenBSD 6.x has broken locale support, both compile-time and runtime.
 	# see https://www.mail-archive.com/bugs@openbsd.org/msg13200.html
 	# Abusing the conformance level is a workaround.

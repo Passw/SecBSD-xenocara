@@ -79,7 +79,7 @@ RasterFileToImage(ModeInfo * mi, char *filename, XImage ** image ,
 	read_width = (int) xlockimage.width;
 	if ((xlockimage.width & 1) != 0)
 		read_width++;
-   
+
    depth = MI_DEPTH(mi);
    rasdata = (unsigned char *) malloc((int) (read_width * xlockimage.height));
    if ( depth < 9 )
@@ -168,6 +168,6 @@ RasterFileToImage(ModeInfo * mi, char *filename, XImage ** image ,
      }
    free( rasdata );
    free( pixel_num );
-   
+
    return RasterSuccess;
 }

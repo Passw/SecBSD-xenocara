@@ -36,7 +36,7 @@ SortIconManager
 
 SqueezeTitle
 {
-	"XTerm"		center	0	0 
+	"XTerm"		center	0	0
 	"Xsol"		center	0	0
 	"Spider"	center	0	0
 }

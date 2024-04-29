@@ -160,7 +160,7 @@ main(int argc, char *argv[])
     screenno = DefaultScreen (dpy);
 
     if (kill_all) {
-	if (verify_okay_to_kill (dpy, screenno)) 
+	if (verify_okay_to_kill (dpy, screenno))
 	  kill_all_windows (dpy, screenno, top);
 	Exit (0, dpy);
     }
@@ -187,7 +187,7 @@ main(int argc, char *argv[])
 
 	    count = XGetPointerMapping (dpy, pointer_map, 256);
 	    if (count <= 0) {
-		fprintf (stderr, 
+		fprintf (stderr,
 			 "%s:  no pointer mapping, can't select window\n",
 			 ProgramName);
 		Exit (1, dpy);
@@ -215,7 +215,7 @@ main(int argc, char *argv[])
 	    else if (!top) {
 		XID indicated = id;
 		if ((id = XmuClientWindow(dpy, indicated)) == indicated) {
-		    
+
 		    /* Try not to kill the window manager when the user
 		     * indicates an icon to xkill.
 		     */
@@ -223,7 +223,7 @@ main(int argc, char *argv[])
 		    if (! wm_state_set(dpy, id) && wm_running(dpy, screenno))
 			id = None;
 
-		} 
+		}
 	    }
 	}
     }
@@ -240,7 +240,7 @@ main(int argc, char *argv[])
     return 0;
 }
 
-static int 
+static int
 parse_button(const char *s, int *buttonp)
 {
     if (strcasecmp (s, "any") == 0) {
@@ -257,7 +257,7 @@ parse_button(const char *s, int *buttonp)
     return (1);
 }
 
-static XID 
+static XID
 get_window_id(Display *dpy, int screen, int button, const char *msg)
 {
     Cursor cursor;		/* cursor to use when selecting */
@@ -284,7 +284,7 @@ get_window_id(Display *dpy, int screen, int button, const char *msg)
     printf ("....\n");
     XSync (dpy, 0);			/* give xterm a chance */
 
-    if (XGrabPointer (dpy, root, False, MASK, GrabModeSync, GrabModeAsync, 
+    if (XGrabPointer (dpy, root, False, MASK, GrabModeSync, GrabModeAsync,
     		      None, cursor, CurrentTime) != GrabSuccess) {
 	fprintf (stderr, "%s:  unable to grab cursor\n", ProgramName);
 	Exit (1, dpy);
@@ -319,13 +319,13 @@ get_window_id(Display *dpy, int screen, int button, const char *msg)
 }
 
 
-static int 
+static int
 catch_window_errors(_X_UNUSED Display *dpy, _X_UNUSED XErrorEvent *ev)
 {
     return 0;
 }
 
-static int 
+static int
 kill_all_windows(Display *dpy, int screenno, Bool top)
 {
     Window root = RootWindow (dpy, screenno);
@@ -364,7 +364,7 @@ kill_all_windows(Display *dpy, int screenno, Bool top)
 /*
  * ask the user to press in the root with each button in succession
  */
-static int 
+static int
 verify_okay_to_kill(Display *dpy, int screenno)
 {
     unsigned char pointer_map[256];
@@ -393,8 +393,8 @@ verify_okay_to_kill(Display *dpy, int screenno)
 /* Return True if the property WM_STATE is set on the window, otherwise
  * return False.
  */
-static Bool 
-wm_state_set(Display *dpy, Window win) 
+static Bool
+wm_state_set(Display *dpy, Window win)
 {
     Atom wm_state;
     Atom actual_type;
@@ -405,7 +405,7 @@ wm_state_set(Display *dpy, Window win)
 
     wm_state = XInternAtom(dpy, "WM_STATE", True);
     if (wm_state == None) return False;
-    success = XGetWindowProperty(dpy, win, wm_state, 0L, 0L, False, 
+    success = XGetWindowProperty(dpy, win, wm_state, 0L, 0L, False,
 				 AnyPropertyType, &actual_type, &actual_format,
 				 &nitems, &remaining, &prop);
     if (prop) XFree((char *) prop);
@@ -416,7 +416,7 @@ wm_state_set(Display *dpy, Window win)
  * otherwise, return False.
  */
 
-static Bool 
+static Bool
 wm_running(Display *dpy, int screenno)
 {
     XWindowAttributes	xwa;

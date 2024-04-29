@@ -18,7 +18,7 @@ includes: _SUBDIRUSE
                 eval "$$j"; \
         done
 
-beforeinstall: includes
+beforeinstall: includes 
 
 .include <bsd.subdir.mk>
 .include <bsd.xorg.mk>

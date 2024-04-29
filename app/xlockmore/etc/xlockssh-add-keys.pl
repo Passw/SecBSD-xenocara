@@ -4,7 +4,7 @@
 # of xlock(1), to add private ssh(1) keys to a running ssh-agent(1)
 # when the screen is unlocked without the user having to enter the
 # passphrase.
-# 
+#
 # Only keys who's passphrase is the same as the user's password can
 # be automatically re-added in this way.
 #

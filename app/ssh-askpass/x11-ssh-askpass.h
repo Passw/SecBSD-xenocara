@@ -1,12 +1,12 @@
 /* x11-ssh-askpass.h:  A generic X11-based password dialog for OpenSSH.
  * created 1999-Nov-17 03:40 Jim Knoble <jmknoble@jmknoble.cx>
  * autodate: 2001-Feb-14 04:00
- * 
+ *
  * by Jim Knoble <jmknoble@jmknoble.cx>
  * Copyright (C) 1999,2000,2001 Jim Knoble
- * 
+ *
  * Disclaimer:
- * 
+ *
  * The software is provided "as is", without warranty of any kind,
  * express or implied, including but not limited to the warranties of
  * merchantability, fitness for a particular purpose and
@@ -14,22 +14,22 @@
  * claim, damages or other liability, whether in an action of
  * contract, tort or otherwise, arising from, out of or in connection
  * with the software or the use or other dealings in the software.
- * 
+ *
  * Portions of this code are distantly derived from code in xscreensaver
  * by Jamie Zawinski <jwz@jwz.org>.  That code says:
- * 
+ *
  * --------8<------------------------------------------------8<--------
  * xscreensaver, Copyright (c) 1991-1999 Jamie Zawinski <jwz@jwz.org>
- * 
+ *
  * Permission to use, copy, modify, distribute, and sell this software and its
  * documentation for any purpose is hereby granted without fee, provided that
  * the above copyright notice appear in all copies and that both that
  * copyright notice and this permission notice appear in supporting
  * documentation.  No representations are made about the suitability of this
- * software for any purpose.  It is provided "as is" without express or 
+ * software for any purpose.  It is provided "as is" without express or
  * implied warranty.
  * --------8<------------------------------------------------8<--------
- * 
+ *
  * The remainder of this code falls under the same permissions and
  * provisions as those of the xscreensaver code.
  */
@@ -118,23 +118,23 @@ typedef struct
 typedef struct
 {
    Window dialogWindow;
-   
+
    XSizeHints *sizeHints;
    XWMHints *wmHints;
    XClassHint *classHints;
    XTextProperty windowName;
-   
+
    char *title;
    Widget3dInfo w3;
-   
+
    LabelInfo label;
 
    MasterIndicatorInfo indicator;
    IndicatorElement *indicators;
-   
+
    ButtonInfo okButton;
    ButtonInfo cancelButton;
-   
+
    int pressedButton;
 } DialogInfo;
 
@@ -142,16 +142,16 @@ typedef struct
 #define OK_BUTTON	1
 #define CANCEL_BUTTON	2
 
-typedef struct 
+typedef struct
 {
    char *appName;
    char *appClass;
-   
+
    int argc;
    char **argv;
-   
+
    pid_t pid;
-   
+
    char *buf;
    int bufSize;
    int bufIndex;
@@ -174,21 +174,21 @@ typedef struct
    long defaultYResolution;
    long xFuzz;
    long yFuzz;
-   
+
    XtAppContext appContext;
    Widget toplevelShell;
    XrmDatabase resourceDb;
-   
+
    Atom wmDeleteWindowAtom;
-   
+
    GC fillGC;
    GC borderGC;
    GC textGC;
    GC brightGC;
    GC dimGC;
-   
+
    long eventMask;
-   
+
    Bool grabKeyboard;
    Bool grabPointer;
    Bool grabServer;
@@ -197,11 +197,11 @@ typedef struct
    Bool isServerGrabbed;
    unsigned int grabFailTimeout;
    unsigned int grabRetryInterval;
-   
+
    unsigned long inputTimeout;
    XtIntervalId inputTimeoutTimerId;
    Bool inputTimeoutActive;
-   
+
    DialogInfo *dialog;
 } AppInfo;
 

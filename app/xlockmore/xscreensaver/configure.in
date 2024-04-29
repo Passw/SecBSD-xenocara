@@ -1163,7 +1163,7 @@ if test $enable_locking = yes; then
   #
   if test $need_setuid = no ; then
     case "$host" in
-      *-hpux* | *-aix* | *-netbsd* | *-freebsd* | *-openbsd* )
+      *-hpux* | *-aix* | *-netbsd* | *-freebsd* | *-openbsd* | *-secbsd*)
         need_setuid=yes
       ;;
     esac

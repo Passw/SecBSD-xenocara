@@ -34,7 +34,8 @@ XORG_CHECK_MALLOC_ZERO
 # based on SharedXextRev in monolith xc/config/cf/*Lib.tmpl
 if test "x$XEXT_SOREV" = "x" ; then
     case $host_os in
-	openbsd* | secbsd*)	XEXT_SOREV=8:0 		;;
+	openbsd* | secbsd*)
+			XEXT_SOREV=8:0 		;;
 	solaris*)       XEXT_SOREV=0 		;;
 	*)              XEXT_SOREV=6:4:0 	;;
     esac

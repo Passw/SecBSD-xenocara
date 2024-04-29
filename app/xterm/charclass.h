@@ -50,7 +50,7 @@ typedef enum {
 } Classes;
 
 extern void init_classtab(void);
-/* initialise the table. needs calling before either of the 
+/* initialise the table. needs calling before either of the
    others. */
 
 extern int SetCharacterClassRange(int low, int high, int value);

@@ -116,7 +116,7 @@
 		"Eyes"			exec xlock -mode eyes +trackmouse
 		"Eyesptr"		exec xlock -mode eyes -trackmouse
 		"Fiberlamp"		exec xlock -mode fiberlamp
-		"Fzort"			exec xlock -mode fzort 
+		"Fzort"			exec xlock -mode fzort
 		"Goop"			exec xlock -mode goop
 		"Juggle"		exec xlock -mode juggle
 		"Marquee"		exec xlock -mode marquee

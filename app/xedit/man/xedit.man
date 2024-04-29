@@ -112,7 +112,7 @@ Ctrl-u [\fInumber\fP]	Multiply by 4 or \fInumber\fP
 Meta-Delete	Delete Previous Word
 Ctrl-v	Next Page
 Meta-Shift Delete	Kill Previous Word
-Ctrl-w	Kill Selection	
+Ctrl-w	Kill Selection
 Meta-Backspace	Delete Previous Word
 Ctrl-y	Unkill
 Meta-Shift Backspace	Kill Previous Word

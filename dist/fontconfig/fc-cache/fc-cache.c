@@ -223,7 +223,7 @@ scanDirs (FcStrList *list, FcConfig *config, FcBool force, FcBool really_force, 
 	    if (cache)
 		was_valid = FcTrue;
 	}
-	
+
 	if (!cache)
 	{
 	    (*changed)++;
@@ -266,7 +266,7 @@ scanDirs (FcStrList *list, FcConfig *config, FcBool force, FcBool really_force, 
 	}
 	for (i = 0; i < FcCacheNumSubdir (cache); i++)
 	    FcStrSetAdd (subdirs, FcCacheSubdir (cache, i));
-	
+
 	FcDirCacheUnload (cache);
 
 	sublist = FcStrListCreate (subdirs);
@@ -454,7 +454,7 @@ main (int argc, char **argv)
 
     FcConfigDestroy (config);
     FcFini ();
-    /* 
+    /*
      * Now we need to sleep a second  (or two, to be extra sure), to make
      * sure that timestamps for changes after this run of fc-cache are later
      * then any timestamps we wrote.  We don't use gettimeofday() because

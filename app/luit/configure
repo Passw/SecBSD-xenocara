@@ -10570,7 +10570,7 @@ done
 
 # grantpt support is broken on OpenBSD
 case $host_os in
-     openbsd*|secbsd*)
+     openbsd* | secbsd*)
 	for ac_func in select
 do :
   ac_fn_c_check_func "$LINENO" "select" "ac_cv_func_select"

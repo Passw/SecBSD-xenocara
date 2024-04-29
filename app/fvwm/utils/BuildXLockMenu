@@ -18,7 +18,7 @@ print "AddToMenu XLockMenu \"XLock Modes\" Title\n";
 while (<XL>)
 {
   chomp;
-  
+
   /where mode is one of:/ && do
   {
     $start = 1;

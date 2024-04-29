@@ -18,13 +18,13 @@ included in all copies or substantial portions of the Software.
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL Kaleb S. KEITHLEY BE LIABLE FOR ANY CLAIM, DAMAGES 
+IN NO EVENT SHALL Kaleb S. KEITHLEY BE LIABLE FOR ANY CLAIM, DAMAGES
 OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-Except as contained in this notice, the name of Kaleb S. KEITHLEY 
-shall not be used in advertising or otherwise to promote the sale, use 
+Except as contained in this notice, the name of Kaleb S. KEITHLEY
+shall not be used in advertising or otherwise to promote the sale, use
 or other dealings in this Software without prior written authorization
 from Kaleb S. KEITHLEY.
 
@@ -63,18 +63,18 @@ static char *progname;
 
 /* Mode flags -- ignore flags not in V_FLAG_MASK */
 #define V_FLAG_MASK	0x1FF;
-#define V_PHSYNC	0x001 
+#define V_PHSYNC	0x001
 #define V_NHSYNC	0x002
 #define V_PVSYNC	0x004
 #define V_NVSYNC	0x008
-#define V_INTERLACE	0x010 
+#define V_INTERLACE	0x010
 #define V_DBLSCAN	0x020
 #define V_CSYNC		0x040
 #define V_PCSYNC	0x080
 #define V_NCSYNC	0x100
 
 typedef enum { HDisplay, HSyncStart, HSyncEnd, HTotal,
-	VDisplay, VSyncStart, VSyncEnd, VTotal, Flags, 
+	VDisplay, VSyncStart, VSyncEnd, VTotal, Flags,
 	InvertVclk, BlankDelay1, BlankDelay2, EarlySc,
 	PixelClock, HSyncRate, VSyncRate, fields_num } fields;
 
@@ -119,22 +119,22 @@ static XtResource Resources[] = {
 	XtOffsetOf(struct _AppResources, ad_installed),
 	XtRImmediate, (XtPointer)FALSE },
     { "hSyncStartRange", "SyncStartRange", XtRInt, sizeof(int),
-	XtOffsetOf(struct _AppResources, field[HSyncStart].range), 
+	XtOffsetOf(struct _AppResources, field[HSyncStart].range),
 	XtRImmediate, (XtPointer)200 },
     { "hSyncEndRange", "SyncEndRange", XtRInt, sizeof(int),
-	XtOffsetOf(struct _AppResources, field[HSyncEnd].range), 
+	XtOffsetOf(struct _AppResources, field[HSyncEnd].range),
 	XtRImmediate, (XtPointer)400 },
     { "hTotalRange", "TotalRange", XtRInt, sizeof(int),
-	XtOffsetOf(struct _AppResources, field[HTotal].range), 
+	XtOffsetOf(struct _AppResources, field[HTotal].range),
 	XtRImmediate, (XtPointer)400 },
     { "vSyncStartRange", "SyncStartRange", XtRInt, sizeof(int),
-	XtOffsetOf(struct _AppResources, field[VSyncStart].range), 
+	XtOffsetOf(struct _AppResources, field[VSyncStart].range),
 	XtRImmediate, (XtPointer)20 },
     { "vSyncEndRange", "SyncEndRange", XtRInt, sizeof(int),
-	XtOffsetOf(struct _AppResources, field[VSyncEnd].range), 
+	XtOffsetOf(struct _AppResources, field[VSyncEnd].range),
 	XtRImmediate, (XtPointer)40 },
     { "vTotalRange", "TotalRange", XtRInt, sizeof(int),
-	XtOffsetOf(struct _AppResources, field[VTotal].range), 
+	XtOffsetOf(struct _AppResources, field[VTotal].range),
 	XtRImmediate, (XtPointer)80 },
 };
 
@@ -201,7 +201,7 @@ GetModeLine (Display* dpy, int scrn)
 	AppRes.field[EarlySc].val = mode_line.private[3];
     }
 
-    for (i = HDisplay; i < fields_num; i++) 
+    for (i = HDisplay; i < fields_num; i++)
 	AppRes.orig[i] = AppRes.field[i].val;
     return TRUE;
 }
@@ -248,7 +248,7 @@ vidmodeError(Display *dis, XErrorEvent *err)
      hitError=1;
   } else {
      CleanUp(dis);
-     if (xtErrorfunc) 
+     if (xtErrorfunc)
 	(*xtErrorfunc)(dis, err);
   }
   return 0; /* ignored */
@@ -339,10 +339,10 @@ ApplyCB (Widget w, XtPointer client, XtPointer call)
 	mode_line.private[3] = AppRes.field[EarlySc].val;
     } else
 	mode_line.privsize = 0;
-    
+
    hitError = 0;
 
-   XF86VidModeModModeLine (XtDisplay (w), DefaultScreen (XtDisplay (w)), 
+   XF86VidModeModModeLine (XtDisplay (w), DefaultScreen (XtDisplay (w)),
 		&mode_line);
    XSync(XtDisplay (w), False); /* process errors  */
    if (hitError) {
@@ -379,7 +379,7 @@ SetLabel(fields i)
 	 (void) snprintf (buf, sizeof(buf), "%d", sdp->val);
       } else
 	 (void) snprintf (buf, sizeof(buf), "%5d", sdp->val);
-	 
+
       sdp->lastpercent = -1;
       if (i == Flags) {
 	 XawTextBlock text;
@@ -412,7 +412,7 @@ UpdateSyncRates(Bool dolabels)
 {
     if (!ModeSettable())
 	return;
-    
+
     AppRes.field[HSyncRate].val = AppRes.field[PixelClock].val * 1000 /
 				  AppRes.field[HTotal].val;
     AppRes.field[VSyncRate].val = AppRes.field[HSyncRate].val * 1000 /
@@ -463,7 +463,7 @@ FetchCB (Widget w, XtPointer client, XtPointer call)
     SetScrollbars ();
     for (i = HDisplay; i < fields_num; i++) {
         SetLabel(i);
-    }   
+    }
 }
 
 static XtIntervalId TOid;
@@ -499,7 +499,7 @@ TestCB (Widget w, XtPointer client, XtPointer call)
 	AppRes.old[i] = AppRes.field[i].val;
 
     XtPopup(testing_popup, XtGrabExclusive /*XtGrabNone*/);
-    XSync(XtDisplay(w), False);   
+    XSync(XtDisplay(w), False);
     TOid = XtAppAddTimeOut (XtWidgetToApplicationContext (w),
 		TestTimeout, TestTO, (XtPointer) w);
 
@@ -599,14 +599,14 @@ AdjustCB(Widget w, XtPointer client, XtPointer call)
 {
    int what = (long) client;
    Boolean state;
-   
+
    switch (what) {
     case HSyncStart:
       if (AppRes.field[HSyncEnd].val + 4 < AppRes.field[HTotal].val) {
 	 AppRes.field[HSyncEnd].val += 4;
 	 AppRes.field[HSyncStart].val += 4;
-	 SetLabel(HSyncStart);	 
-	 SetLabel(HSyncEnd);		 
+	 SetLabel(HSyncStart);
+	 SetLabel(HSyncEnd);
       } else
 	XBell(XtDisplay(w), 80);
       break;
@@ -614,20 +614,20 @@ AdjustCB(Widget w, XtPointer client, XtPointer call)
       if (AppRes.field[HSyncStart].val - 4 > AppRes.field[HDisplay].val) {
 	 AppRes.field[HSyncEnd].val -= 4;
 	 AppRes.field[HSyncStart].val -= 4;
-	 SetLabel(HSyncStart);	 
-	 SetLabel(HSyncEnd);	 	 	 
+	 SetLabel(HSyncStart);
+	 SetLabel(HSyncEnd);
       } else
 	XBell(XtDisplay(w), 80);
       break;
     case HTotal:
       AppRes.field[HTotal].val += 4;
-      SetLabel(HTotal);	       
+      SetLabel(HTotal);
       UpdateSyncRates(TRUE);
-      break;      
+      break;
     case -HTotal:
-      if (AppRes.field[HTotal].val - 4 >  AppRes.field[HSyncEnd].val) {	 
+      if (AppRes.field[HTotal].val - 4 >  AppRes.field[HSyncEnd].val) {
 	AppRes.field[HTotal].val -= 4;
-	SetLabel(HTotal);	 
+	SetLabel(HTotal);
 	UpdateSyncRates(TRUE);
       } else
 	XBell(XtDisplay(w), 80);
@@ -636,8 +636,8 @@ AdjustCB(Widget w, XtPointer client, XtPointer call)
       if (AppRes.field[VSyncEnd].val + 4 < AppRes.field[VTotal].val) {
 	 AppRes.field[VSyncEnd].val += 4;
 	 AppRes.field[VSyncStart].val += 4;
-	 SetLabel(VSyncStart);	 
-	 SetLabel(VSyncEnd); 	 
+	 SetLabel(VSyncStart);
+	 SetLabel(VSyncEnd);
       } else
 	XBell(XtDisplay(w), 80);
       break;
@@ -645,25 +645,25 @@ AdjustCB(Widget w, XtPointer client, XtPointer call)
       if (AppRes.field[VSyncStart].val - 4 > AppRes.field[VDisplay].val) {
 	 AppRes.field[VSyncEnd].val -= 4;
 	 AppRes.field[VSyncStart].val -= 4;
-	 SetLabel(VSyncStart);	 
-	 SetLabel(VSyncEnd);	 	 
+	 SetLabel(VSyncStart);
+	 SetLabel(VSyncEnd);
       } else
 	XBell(XtDisplay(w), 80);
       break;
     case VTotal:
       AppRes.field[VTotal].val += 4;
-      SetLabel(VTotal);      
+      SetLabel(VTotal);
       UpdateSyncRates(TRUE);
-      break;      
+      break;
     case -VTotal:
-      if (AppRes.field[VTotal].val - 4 >  AppRes.field[VSyncEnd].val) {	 
+      if (AppRes.field[VTotal].val - 4 >  AppRes.field[VSyncEnd].val) {
 	AppRes.field[VTotal].val -= 4;
 	SetLabel(VTotal);
 	UpdateSyncRates(TRUE);
       } else
 	XBell(XtDisplay(w), 80);
       break;
-   }  
+   }
    SetScrollbars ();
    XtVaGetValues(auto_apply_toggle, XtNstate, &state, NULL);
    if (state)
@@ -689,7 +689,7 @@ EditCB (Widget w, XtPointer client, XtPointer call)
 	}
     }
     switch (sdp->me) {
-    case HSyncStart: 
+    case HSyncStart:
 	lower = atoi (AppRes.field[HDisplay].string);
 	upper = atoi (AppRes.field[HSyncEnd].string);
 	break;
@@ -701,11 +701,11 @@ EditCB (Widget w, XtPointer client, XtPointer call)
 
     case HTotal:
 	lower = atoi (AppRes.field[HSyncEnd].string);
-	upper = atoi (AppRes.field[HDisplay].string) + 
+	upper = atoi (AppRes.field[HDisplay].string) +
 		AppRes.field[HTotal].range;
 	break;
 
-    case VSyncStart: 
+    case VSyncStart:
 	lower = atoi (AppRes.field[VDisplay].string);
 	upper = atoi (AppRes.field[VSyncEnd].string);
 	break;
@@ -717,7 +717,7 @@ EditCB (Widget w, XtPointer client, XtPointer call)
 
     case VTotal:
 	lower = atoi (AppRes.field[VSyncEnd].string);
-	upper = atoi (AppRes.field[VDisplay].string) + 
+	upper = atoi (AppRes.field[VDisplay].string) +
 		AppRes.field[VTotal].range;
 	break;
     }
@@ -903,7 +903,7 @@ ScrollCB (Widget w, XtPointer client, XtPointer call)
     ScrollData* sdp = &AppRes.field[fieldindex];
 
 
-    
+
     if (ipercent != sdp->lastpercent) {
         int tmp_val;
 	char buf[6];
@@ -912,7 +912,7 @@ ScrollCB (Widget w, XtPointer client, XtPointer call)
 	tmp_val += (int) (((float)sdp->range) * percent);
 
         sdp->val = isValid(tmp_val, fieldindex);
-        
+
 	sdp->lastpercent = ipercent;
 	(void) snprintf (buf, sizeof(buf), "%5d", sdp->val);
 	XtVaSetValues (sdp->textwidget, XtNlabel, buf, NULL);
@@ -1014,7 +1014,7 @@ displayWarning(Widget top)
     x =  DisplayWidth(XtDisplay (top),DefaultScreen (XtDisplay (top))) / 3;
     y =  DisplayHeight(XtDisplay (top),DefaultScreen (XtDisplay (top))) / 3;
 
-    popup = XtVaCreatePopupShell("Warning", 
+    popup = XtVaCreatePopupShell("Warning",
 			    transientShellWidgetClass, top,
 			    XtNtitle, "WARNING",
 			    XtNx, x,
@@ -1046,7 +1046,7 @@ displayWarning(Widget top)
     XtAddCallback (w, XtNcallback, QuitCB, (XtPointer)NULL);
 
     XtPopup(popup, XtGrabExclusive);
-    
+
 }
 
 static void
@@ -1087,7 +1087,7 @@ s3Special(Widget top)
     x =  DisplayWidth(XtDisplay (top),DefaultScreen (XtDisplay (top))) / 3;
     y =  DisplayHeight(XtDisplay (top),DefaultScreen (XtDisplay (top))) / 3;
 
-    popup = XtVaCreatePopupShell("S3Adjust", 
+    popup = XtVaCreatePopupShell("S3Adjust",
 			    transientShellWidgetClass, top,
 			    XtNtitle, "S3Adjust",
 			    XtNx, x,
@@ -1119,7 +1119,7 @@ s3Special(Widget top)
     XtManageChildren (wids, 2);
 
     XtPopup(popup, XtGrabNone);
-    
+
 }
 #endif
 
@@ -1131,7 +1131,7 @@ CreateHierarchy(Widget top)
     char buf[5];
     Widget form, forms[14], s3form;
     Widget wids[10];
-    Widget boxW, popdownW, w;   
+    Widget boxW, popdownW, w;
     int i;
     int x, y;
     static String form_names[] = {
@@ -1153,15 +1153,15 @@ CreateHierarchy(Widget top)
 
     form = XtCreateWidget ("form", formWidgetClass, top, NULL, 0);
     for (i = 0; i < 14; i++)
-	forms[i] = XtCreateWidget (form_names[i], formWidgetClass, 
+	forms[i] = XtCreateWidget (form_names[i], formWidgetClass,
 		form, NULL, 0);
 
     CreateTyp (forms[0], HDisplay, "HDisplay-label", "HDisplay-text", NULL);
     CreateTyp (forms[1], HSyncStart, "HSyncStart-label",
 		"HSyncStart-text", "HSyncStart-scrollbar");
-    CreateTyp (forms[2], HSyncEnd, "HSyncEnd-label", "HSyncEnd-text", 
+    CreateTyp (forms[2], HSyncEnd, "HSyncEnd-label", "HSyncEnd-text",
 		"HSyncEnd-scrollbar");
-    CreateTyp (forms[3], HTotal, "HTotal-label", "HTotal-text", 
+    CreateTyp (forms[3], HTotal, "HTotal-label", "HTotal-text",
 		"HTotal-scrollbar");
 
     w = XtVaCreateManagedWidget(
@@ -1191,9 +1191,9 @@ CreateHierarchy(Widget top)
     CreateTyp (forms[4], VDisplay, "VDisplay-label", "VDisplay-text", NULL);
     CreateTyp (forms[5], VSyncStart, "VSyncStart-label",
 		"VSyncStart-text", "VSyncStart-scrollbar");
-    CreateTyp (forms[6], VSyncEnd, "VSyncEnd-label", "VSyncEnd-text", 
+    CreateTyp (forms[6], VSyncEnd, "VSyncEnd-label", "VSyncEnd-text",
 		"VSyncEnd-scrollbar");
-    CreateTyp (forms[7], VTotal, "VTotal-label", "VTotal-text", 
+    CreateTyp (forms[7], VTotal, "VTotal-label", "VTotal-text",
 		"VTotal-scrollbar");
     w = XtVaCreateManagedWidget(
                                      "Up-button",
@@ -1206,13 +1206,13 @@ CreateHierarchy(Widget top)
                                      commandWidgetClass,
                                      forms[7],
                                      NULL);
-    XtAddCallback (w, XtNcallback, AdjustCB, (XtPointer)-VSyncStart);   
+    XtAddCallback (w, XtNcallback, AdjustCB, (XtPointer)-VSyncStart);
     w=  XtVaCreateManagedWidget(
                                      "Shorter-button",
                                      commandWidgetClass,
                                      forms[7],
                                      NULL);
-    XtAddCallback (w, XtNcallback, AdjustCB, (XtPointer)VTotal);   
+    XtAddCallback (w, XtNcallback, AdjustCB, (XtPointer)VTotal);
     w = XtVaCreateManagedWidget(
                                      "Taller-button",
                                      commandWidgetClass,
@@ -1229,23 +1229,23 @@ CreateHierarchy(Widget top)
     XtManageChildren (wids, 2);
     AppRes.field[Flags].textwidget = wids[1];
 
-    wids[0] = XtCreateWidget ("Quit-button", commandWidgetClass, 
+    wids[0] = XtCreateWidget ("Quit-button", commandWidgetClass,
 		forms[9], NULL, 0);
     XtAddCallback (wids[0], XtNcallback, QuitCB, NULL);
 
-    wids[1] = XtCreateWidget ("Apply-button", commandWidgetClass, 
+    wids[1] = XtCreateWidget ("Apply-button", commandWidgetClass,
 		forms[9], NULL, 0);
     XtAddCallback (wids[1], XtNcallback, ApplyCB, NULL);
 
-    wids[2] = XtCreateWidget ("AutoApply-toggle", toggleWidgetClass, 
+    wids[2] = XtCreateWidget ("AutoApply-toggle", toggleWidgetClass,
 		forms[9], NULL, 0);
     auto_apply_toggle = wids[2];
 
-    wids[3] = XtCreateWidget ("Test-button", commandWidgetClass, 
+    wids[3] = XtCreateWidget ("Test-button", commandWidgetClass,
 		forms[9], NULL, 0);
     XtAddCallback (wids[3], XtNcallback, TestCB, NULL);
 
-    wids[4] = XtCreateWidget ("Restore-button", commandWidgetClass, 
+    wids[4] = XtCreateWidget ("Restore-button", commandWidgetClass,
 		forms[9], NULL, 0);
     XtAddCallback (wids[4], XtNcallback, RestoreCB, NULL);
 
@@ -1259,19 +1259,19 @@ CreateHierarchy(Widget top)
     CreateTyp (forms[12], VSyncRate, "VSyncRate-label", "VSyncRate-text",
 	       NULL);
 
-    wids[0] = XtCreateWidget ("Fetch-button", commandWidgetClass, 
+    wids[0] = XtCreateWidget ("Fetch-button", commandWidgetClass,
 		forms[13], NULL, 0);
     XtAddCallback (wids[0], XtNcallback, FetchCB, NULL);
 
-    wids[1] = XtCreateWidget ("Show-button", commandWidgetClass, 
+    wids[1] = XtCreateWidget ("Show-button", commandWidgetClass,
 		forms[13], NULL, 0);
     XtAddCallback (wids[1], XtNcallback, ShowCB, NULL);
 
-    wids[2] = XtCreateWidget ("Next-button", commandWidgetClass, 
+    wids[2] = XtCreateWidget ("Next-button", commandWidgetClass,
 		forms[13], NULL, 0);
     XtAddCallback (wids[2], XtNcallback, SwitchCB, (XtPointer)1);
 
-    wids[3] = XtCreateWidget ("Prev-button", commandWidgetClass, 
+    wids[3] = XtCreateWidget ("Prev-button", commandWidgetClass,
 		forms[13], NULL, 0);
     XtAddCallback (wids[3], XtNcallback, SwitchCB, (XtPointer)-1);
 
@@ -1280,7 +1280,7 @@ CreateHierarchy(Widget top)
     XtManageChildren (forms, 14);
 
     if (S3Specials) {
-	s3form = XtCreateWidget ("S3-form", formWidgetClass, 
+	s3form = XtCreateWidget ("S3-form", formWidgetClass,
 		form, NULL, 0);
 	wids[0] = XtVaCreateWidget("InvertVclk-toggle", toggleWidgetClass,
 			s3form, XtNstate, AppRes.field[InvertVclk].val, NULL);
@@ -1331,14 +1331,14 @@ CreateHierarchy(Widget top)
     x = DisplayWidth(XtDisplay (top),DefaultScreen (XtDisplay (top))) / 2;
     y = DisplayHeight(XtDisplay (top),DefaultScreen (XtDisplay (top))) / 2;
 
-    invalid_mode_popup = XtVaCreatePopupShell("invalidMode", 
+    invalid_mode_popup = XtVaCreatePopupShell("invalidMode",
 			    transientShellWidgetClass, top,
 			    XtNtitle, "Invalid Mode requested",
 			    XtNx, x - 20,
 			    XtNy, y - 40,
 			    NULL);
 
-    testing_popup = XtVaCreatePopupShell("testing", 
+    testing_popup = XtVaCreatePopupShell("testing",
 			    transientShellWidgetClass, top,
 			    XtNtitle, "Testing_1_2_3",
 			    XtNx, x - 20,
@@ -1370,7 +1370,7 @@ CreateHierarchy(Widget top)
                                    boxWidgetClass,
                                    invalid_mode_popup,
                                    NULL);
-        
+
     (void) XtVaCreateManagedWidget(
 		   "ErrorMessage",
                    labelWidgetClass,
@@ -1383,7 +1383,7 @@ CreateHierarchy(Widget top)
                                      boxW,
                                      NULL);
 
-    XtAddCallback (popdownW, XtNcallback, (XtCallbackProc)popdownInvalid, 
+    XtAddCallback (popdownW, XtNcallback, (XtCallbackProc)popdownInvalid,
 		   (XtPointer) invalid_mode_popup);
 }
 
@@ -1499,7 +1499,7 @@ main (int argc, char** argv)
     Bool modeSettable = TRUE;
 
     progname = argv[0];
-    
+
     static XtActionsRec actions[] = { { "xvidtune-quit", QuitAction },
 				      { "xvidtune-restore", RestoreAction },
 				      { "xvidtune-show", ShowAction },
@@ -1515,7 +1515,7 @@ main (int argc, char** argv)
 				      {	"xvidtune-prevmode", PrevModeAction } };
 
     Top = top = XtVaOpenApplication (&app, "Xvidtune", NULL, 0, &argc, argv,
-		NULL, applicationShellWidgetClass, 
+		NULL, applicationShellWidgetClass,
 		XtNmappedWhenManaged, False, NULL);
 
     XtGetApplicationResources (top, (XtPointer)&AppRes,
@@ -1538,7 +1538,7 @@ main (int argc, char** argv)
     }
 
     /* Fail if the extension version in the server is too old */
-    if (MajorVersion < MINMAJOR || 
+    if (MajorVersion < MINMAJOR ||
 	(MajorVersion == MINMAJOR && MinorVersion < MINMINOR)) {
 	fprintf(stderr,
 		"Xserver is running an old XFree86-VidModeExtension version"
@@ -1547,20 +1547,20 @@ main (int argc, char** argv)
 		MINMAJOR, MINMINOR);
 	exit(2);
     }
- 
+
     /* This should probably be done differently */
 
     if(  argc == 3  ) { /* this can only be the timeout case */
         if(  (!strcmp(argv[1], "-timeout"))  ) {
             TestTimeout = ((unsigned long) atol( argv[2] )) * 1000L;
-	} 
+	}
 	else
 	    usage();
     }
 
     if (argc > 1) {
 	int i = 0;
-        
+
 	if (argc != 2)
 		usage();
 	if (!strcmp(argv[1], "-show")) {
@@ -1611,7 +1611,7 @@ main (int argc, char** argv)
 	return 2;
     }
 
-    xtErrorfunc = XSetErrorHandler(vidmodeError); 
+    xtErrorfunc = XSetErrorHandler(vidmodeError);
 
     trans = XtParseTranslationTable ("\
 	<Key>0: insert-char()\n<Key>1: insert-char()\n\
@@ -1639,7 +1639,7 @@ main (int argc, char** argv)
 	modeSettable = FALSE;
     } else
 	CreateHierarchy (top);
-    
+
 
     XtAppAddActions (app, actions, XtNumber(actions));
 

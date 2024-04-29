@@ -83,7 +83,7 @@ extern int optind, opterr, optopt;
  * amounts of IO with putc (as is done here).  If available, use
  * the putc_unlocked variant instead.
  */
- 
+
 #if defined(putc_unlocked) || defined(_IO_putc_unlocked)
 #define PUTC(c,f) putc_unlocked(c,f)
 #else
@@ -212,7 +212,7 @@ cache_print_set (FcFontSet *set, FcStrSet *dirs, const FcChar8 *base_name, FcBoo
     list = FcStrListCreate (dirs);
     if (!list)
 	goto bail2;
-    
+
     while ((dir = FcStrListNext (list)))
     {
 	base = file_base_name (base_name, dir);
@@ -230,7 +230,7 @@ cache_print_set (FcFontSet *set, FcStrSet *dirs, const FcChar8 *base_name, FcBoo
 	    goto bail3;
 	ndir++;
     }
-    
+
     for (n = 0; n < set->nfont; n++)
     {
 	FcPattern   *font = set->fonts[n];
@@ -283,7 +283,7 @@ main (int argc, char **argv)
     {
 	switch (c) {
 	case 'V':
-	    fprintf (stderr, "fontconfig version %d.%d.%d\n", 
+	    fprintf (stderr, "fontconfig version %d.%d.%d\n",
 		     FC_MAJOR, FC_MINOR, FC_REVISION);
 	    exit (0);
 	case 'v':
@@ -311,7 +311,7 @@ main (int argc, char **argv)
     }
     FcConfigSetCurrent (config);
     FcConfigDestroy (config);
-    
+
     args = FcStrSetCreate ();
     if (!args)
     {
@@ -370,10 +370,10 @@ main (int argc, char **argv)
 	    ret++;
 	    continue;
 	}
-	
+
 	dirs = FcStrSetCreate ();
 	fs = FcCacheCopySet (cache);
-	for (j = 0; j < FcCacheNumSubdir (cache); j++) 
+	for (j = 0; j < FcCacheNumSubdir (cache); j++)
 	{
 	    FcStrSetAdd (dirs, FcCacheSubdir (cache, j));
 	    if (recurse)

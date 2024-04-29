@@ -11,7 +11,7 @@
  *	(including the null string) '?' matches any single char. For use
  *	by filenameforall. Note that '*' matches across directory boundaries
  *
- *      This code donated by  Paul Hudson <paulh@harlequin.co.uk>
+ *      This code donated by Paul Hudson <paulh@harlequin.co.uk>
  *      It is public domain, no strings attached. No guarantees either.
  *
  *****************************************************************************/

@@ -185,7 +185,7 @@ static void print_binding (Binding *binding)
   while (func) {
     for (i = 0; i < num_builtins; i++) {
       if (func->func == builtin_functions[i].func) {
-	ConsoleDebug (CONFIG, "\tFunction: %s %p ", 
+	ConsoleDebug (CONFIG, "\tFunction: %s %p ",
 		      builtin_functions[i].name, func->func);
 	break;
       }
@@ -272,7 +272,7 @@ static int extract_int (char *p, int *n)
 /****************************************************************************
  *
  * Gets the next "word" of input from char string indata.
- * "word" is a string with no spaces, or a quoted string.
+ * "word" is a string with no spaces, or a qouted string.
  * Return value is ptr to indata,updated to point to text after the word
  * which is extracted.
  * token is the extracted word, which is copied into a malloced
@@ -530,7 +530,7 @@ static Function *parse_function (char **line, char *pstop_char)
 	 * is recorded as the argument type in the argument array
 	 * for a command, it means it is a string; the code for
 	 * 'IntArg' is used instead for numbers. Note also that
-	 * if the C function receives a 'JmpArg' argument it means something
+	 * if the C function recieves a 'JmpArg' argument it means something
 	 * went wrong, since they should all be translated to integer
 	 * jump offsets at compile time.
 	 */
@@ -1048,7 +1048,7 @@ static void handle_button_config (int manager, int context, char *option)
     ConsoleMessage ("This isn't a valid button state: %s\n", p);
     return;
   }
-  ConsoleDebug (CONFIG, "Setting buttonState[%s] to %s\n", 
+  ConsoleDebug (CONFIG, "Setting buttonState[%s] to %s\n",
 		contextDefaults[context].name, p);
   SET_MANAGER (manager, buttonState[context], state);
 

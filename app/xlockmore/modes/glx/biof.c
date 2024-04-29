@@ -35,7 +35,7 @@ static const char sccsid[] = "@(#)biof.c	5.15 2005/02/15 xlockmore";
  * Ported to Linux by Tugrul Galatali <tugrul@galatali.com>
  *
  * BioF is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as 
+ * it under the terms of the GNU General Public License version 2 as
  * published by the Free Software Foundation.
  *
  * BioF is distributed in the hope that it will be useful,
@@ -60,7 +60,7 @@ static const char sccsid[] = "@(#)biof.c	5.15 2005/02/15 xlockmore";
                          "*showFPS:    False \n" \
                          "*cycles:       100 \n" \
                          "*size:        6000 \n" \
-                         "*preset:         5 \n" 
+                         "*preset:         5 \n"
 
 # include "xlockmore.h"         /* from the xscreensaver distribution */
 # include <stdio.h>

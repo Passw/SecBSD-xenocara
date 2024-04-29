@@ -2,7 +2,7 @@ SUBDIRS = bin compat
 
 if CREATE_RULES_SYMLINK
 #  extra_rules_file = $(xkb_rules_symlink)
-#  extra_dir_file   = $(extra_rules_file).xml 
+#  extra_dir_file   = $(extra_rules_file).xml
 #  extra_lst_file   = $(extra_rules_file).lst
 
 install-data-hook:

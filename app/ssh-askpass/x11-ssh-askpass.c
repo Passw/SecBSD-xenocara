@@ -1,12 +1,12 @@
 /* x11-ssh-askpass.c:  A generic X11-based password dialog for OpenSSH.
  * created 1999-Nov-17 03:40 Jim Knoble <jmknoble@jmknoble.cx>
  * autodate: 2001-Feb-14 04:00
- * 
+ *
  * by Jim Knoble <jmknoble@jmknoble.cx>
  * Copyright (C) 1999,2000,2001 Jim Knoble
- * 
+ *
  * Disclaimer:
- * 
+ *
  * The software is provided "as is", without warranty of any kind,
  * express or implied, including but not limited to the warranties of
  * merchantability, fitness for a particular purpose and
@@ -14,22 +14,22 @@
  * claim, damages or other liability, whether in an action of
  * contract, tort or otherwise, arising from, out of or in connection
  * with the software or the use or other dealings in the software.
- * 
+ *
  * Portions of this code are distantly derived from code in xscreensaver
  * by Jamie Zawinski <jwz@jwz.org>.  That code says:
- * 
+ *
  * --------8<------------------------------------------------8<--------
  * xscreensaver, Copyright (c) 1991-1999 Jamie Zawinski <jwz@jwz.org>
- * 
+ *
  * Permission to use, copy, modify, distribute, and sell this software and its
  * documentation for any purpose is hereby granted without fee, provided that
  * the above copyright notice appear in all copies and that both that
  * copyright notice and this permission notice appear in supporting
  * documentation.  No representations are made about the suitability of this
- * software for any purpose.  It is provided "as is" without express or 
+ * software for any purpose.  It is provided "as is" without express or
  * implied warranty.
  * --------8<------------------------------------------------8<--------
- * 
+ *
  * The remainder of this code falls under the same permissions and
  * provisions as those of the xscreensaver code.
  */
@@ -97,7 +97,7 @@ void freeFontIf(AppInfo *app, XFontStruct *f)
 XFontStruct *getFontResource(AppInfo *app, char *instanceName, char *className)
 {
    char *fallbackFont = "fixed";
-   
+
    XFontStruct *f = NULL;
    char *s = get_string_resource(instanceName, className);
    f = XLoadQueryFont(app->dpy, (s ? s : fallbackFont));
@@ -133,7 +133,7 @@ unsigned int getUnsignedIntegerResource(AppInfo *app, char *instanceName,
    char c;
    char *s = get_string_resource(instanceName, className);
    char *cp = s;
-   
+
    if (NULL == s) {
       return(defaultValue);
    }
@@ -180,7 +180,7 @@ long getResolutionResource(AppInfo *app, char *instanceName, char *className,
    int n;
    long resolution;
    unsigned int i;
-   
+
    memset(units, 0, sizeof(units));
    s = getStringResourceWithDefault(instanceName, className,
 				    defaultResolutionSpec);
@@ -232,7 +232,7 @@ void calcLabelTextExtents(LabelInfo *label)
 {
    TextObject *t;
    int first = 1;
-   
+
    if ((!label) || (!(label->fullText)) || (!(label->font))) {
       return;
    }
@@ -256,7 +256,7 @@ void calcTotalButtonExtents(ButtonInfo *button)
    if (!button) {
       return;
    }
-   button->w3.w.width = (button->w3.interiorWidth + 
+   button->w3.w.width = (button->w3.interiorWidth +
 			 (2 * button->w3.shadowThickness));
    button->w3.w.width += (2 * button->w3.borderWidth);
    button->w3.w.height = (button->w3.interiorHeight +
@@ -282,7 +282,7 @@ void balanceButtonExtents(ButtonInfo *button1, ButtonInfo *button2)
    if ((!button1) || (!button2)) {
       return;
    }
-   button1->w3.interiorWidth = button2->w3.interiorWidth = 
+   button1->w3.interiorWidth = button2->w3.interiorWidth =
       MAX(button1->w3.interiorWidth, button2->w3.interiorWidth);
    button1->w3.interiorHeight = button2->w3.interiorHeight =
       MAX(button1->w3.interiorHeight, button2->w3.interiorHeight);
@@ -304,7 +304,7 @@ void calcButtonLabelPosition(ButtonInfo *button)
 Dimension scaleXDimension(AppInfo *app, Dimension unscaled)
 {
    Dimension scaled;
-   
+
    if (((app->defaultXResolution < app->xResolution) &&
 	((app->defaultXResolution + app->xFuzz) < app->xResolution)) ||
        ((app->xResolution < app->defaultXResolution) &&
@@ -319,7 +319,7 @@ Dimension scaleXDimension(AppInfo *app, Dimension unscaled)
 Dimension scaleYDimension(AppInfo *app, Dimension unscaled)
 {
    Dimension scaled;
-   
+
    if (((app->defaultYResolution < app->yResolution) &&
 	((app->defaultYResolution + app->yFuzz) < app->yResolution)) ||
        ((app->yResolution < app->defaultYResolution) &&
@@ -352,7 +352,7 @@ void createLabel(AppInfo *app, char *text, LabelInfo *label)
 {
    char *substring;
    TextObject *t;
-   
+
    if ((!app) || (!text)) {
       return;
    }
@@ -374,7 +374,7 @@ void createDialog(AppInfo *app)
 {
    DialogInfo *d;
    char *labelText;
-   
+
    if (app->dialog) {
       return;
    }
@@ -384,7 +384,7 @@ void createDialog(AppInfo *app)
    }
    memset(d, 0, sizeof(*d));
 
-   app->grabKeyboard = 
+   app->grabKeyboard =
       get_boolean_resource("grabKeyboard", "GrabKeyboard", True);
    app->grabPointer =
       get_boolean_resource("grabPointer", "GrabPointer", False);
@@ -396,7 +396,7 @@ void createDialog(AppInfo *app)
     */
    app->inputTimeout = (unsigned long) 1000 *
       getUnsignedIntegerResource(app, "inputTimeout", "InputTimeout", 0);
-   
+
    app->defaultXResolution =
       getResolutionResource(app, "defaultXResolution", "DefaultXResolution",
 			    "75/in");
@@ -407,7 +407,7 @@ void createDialog(AppInfo *app)
       getResolutionResource(app, "xResolutionFuzz", "XResolutionFuzz", "20/in");
    app->yFuzz =
       getResolutionResource(app, "yResolutionFuzz", "YResolutionFuzz", "20/in");
-   
+
    d->title =
       getStringResourceWithDefault("dialog.title", "Dialog.Title",
 				   "OpenSSH Authentication Passphrase Request");
@@ -430,12 +430,12 @@ void createDialog(AppInfo *app)
 			 app->dpy, app->colormap, app->black);
    d->w3.borderWidth =
       get_integer_resource("borderWidth", "BorderWidth", 1);
-   
+
    d->w3.horizontalSpacing = scaleXDimension(app,
       get_integer_resource("horizontalSpacing", "Spacing", 5));
    d->w3.verticalSpacing = scaleYDimension(app,
       get_integer_resource("verticalSpacing", "Spacing", 6));
-   
+
    if (2 == app->argc) {
       labelText = strdup(app->argv[1]);
    } else {
@@ -446,12 +446,12 @@ void createDialog(AppInfo *app)
    createLabel(app, labelText, &(d->label));
    freeIf(labelText);
    d->label.font = getFontResource(app, "dialog.font", "Dialog.Font");
-   d->label.fixedFont = getFontResource(app, "dialog.fixedFont", 
+   d->label.fixedFont = getFontResource(app, "dialog.fixedFont",
        "Dialog.FixedFont");
    calcLabelTextExtents(&(d->label));
    d->label.w.foreground = d->w3.w.foreground;
    d->label.w.background = d->w3.w.background;
-   
+
    d->okButton.w3.w.foreground =
       get_pixel_resource("okButton.foreground", "Button.Foreground",
 			 app->dpy, app->colormap, app->black);
@@ -486,7 +486,7 @@ void createDialog(AppInfo *app)
    calcButtonExtents(&(d->okButton));
    d->okButton.label.w.foreground = d->okButton.w3.w.foreground;
    d->okButton.label.w.background = d->okButton.w3.w.background;
-   
+
    d->cancelButton.w3.w.foreground =
       get_pixel_resource("cancelButton.foreground", "Button.Foreground",
 			 app->dpy, app->colormap, app->black);
@@ -528,7 +528,7 @@ void createDialog(AppInfo *app)
    d->cancelButton.label.w.background = d->cancelButton.w3.w.background;
 
    balanceButtonExtents(&(d->okButton), &(d->cancelButton));
-   
+
    d->indicator.w3.w.foreground =
       get_pixel_resource("indicator.foreground", "Indicator.Foreground",
 			 app->dpy, app->colormap, app->black);
@@ -581,7 +581,7 @@ void createDialog(AppInfo *app)
       Dimension maxWidth = (app->screen_width * 8 / 10);
       Dimension extraSpace = ((2 * d->w3.horizontalSpacing) +
 			      (2 * d->w3.shadowThickness));
-      
+
       if (d->indicator.maximumCount < 8) {
 	 d->indicator.maximumCount = 8;
       }
@@ -600,7 +600,7 @@ void createDialog(AppInfo *app)
 	 d->indicator.minimumCount = d->indicator.maximumCount;
       }
    }
-   
+
    {
       /* Calculate the width and horizontal position of things. */
       Dimension labelAreaWidth;
@@ -612,7 +612,7 @@ void createDialog(AppInfo *app)
       Dimension w;
       Position leftX;
       int i;
-      
+
       labelAreaWidth = d->label.w.width + (2 * d->w3.horizontalSpacing);
       buttonAreaWidth = ((3 * d->w3.horizontalSpacing) +
 			 d->okButton.w3.w.width +
@@ -642,7 +642,7 @@ void createDialog(AppInfo *app)
 
       leftX = (d->w3.w.width - d->label.w.width) / 2;
       d->label.w.x = leftX;
-      
+
       leftX = ((d->w3.w.width -
 	       (d->indicator.count * d->indicator.w3.w.width) -
 	       ((d->indicator.count - 1) * d->indicator.w3.horizontalSpacing))
@@ -677,7 +677,7 @@ void createDialog(AppInfo *app)
    {
       /* Calculate the height and vertical position of things. */
       int i;
-      
+
       d->w3.interiorHeight = ((4 * d->w3.verticalSpacing) +
 			      (2 * d->indicator.w3.verticalSpacing) +
 			      d->label.w.height +
@@ -701,7 +701,7 @@ void createDialog(AppInfo *app)
 
    d->w3.w.x = app->screen_xoffset + (app->screen_width - d->w3.w.width) / 2;
    d->w3.w.y = app->screen_yoffset + (app->screen_height - d->w3.w.height) / 3;
-   
+
    app->dialog = d;
 }
 
@@ -709,7 +709,7 @@ void destroyLabel(AppInfo *app, LabelInfo *label)
 {
    TextObject *thisTextObject;
    TextObject *nextTextObject;
-   
+
    thisTextObject = label->multiText;
    nextTextObject = thisTextObject->next;
    freeIf(thisTextObject);
@@ -726,19 +726,19 @@ void destroyLabel(AppInfo *app, LabelInfo *label)
 void destroyDialog(AppInfo *app)
 {
    DialogInfo *d = app->dialog;
-   
+
    freeIf(d->title);
    freeIf(d->indicators);
 
    destroyLabel(app, &(d->label));
    destroyLabel(app, &(d->okButton.label));
    destroyLabel(app, &(d->cancelButton.label));
-   
+
    XFree(d->sizeHints);
    XFree(d->wmHints);
    XFree(d->classHints);
    XFree(d->windowName.value);
-   
+
    freeIf(d);
 }
 
@@ -747,7 +747,7 @@ void createDialogWindow(AppInfo *app)
    XSetWindowAttributes attr;
    unsigned long attrMask = 0;
    DialogInfo *d = app->dialog;
-   
+
    attr.background_pixel = d->w3.w.background;
    attrMask |= CWBackPixel;
    attr.border_pixel = d->w3.borderColor;
@@ -765,7 +765,7 @@ void createDialogWindow(AppInfo *app)
 				   InputOutput,
 				   DefaultVisualOfScreen(app->screen),
 				   attrMask, &attr);
-   
+
    d->sizeHints = XAllocSizeHints();
    if (!(d->sizeHints)) {
       destroyDialog(app);
@@ -783,7 +783,7 @@ void createDialogWindow(AppInfo *app)
    d->sizeHints->base_width = d->w3.w.width;
    d->sizeHints->base_height = d->w3.w.height;
    d->sizeHints->flags |= PBaseSize;
-   
+
    d->wmHints = XAllocWMHints();
    if (!(d->wmHints)) {
       destroyDialog(app);
@@ -811,7 +811,7 @@ void createDialogWindow(AppInfo *app)
 		    app->argv, app->argc, d->sizeHints,
 		    d->wmHints, d->classHints);
    XSetTransientForHint(app->dpy, d->dialogWindow, d->dialogWindow);
-   
+
    app->wmDeleteWindowAtom = XInternAtom(app->dpy, "WM_DELETE_WINDOW", False);
    XSetWMProtocols(app->dpy, d->dialogWindow, &(app->wmDeleteWindowAtom), 1);
 }
@@ -819,17 +819,17 @@ void createDialogWindow(AppInfo *app)
 void createGCs(AppInfo *app)
 {
    DialogInfo *d = app->dialog;
-   
+
    XGCValues gcv;
    unsigned long gcvMask;
-   
+
    gcvMask = 0;
    gcv.foreground = d->w3.w.background;
    gcvMask |= GCForeground;
    gcv.fill_style = FillSolid;
    gcvMask |= GCFillStyle;
    app->fillGC = XCreateGC(app->dpy, app->rootWindow, gcvMask, &gcv);
-   
+
    gcvMask = 0;
    gcv.foreground = d->w3.borderColor;
    gcvMask |= GCForeground;
@@ -842,7 +842,7 @@ void createGCs(AppInfo *app)
    gcv.join_style = JoinMiter;
    gcvMask |= GCJoinStyle;
    app->borderGC = XCreateGC(app->dpy, app->rootWindow, gcvMask, &gcv);
-   
+
    gcvMask = 0;
    gcv.foreground = d->label.w.foreground;
    gcvMask |= GCForeground;
@@ -851,14 +851,14 @@ void createGCs(AppInfo *app)
    gcv.font = d->label.font->fid;
    gcvMask |= GCFont;
    app->textGC = XCreateGC(app->dpy, app->rootWindow, gcvMask, &gcv);
-   
+
    gcvMask = 0;
    gcv.foreground = d->indicator.w3.w.foreground;
    gcvMask |= GCForeground;
    gcv.fill_style = FillSolid;
    gcvMask |= GCFillStyle;
    app->brightGC = XCreateGC(app->dpy, app->rootWindow, gcvMask, &gcv);
-   
+
    gcvMask = 0;
    gcv.foreground = d->indicator.w3.w.background;
    gcvMask |= GCForeground;
@@ -889,16 +889,16 @@ void paintLabel(AppInfo *app, Drawable draw, LabelInfo label)
    XSetForeground(app->dpy, app->textGC, label.w.foreground);
    XSetBackground(app->dpy, app->textGC, label.w.background);
    XSetFont(app->dpy, app->textGC, label.font->fid);
-   
+
    t = label.multiText;
    x = label.w.x;
    y = label.w.y + t->ascent;
    while (NULL != t) {
-      if (!first) 
+      if (!first)
 	 XSetFont(app->dpy, app->textGC, label.fixedFont->fid);
       else
 	 first = 0;
-       
+
       if (t->text) {
 	 XDrawString(app->dpy, draw, app->textGC, x, y, t->text,
 		     t->textLength);
@@ -917,7 +917,7 @@ void paintButton(AppInfo *app, Drawable draw, ButtonInfo button)
    Position y;
    Dimension width;
    Dimension height;
-   
+
    if (button.w3.borderWidth > 0) {
       XSetForeground(app->dpy, app->borderGC, button.w3.borderColor);
       XFillRectangle(app->dpy, draw, app->borderGC, button.w3.w.x,
@@ -956,7 +956,7 @@ void paintButton(AppInfo *app, Drawable draw, ButtonInfo button)
    }
    if ((button.w3.shadowThickness > 0) && (button.pressed)) {
       Dimension pressedAdjustment;
-      
+
       pressedAdjustment = button.w3.shadowThickness / 2;
       if (pressedAdjustment < 1) {
 	 pressedAdjustment = 1;
@@ -988,7 +988,7 @@ void paintIndicator(AppInfo *app, Drawable draw, IndicatorElement indicator)
    Dimension width;
    Dimension height;
    GC gc = app->dimGC;
-   
+
    if (indicator.parent->w3.borderWidth > 0) {
       XSetForeground(app->dpy, app->borderGC,
 		     indicator.parent->w3.borderColor);
@@ -1014,7 +1014,7 @@ void paintIndicator(AppInfo *app, Drawable draw, IndicatorElement indicator)
 void updateIndicatorElement(AppInfo *app, int i)
 {
    DialogInfo *d = app->dialog;
-   
+
    d->indicators[i].isLit = !(d->indicators[i].isLit);
    paintIndicator(app, d->dialogWindow, d->indicators[i]);
 }
@@ -1022,7 +1022,7 @@ void updateIndicatorElement(AppInfo *app, int i)
 void updateIndicators(AppInfo *app, int condition)
 {
    DialogInfo *d = app->dialog;
-   
+
    if (condition > 0) {
       /* Move forward one. */
       updateIndicatorElement(app, d->indicator.current);
@@ -1042,7 +1042,7 @@ void updateIndicators(AppInfo *app, int condition)
    } else {
       /* Erase them all. */
       int i;
-      
+
       for (i = 0; i < d->indicator.count; i++) {
 	 d->indicators[i].isLit = False;
 	 paintIndicator(app, d->dialogWindow, d->indicators[i]);
@@ -1057,7 +1057,7 @@ void paintDialog(AppInfo *app)
    DialogInfo *d = app->dialog;
    Drawable draw = d->dialogWindow;
    int i;
-   
+
    XSetForeground(app->dpy, app->fillGC, d->w3.w.background);
    XFillRectangle(app->dpy, draw, app->fillGC, 0, 0,
 		  d->w3.w.width, d->w3.w.height);
@@ -1098,9 +1098,9 @@ void performGrab(AppInfo *app, int grabType, char *grabTypeName,
       unsigned int eventMask = ButtonPressMask | ButtonReleaseMask;
       Window confineTo = None;
       Cursor cursor = None;
-      
+
       *isGrabbed = True;
-      
+
       if (NULL == grabTypeName) {
 	 fprintf(stderr, "%s[%ld]: performGrab: null grab type name.\n",
 		 app->appName, (long) app->pid);
@@ -1141,7 +1141,7 @@ void performGrab(AppInfo *app, int grabType, char *grabTypeName,
       }
       if (GrabSuccess != status) {
 	 char *reason = "reason unknown";
-	 
+
 	 switch (status) {
 	  case AlreadyGrabbed:
 	    reason = "someone else already has it";
@@ -1162,7 +1162,7 @@ void performGrab(AppInfo *app, int grabType, char *grabTypeName,
       }
    }
 }
-		 
+
 
 void grabKeyboard(AppInfo *app)
 {
@@ -1283,14 +1283,14 @@ void handleKeyPress(AppInfo *app, XEvent *event)
 {
    char s[2];
    int n;
-   
+
    if (event->xkey.send_event) {
       /* Pay no attention to synthetic key events. */
       return;
    }
    cancelInputTimeout(app);
    n = XLookupString(&(event->xkey), s, 1, NULL, NULL);
-   
+
    if (1 != n) {
       return;
    }
@@ -1319,13 +1319,13 @@ void handleKeyPress(AppInfo *app, XEvent *event)
 
 Bool eventIsInsideButton(AppInfo *app, XEvent *event, ButtonInfo button)
 {
-   /* 'gcc -Wall' complains about 'app' being an unused parameter. 
+   /* 'gcc -Wall' complains about 'app' being an unused parameter.
     * Tough.  We might want to use it later, and then we don't have
     * to change it in each place it's called.  Performance won't suffer.
     */
    int status = False;
    int x, y;
-   
+
    switch(event->type) {
     case ButtonPress:
     case ButtonRelease:
@@ -1397,7 +1397,7 @@ void handleButtonPress(AppInfo *app, XEvent *event)
 void handlePointerMotion(AppInfo *app, XEvent *event)
 {
    DialogInfo *d = app->dialog;
-   
+
    if (NO_BUTTON == d->pressedButton) {
       return;
    } else if (OK_BUTTON == d->pressedButton) {
@@ -1457,7 +1457,7 @@ int main(int argc, char **argv)
    int nscreens;
 
    memset(&app, 0, sizeof(app));
-   
+
    progclass = "SshAskpass";
    app.toplevelShell = XtAppInitialize(&(app.appContext), progclass,
 					NULL, 0, &argc, argv,
@@ -1476,18 +1476,18 @@ int main(int argc, char **argv)
    app.appClass = progclass;
    /* For resources.c. */
    db = app.resourceDb;
-   
+
    /* Seconds after which keyboard/pointer grab fail. */
    app.grabFailTimeout = 5;
    /* Number of seconds to wait between grab attempts. */
    app.grabRetryInterval = 1;
-   
+
    app.pid = getpid();
 
    {
       struct rlimit resourceLimit;
       int status;
-      
+
       status = getrlimit(RLIMIT_CORE, &resourceLimit);
       if (-1 == status) {
 	 fprintf(stderr, "%s[%ld]: getrlimit failed (%s)\n", app.appName,
@@ -1525,7 +1525,7 @@ int main(int argc, char **argv)
 
    createDialog(&app);
    createGCs(&app);
-   
+
    app.eventMask = 0;
    app.eventMask |= ExposureMask;
    app.eventMask |= ButtonPressMask;
@@ -1534,7 +1534,7 @@ int main(int argc, char **argv)
    app.eventMask |= KeyPressMask;
 
    createDialogWindow(&app);
-   
+
    XMapWindow(app.dpy, app.dialog->dialogWindow);
    if (app.inputTimeout > 0) {
       app.inputTimeoutActive = True;
@@ -1543,7 +1543,7 @@ int main(int argc, char **argv)
 			 handleInputTimeout, (XtPointer) &app);
    }
 
-   
+
    while(True) {
       XtAppNextEvent(app.appContext, &event);
       switch (event.type) {

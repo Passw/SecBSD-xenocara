@@ -291,7 +291,7 @@ EOF
         authcookie=`XAUTH list "$displayname" @@
         | sed -n "s/.*$displayname[[:space:]*].*[[:space:]*]//p"` 2>/dev/null;
         if [ "z${authcookie}" = "z" ] ; then
-            XAUTH -q << EOF 
+            XAUTH -q << EOF
 add $displayname . $mcookie
 EOF
         removelist="$displayname $removelist"

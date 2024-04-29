@@ -34,7 +34,7 @@ in this Software without prior written authorization from The Open Group.
 
 static char 		*format_rstart_env(char *str);
 
-
+
 void
 remote_start(const char *restart_protocol, const char *restart_machine,
 	     const char *program, char **args, const char *cwd,
@@ -172,11 +172,11 @@ remote_start(const char *restart_protocol, const char *restart_machine,
 		    authDataEntries[i].protocol_name,
 		    authDataEntries[i].network_id,
 		    authDataEntries[i].auth_name);
-		
+
 		fprintfhex (fp,
 		    authDataEntries[i].auth_data_length,
 		    authDataEntries[i].auth_data);
-		
+
 		fprintf (fp, "\n");
 	    }
 
@@ -195,7 +195,7 @@ remote_start(const char *restart_protocol, const char *restart_machine,
 }
 
 
-
+
 /*
  * rstart requires that any spaces/backslashes/non-printable characters
  * inside of a string be represented by octal escape sequences.

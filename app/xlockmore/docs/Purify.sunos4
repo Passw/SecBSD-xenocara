@@ -1,10 +1,10 @@
 ****  Purify instrumented xlock/xlock (pid 23512 at Thu Aug 10 17:07:33 2000)
-  * Purify 4.5.1 SunOS 4.1, Copyright (C) 1992-1999 Rational Software Corp. All rights reserved. 
+  * Purify 4.5.1 SunOS 4.1, Copyright (C) 1992-1999 Rational Software Corp. All rights reserved.
   * For contact information type: "purify -help"
   * For TTY output, use the option "-windows=no"
   * Command-line: xlock/xlock -sequential -verbose -modelist all
   * Options settings: -chain-length=25 -windows=yes -g++=yes -purify \
-    -collector=/usr/bin/ld -purify-home=/opt/pure/purify-4.5.1-sunos4 
+    -collector=/usr/bin/ld -purify-home=/opt/pure/purify-4.5.1-sunos4
 
 ****  Purify instrumented xlock/xlock (pid 23512)  ****
 Current file descriptors in use: 8

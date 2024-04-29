@@ -12,7 +12,7 @@ decay         (requires ???, black screen)
 deluxe        (requires ???, red screen)
 fire          (requires OpenGL)
 flag          (requires utsname.h)
-fzort         
+fzort
 gears         (requires OpenGL)
 glplanet      (requires OpenGL)
 goop          (requires XCopyPlane(), XSetPlaneMask())

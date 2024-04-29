@@ -169,7 +169,7 @@ NAME(fzort_ctx *ctx, struct pvertex *v1,
 				}
 
 				if (xb >= ctx->clip.x_min && xa <= xb) {
-					u = u_left; 
+					u = u_left;
 					v = v_left;
 
 					if (adjx) {

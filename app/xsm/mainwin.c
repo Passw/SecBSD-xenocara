@@ -48,7 +48,7 @@ static Widget       shutdownSave;
 Widget       shutdownDontSave;
 
 
-
+
 static void
 DelMainWinAction(Widget w, XEvent *event, String *params, Cardinal *num_params)
 {
@@ -56,7 +56,7 @@ DelMainWinAction(Widget w, XEvent *event, String *params, Cardinal *num_params)
 }
 
 
-
+
 void
 create_main_window (void)
 {

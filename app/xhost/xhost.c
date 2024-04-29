@@ -138,7 +138,7 @@ static volatile int nameserver_timedout;
 static char *ProgramName;
 
 #ifdef NEEDSOCKETS
-static int 
+static int
 XFamily(int af)
 {
     unsigned int i;
@@ -185,7 +185,7 @@ main(int argc, char *argv[])
     XHostAddress *list;
     Bool enabled = False;
     Display *dpy;
- 
+
 #ifdef USE_GETTEXT
     const char *domaindir;
 
@@ -214,8 +214,8 @@ main(int argc, char *argv[])
     }
 
     XSetErrorHandler(local_xerror);
- 
- 
+
+
     if (argc == 1) {
 	sethostent(1);		/* don't close the data base each time */
 	list = XListHosts(dpy, &nhosts, &enabled);
@@ -271,11 +271,11 @@ main(int argc, char *argv[])
 	}
 	exit(0);
     }
- 
+
     for (i = 1; i < argc; i++) {
 	arg = argv[i];
 	if (*arg == '-') {
-	    
+
 	    if (!argv[i][1] && ((i+1) == argc)) {
 		printf (gettext("access control enabled, only authorized clients can connect\n"));
 		XEnableAccessControl(dpy);
@@ -307,7 +307,7 @@ main(int argc, char *argv[])
     exit(nfailed);
 }
 
- 
+
 
 /*
  * change_host - edit the list of hosts that may connect to the server;
@@ -317,7 +317,7 @@ main(int argc, char *argv[])
  * address.
  */
 
-static int 
+static int
 change_host(Display *dpy, char *name, Bool add)
 {
     XHostAddress ha;
@@ -561,7 +561,7 @@ change_host(Display *dpy, char *name, Bool add)
 	    printf ("%s %s\n", name, remove_msg);
 	}
 	return 1;
-    } 
+    }
 #if defined(IPv6) && defined(AF_INET6)
     /*
      * Check to see if inet_pton() can grok it as an IPv6 address
@@ -569,8 +569,8 @@ change_host(Display *dpy, char *name, Bool add)
     else if (((family == FamilyWild) || (family == FamilyInternet6)) &&
 	     (inet_pton(AF_INET6, name, &addr6.s6_addr) == 1)) {
 	ha.family = FamilyInternet6;
-	ha.length = sizeof(addr6.s6_addr);		
-	ha.address = (char *) &addr6.s6_addr; 
+	ha.length = sizeof(addr6.s6_addr);
+	ha.address = (char *) &addr6.s6_addr;
 	if (add) {
 	    XAddHost (dpy, &ha);
 	    printf ("%s %s\n", name, add_msg);
@@ -581,7 +581,7 @@ change_host(Display *dpy, char *name, Bool add)
 	return 1;
     } else {
     /*
-     * Is it in the namespace?  
+     * Is it in the namespace?
      *
      * If no family was specified, use both Internet v4 & v6 addresses.
      * Otherwise, use only addresses matching specified family.
@@ -601,12 +601,12 @@ change_host(Display *dpy, char *name, Bool add)
 		if (a->ai_family == AF_INET6) {
 		    ha.address = (char *)
 		      &((struct sockaddr_in6 *) a->ai_addr)->sin6_addr;
-		    ha.length = 
+		    ha.length =
 		      sizeof (((struct sockaddr_in6 *) a->ai_addr)->sin6_addr);
 		} else {
 		    ha.address = (char *)
 		      &((struct sockaddr_in *) a->ai_addr)->sin_addr;
-		    ha.length = 
+		    ha.length =
 		      sizeof (((struct sockaddr_in *) a->ai_addr)->sin_addr);
 		}
 		inet_ntop(a->ai_family, ha.address, ad, sizeof(ad));
@@ -740,7 +740,7 @@ get_hostname(XHostAddress *ha)
 	   Assume that if it does not respond in NAMESERVER_TIMEOUT seconds
 	   that something is wrong and do not make the user wait.
 	   gethostbyaddr will continue after a signal, so we have to
-	   jump out of it. 
+	   jump out of it.
 	   */
 #ifdef SIGALRM
 	memset(&sa, 0, sizeof sa);
@@ -757,7 +757,7 @@ get_hostname(XHostAddress *ha)
 	if (nameserver_timedout || inetname[0] == '\0')
 	    inet_ntop(((struct sockaddr *)&saddr)->sa_family, ha->address,
 		inetname, sizeof(inetname));
-	return inetname;	      
+	return inetname;
     }
 #else
     if (ha->family == FamilyInternet) {
@@ -765,7 +765,7 @@ get_hostname(XHostAddress *ha)
 	   Assume that if it does not respond in NAMESERVER_TIMEOUT seconds
 	   that something is wrong and do not make the user wait.
 	   gethostbyaddr will continue after a signal, so we have to
-	   jump out of it. 
+	   jump out of it.
 	   */
 #ifdef SIGALRM
 	memset(&sa, 0, sizeof sa);
@@ -869,21 +869,21 @@ nameserver_lost(_X_UNUSED int sig)
  * that an X_GetHosts request for an unknown address format was received, just
  * return, otherwise print the normal error message and continue.
  */
-static int 
+static int
 local_xerror(Display *dpy, XErrorEvent *rep)
 {
     if ((rep->error_code == BadAccess) && (rep->request_code == X_ChangeHosts)) {
-	fprintf (stderr, 
+	fprintf (stderr,
 		 gettext("%s:  must be on local machine to add or remove hosts.\n"),
 		 ProgramName);
 	return 1;
-    } else if ((rep->error_code == BadAccess) && 
+    } else if ((rep->error_code == BadAccess) &&
 	       (rep->request_code == X_SetAccessControl)) {
-	fprintf (stderr, 
+	fprintf (stderr,
 		 gettext("%s:  must be on local machine to enable or disable access control.\n"),
 		 ProgramName);
 	return 1;
-    } else if ((rep->error_code == BadValue) && 
+    } else if ((rep->error_code == BadValue) &&
 	       (rep->request_code == X_ListHosts)) {
 	return 1;
     }

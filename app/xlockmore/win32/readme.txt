@@ -7,7 +7,7 @@ Requirements.
 -------------
 
 Windows 95, 98, ME or Windows NT, 2000, XP running 256 colors or greater.
-Don't know the minimum spec. machine, but I have run it on a 
+Don't know the minimum spec. machine, but I have run it on a
 Pentium 166 (Win95), Pentium Pro 200 (Win NT), Pentium II 233 (Win95),
 Pentium III 1000 (Win98) and Pentium 4 3Ghz (XP Pro).
 
@@ -72,10 +72,10 @@ xlock95 is also not yet coded to handle multiple screens.
 Notes.
 ------
 
-If you have used an older version than 0.4, it was called 
+If you have used an older version than 0.4, it was called
 "xlock.scr". This is not needed anymore and can be deleted from
 Windows system directory. Also timings from the older versions are
-different than the versions 0.4 and above, so modes will be either 
+different than the versions 0.4 and above, so modes will be either
 faster or slower.
 
 If you have used a version between 0.4 and 0.6, it was called
@@ -87,7 +87,7 @@ time, there are 86 modes. These are:
 
 Ant, Ant3D, Apollonian, Ball, Bat, Blot, Bouboule, Bounce, Braid,
 Bug, Clock, Coral, Crystal, Daisy, Deco, Demon, Dilemma, Discrete,
-Dragon, Drift, Euler2D, Eyes, Fadeplot, Fiberlamp, Flame, Flow, 
+Dragon, Drift, Euler2D, Eyes, Fadeplot, Fiberlamp, Flame, Flow,
 Forest, Galaxy, Grav, Helix, Hop, Hyper, Ico, Image, Juggle, Julia,
 Kaleid, Kumppa, Laser, Life, Life1D, Life3D, Lightning, Lisa, Lissie,
 Loop, Lyapunov, Mandelbrot, Matrix, Maze, Mountain, Munch, Nose,
@@ -116,9 +116,9 @@ Future of Xlockmore95.
 ----------------------
 
 At this stage I have done intermediate releases of Xlockmore95. I
-know there are more modes I can add, but as to adding all the modes 
-that exist in Xlockmore, I'm not sure it is possible. There are modes 
-that use XPM images (X PixMap images), opengl, and there may be 
+know there are more modes I can add, but as to adding all the modes
+that exist in Xlockmore, I'm not sure it is possible. There are modes
+that use XPM images (X PixMap images), opengl, and there may be
 X11 functions that just won't map easily to win32 functions (I've been
 adding them on an as needed basis).
 
@@ -136,7 +136,7 @@ This is a list of what I would like to do (but I'm not promising)...
 Differences with X11 & Bugs.
 ----------------------------
 
-ball, crystal, munch, pyro, tik_tak: 
+ball, crystal, munch, pyro, tik_tak:
 XSetFunction() isn't drawing correctly.
 
 ant: truchet drawing messed up
@@ -165,7 +165,7 @@ version 0.2 (not a public release)
 . added Coral mode
 
 version 0.3
-. wasn't initialising some pointer variables, which could cause an 
+. wasn't initialising some pointer variables, which could cause an
   error if circumstances allowed. This is now fixed.
 
 . added the ability to redefine the color palette in a mode class.
@@ -179,39 +179,39 @@ version 0.4 (debug build)
 . added code for XDrawArc(), XFillArc() & XFillPolygon()
 
 . changed from using my own base source code to using the source code
-  for xlockmore 4.07. I still have to use some of my own code for 
-  start-up and initialisation of the screen saver (cannot get around 
+  for xlockmore 4.07. I still have to use some of my own code for
+  start-up and initialisation of the screen saver (cannot get around
   this due to differences between X11 and Win32), and of course all
-  the X11 functions and structures. But the rest is xlockmore 4.07 
+  the X11 functions and structures. But the rest is xlockmore 4.07
   code. At some point I will see if David will integrate the Win32
   source code into the official distrubution.
 
 . As a result a lot more modes are now added. These are:
-  Braid, Clock, Daisy, Drift, Flame, Galaxy, Geometry, Grav, Helix, 
-  Hop, Lightning, Lisa, Lissie, Petal, Qix, Roll, Rotor, Sphere, 
+  Braid, Clock, Daisy, Drift, Flame, Galaxy, Geometry, Grav, Helix,
+  Hop, Lightning, Lisa, Lissie, Petal, Qix, Roll, Rotor, Sphere,
   Spiral, Spline, Triangle, Turtle
 
 version 0.5
-. determined that the problem with the Galaxy mode in the release 
-  build was to do with VC++. When VC++ optimizes for speed, Galaxy 
+. determined that the problem with the Galaxy mode in the release
+  build was to do with VC++. When VC++ optimizes for speed, Galaxy
   does not work. I now optimize for size.
 
 . life3d: added an extra check to life3dfile, to see if it was NULL
-  before doing the strlen() on it. This has fixed a crash I was 
+  before doing the strlen() on it. This has fixed a crash I was
   getting with it. This is the only mode I have changed.
 
 . added code for XCreateGC(), XChangeGC(), XDrawLines(), XFillArcs(),
   XFillRectangles(), XSetFunction() so the following modes now work:
-  Ant, Ball, Bouboule, Bug, Crystal, Demon, Laser, Life3d, Loop, 
+  Ant, Ball, Bouboule, Bug, Crystal, Demon, Laser, Life3d, Loop,
   Mountain, Munch, Pyro, Wire
 
 version 0.6
 . added code for XDrawSegments(), XClearArea() so the following modes
   now work: Hyper, Ico, Kaleid, Worm
 
-. added code to set each modes default options (if there are any). 
-  This affects every mode, but only boolean and string types are being 
-  set at the moment. Ico refused to work until either edges or faces 
+. added code to set each modes default options (if there are any).
+  This affects every mode, but only boolean and string types are being
+  set at the moment. Ico refused to work until either edges or faces
   were defined as true. This also allowed me to remove the code I
   added to life3d.
 
@@ -236,21 +236,21 @@ version 0.7
 . filled in code for XDrawString(), though it doesn't affect anything
   (yet)
 
-. added code for XDrawRectangle(), XStoreColors() so the following 
+. added code for XDrawRectangle(), XStoreColors() so the following
   modes now works: mandelbrot, tube
 
-. added empty function calls to XPutImage(), XCreateBitmapFromData(), 
+. added empty function calls to XPutImage(), XCreateBitmapFromData(),
   XSetBackground(), XSetFillStyle(), XSetStipple() so Maze now works
   (minus the operating system graphic)
 
-. fixed up XSetFunction so now it should utilise different drawing 
+. fixed up XSetFunction so now it should utilise different drawing
   functions. It does not seem to be 100% correct, but much better than
   before.
 
 version 0.8 (8-Oct-2004)
 . added code for XPutImage() so now the operating system graphic is
   drawn in Maze.
-  
+
 . added code for XCreateBitmapFromData(), XFreePixmap(), XCreateGC(),
   XFreeGC()
 
@@ -264,11 +264,11 @@ version 0.10 (26-Jul-2005)
 . fixed XDrawArc(), XFillArc() & XFillArcs so they draw fully the
   complete angles. This was causing a graphical error in some modes,
   for example clock.
-  
+
 . fixed setting the stipple brush color on an XSetForeground. Now the
   bad paths of Maze are the correct color.
 
-. fixed most of the broken modes. I think this had to do with 
+. fixed most of the broken modes. I think this had to do with
   recreating the pen for a filled arc in XFillArc(). It wasn't always
   creating the new pen. I create it now as null, so the border is not
   drawn, and to make up for this I make the arc a little larger in the
@@ -287,7 +287,7 @@ version 0.11 (29-Sep-2005)
 . updated to use xlockmore-5.19. This is the first step of getting my
   source code integrated into the offical source. A number of changes
   had to be made to my code, but it was mostly OK. The following modes
-  are removed in this new version (removed in the official code): 
+  are removed in this new version (removed in the official code):
   geometry (14-Sep-2005)
 
 . many modes have changed, but some have now a few issues (maze - OS
@@ -308,7 +308,7 @@ Please don't email David with questions about Xlockmore95.
 [Well actually David does not mind if you cc him  :)  ]
 They can be directed to me: petey_leinonen@yahoo.com.au
 
-You can find the latest information about xlockmore from 
+You can find the latest information about xlockmore from
 David A. Bagley's site at http://www.tux.org/~bagleyd/xlockmore.html
 
 
@@ -323,11 +323,11 @@ Permission to use, copy, modify, and distribute this software and its
 documentation for any purpose and without fee is hereby granted,
 provided that the above copyright notice appear in all copies and that
 both that copyright notice and this permission notice appear in
-supporting documentation. 
+supporting documentation.
 
 Please note that I do not provide any warranties, and that you use this
-executable and/or source code at your own risk. I will not be held 
-responsible for any damage that is incurred by using the executable 
+executable and/or source code at your own risk. I will not be held
+responsible for any damage that is incurred by using the executable
 and/or source code.
 
 

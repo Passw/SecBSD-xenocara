@@ -41,7 +41,7 @@ static Widget	   logText;
 static Widget	   logOkButton;
 
 
-
+
 void
 DisplayLogXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -66,7 +66,7 @@ DisplayLogXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 static void
 logOkXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -75,7 +75,7 @@ logOkXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 void
 add_log_text(char *str)
 {
@@ -91,7 +91,7 @@ add_log_text(char *str)
 }
 
 
-
+
 static void
 DelLogWinAction(Widget w, XEvent *event, String *params, Cardinal *num_params)
 {
@@ -99,7 +99,7 @@ DelLogWinAction(Widget w, XEvent *event, String *params, Cardinal *num_params)
 }
 
 
-
+
 void
 create_log_popup(void)
 
@@ -118,7 +118,7 @@ create_log_popup(void)
 	topLevelShellWidgetClass, topLevel,
 	XtNallowShellResize, True,
 	NULL);
-    
+
     logForm = XtVaCreateManagedWidget (
 	"logForm", formWidgetClass, logPopup,
 	NULL);

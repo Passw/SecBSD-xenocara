@@ -35,9 +35,9 @@ extern void FreeProp(Prop *prop);
 extern void SetInitialProperties(ClientRec *client, List *props);
 extern void SetProperty(ClientRec *client, SmProp *theProp, Bool freeIt);
 extern void DeleteProperty(ClientRec *client, char *propname);
-extern void SetPropertiesProc(SmsConn smsConn, SmPointer managerData, 
+extern void SetPropertiesProc(SmsConn smsConn, SmPointer managerData,
 			      int numProps, SmProp **props);
-extern void DeletePropertiesProc(SmsConn smsConn, SmPointer managerData, 
+extern void DeletePropertiesProc(SmsConn smsConn, SmPointer managerData,
 				 int numProps, char **propNames);
 extern void GetPropertiesProc(SmsConn smsConn, SmPointer managerData);
 

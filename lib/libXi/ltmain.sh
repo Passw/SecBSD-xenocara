@@ -5588,7 +5588,7 @@ func_mode_link ()
 	  esac
 	elif test "X$arg" = "X-lc_r"; then
 	 case $host in
-	 *-*-openbsd* | *-*-secbsd* |*-*-freebsd* | *-*-dragonfly*)
+	 *-*-openbsd* | *-*-secbsd* | *-*-freebsd* | *-*-dragonfly*)
 	   # Do not include libc_r directly, use -pthread flag.
 	   continue
 	   ;;

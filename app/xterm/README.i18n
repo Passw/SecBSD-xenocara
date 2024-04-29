@@ -58,7 +58,7 @@ which is distributed with XFree86 4.4
       LANG=de_DE@euro
       export LANG
 
-    in your ~/.xsession file.  There are many ways to configure locale. 
+    in your ~/.xsession file.  There are many ways to configure locale.
     For example, your display manager may have a mechanism to invoke a
     window manager in your favorite locale, or you may have system-wide
     locale setting in /etc/environment.  You may also have set the
@@ -189,7 +189,7 @@ acceptance by users.  However, the locale mechanism allows users
 to manipulate data in a standard form.  Its usefulness compensates
 in part for reduced performance.
 
-Xterm supports antialiased fonts ("-fa" and "-fs" command line options). 
+Xterm supports antialiased fonts ("-fa" and "-fs" command line options).
 Currently UTF-8 nor locale modes do not work with antialiased fonts.
 
 Xterm does not support bi-directional or RTL languages such as Hebrew

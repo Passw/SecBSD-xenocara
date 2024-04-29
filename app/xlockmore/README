@@ -263,7 +263,7 @@ First the easy way (This is to overwrite the default CDE action)
 This will help you to bring up xlock when you are using lock in the
 front panel.
 
-			
+
 
 
 Second way (another way to use action)
@@ -301,16 +301,16 @@ ACTION Xlock
           the "Application Manager".  You can do this by selecting
           it from the front panel.
         - From the Application Manager, select "Desktop_Tools"
-        - Now, select "Reload Actions". 
+        - Now, select "Reload Actions".
 
         - At this point, the desktop knows about the new Xlock action.
           To test it, type "dtaction Xlock".  Xlock should start up.
 
 
 3. ADDING THE NEW ACTION TO THE FRONT PANEL:
-          
-        - copy the dtwm front panel configuration file, dtwm.fp, from 
-          /opt/CDE/appconfig/types/C directory to your personal dt 
+
+        - copy the dtwm front panel configuration file, dtwm.fp, from
+          /opt/CDE/appconfig/types/C directory to your personal dt
           directory "~/.dt/types" directory.
         - cd to ~/.dt/types
         - From here, edit the dtwm.fp
@@ -334,10 +334,10 @@ CONTROL Lock
           for that front panel lock icon.
 
         - To get the front panel lock icon to call the action we
-          just defined, Xlock, instead of the LockDisplay action, all 
-          you need do is change the PUSH_ACTION line from 
-          "LockDisplay" to "Xlock".  
-          
+          just defined, Xlock, instead of the LockDisplay action, all
+          you need do is change the PUSH_ACTION line from
+          "LockDisplay" to "Xlock".
+
 CONTROL Lock
 {
   TYPE                  icon
@@ -351,7 +351,7 @@ CONTROL Lock
   HELP_VOLUME           FPanel
 }
 
-        - Note:  You might change the Label field to Xlock and you 
+        - Note:  You might change the Label field to Xlock and you
           might remove the HELP_TOPIC and HELP_VOLUME fields, but this
           modification is not necessary.
 
@@ -359,8 +359,8 @@ CONTROL Lock
           files.  You do this by selecting "Restart Workspace Manager..."
           from your workspace menu.
 
-        - Press the lock icon on the front panel...xlock should be 
-          called.  If not, make sure your DTDATABASESEARCHPATH 
+        - Press the lock icon on the front panel...xlock should be
+          called.  If not, make sure your DTDATABASESEARCHPATH
           environment variable contains $HOME/.dt/types.
 --------------------------------------------------------------------
 
@@ -476,7 +476,7 @@ XCOMM #define GLLibrary
 --- src/X/xfonts.c	Thu May  3 09:24:21 2001
 ***************
 *** 260,266 ****
-    bm = (GLubyte *) MALLOC((max_bm_width * max_bm_height) * sizeof 
+    bm = (GLubyte *) MALLOC((max_bm_width * max_bm_height) * sizeof
   (GLubyte));
     if (!bm) {
 !       XFreeFontInfo( NULL, fs, 0 );
@@ -484,7 +484,7 @@ XCOMM #define GLLibrary
                   "Couldn't allocate bitmap in glXUseXFont()");
         return;
 --- 260,266 ----
-    bm = (GLubyte *) MALLOC((max_bm_width * max_bm_height) * sizeof 
+    bm = (GLubyte *) MALLOC((max_bm_width * max_bm_height) * sizeof
   (GLubyte));
     if (!bm) {
 !       XFreeFontInfo( NULL, fs, 1 );
@@ -494,19 +494,19 @@ XCOMM #define GLLibrary
 ***************
 *** 375,381 ****
       }
-  
+
     FREE(bm);
 !   XFreeFontInfo( NULL, fs, 0 );
     XFreeGC (dpy, gc);
-  
+
     /* Restore saved packing modes.  */
 --- 375,381 ----
       }
-  
+
     FREE(bm);
 !   XFreeFontInfo( NULL, fs, 1 );
     XFreeGC (dpy, gc);
-  
+
     /* Restore saved packing modes.  */
 
 
@@ -724,7 +724,7 @@ XCOMM #define XpmLibrary
         and run make install as normal.
     Sun:
       Need Gnu's make
-      Can use gcc (recommended) or cc 
+      Can use gcc (recommended) or cc
         cc and CC problem with C++ modes (solitare and text3d)
           xlock: LoadModule: modes/solitare.xlk: ld.so.1: xlock/xlock: fatal:
           relocation error: file modes/solitare.xlk: symbol __0OnwUi:
@@ -936,7 +936,7 @@ Other related stuff (all not maintained by me):
 ***************
 *** 112,117 ****
 --- 112,119 ----
-  
+
     if( i == n )
       {
 +     return GLTT_FALSE;
@@ -947,7 +947,7 @@ Other related stuff (all not maintained by me):
 ***************
 *** 125,130 ****
 --- 127,133 ----
-  
+
         indices[ascii_code]= glyph_index;
         }
 + #endif

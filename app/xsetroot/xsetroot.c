@@ -24,8 +24,8 @@ in this Software without prior written authorization from The Open Group.
  */
 
 /*
- * xsetroot.c 	MIT Project Athena, X Window System root window 
- *		parameter setting utility.  This program will set 
+ * xsetroot.c 	MIT Project Athena, X Window System root window
+ *		parameter setting utility.  This program will set
  *		various parameters of the X root window.
  *
  *  Author:	Mark Lillibridge, MIT Project Athena
@@ -60,7 +60,7 @@ static int unsave_past = 0;
 static Pixmap save_pixmap = (Pixmap)None;
 
 static void FixupState(void);
-static void SetBackgroundToBitmap(Pixmap bitmap, 
+static void SetBackgroundToBitmap(Pixmap bitmap,
 				  unsigned int width, unsigned int height);
 static Cursor CreateCursorFromFiles(char *cursor_file, char *mask_file);
 static Cursor CreateCursorFromName(char *name);
@@ -99,7 +99,7 @@ usage(const char *errmsg)
 
 
 int
-main(int argc, char *argv[]) 
+main(int argc, char *argv[])
 {
     int excl = 0;
     int nonexcl = 0;
@@ -217,7 +217,7 @@ main(int argc, char *argv[])
 	fprintf(stderr, "%s: unrecognized argument '%s'\n",
 		program_name, argv[i]);
 	usage(NULL);
-    } 
+    }
 
     /* Check for multiple use of exclusive options */
     if (excl > 1) {
@@ -234,18 +234,18 @@ main(int argc, char *argv[])
     }
     screen = DefaultScreen(dpy);
     root = RootWindow(dpy, screen);
-  
+
     /* If there are no arguments then restore defaults. */
     if (!excl && !nonexcl)
 	restore_defaults = 1;
-  
+
     /* Handle a cursor file */
     if (cursor_file) {
 	cursor = CreateCursorFromFiles(cursor_file, cursor_mask);
 	XDefineCursor(dpy, root, cursor);
 	XFreeCursor(dpy, cursor);
     }
-  
+
     if (cursor_name) {
 	cursor = CreateCursorFromName (cursor_name);
 	if (cursor)
@@ -273,7 +273,7 @@ main(int argc, char *argv[])
 				       gray_width, gray_height);
 	SetBackgroundToBitmap(bitmap, gray_width, gray_height);
     }
-  
+
     /* Handle -solid option */
     if (solid_color) {
 	XSetWindowBackground(dpy, root, NameToPixel(solid_color,
@@ -281,23 +281,23 @@ main(int argc, char *argv[])
 	XClearWindow(dpy, root);
 	unsave_past = 1;
     }
-  
+
     /* Handle -bitmap option */
     if (bitmap_file) {
 	bitmap = ReadBitmapFile(bitmap_file, &ww, &hh, (int *)NULL, (int *)NULL);
 	SetBackgroundToBitmap(bitmap, ww, hh);
     }
-  
+
     /* Handle set background to a modula pattern */
     if (mod_x) {
 	bitmap = MakeModulaBitmap(mod_x, mod_y);
 	SetBackgroundToBitmap(bitmap, 16, 16);
     }
-  
+
     /* Handle set name */
     if (name)
 	XStoreName(dpy, root, name);
-  
+
     /* Handle restore defaults */
     if (restore_defaults) {
 	if (!cursor_file)
@@ -308,7 +308,7 @@ main(int argc, char *argv[])
 	    unsave_past = 1;
 	}
     }
-  
+
     FixupState();
     XCloseDisplay(dpy);
     exit (0);
@@ -329,7 +329,7 @@ FixupState(void)
     if (!unsave_past && !save_colors)
 	return;
     prop = XInternAtom(dpy, "_XSETROOT_ID", False);
-    if (unsave_past) {    
+    if (unsave_past) {
 	if (XGetWindowProperty(dpy, root, prop, 0L, 1L, True, AnyPropertyType,
 		       &type, &format, &length, &after, &data) != Success)
 	    fprintf(stderr,
@@ -352,7 +352,7 @@ FixupState(void)
 }
 
 /*
- * SetBackgroundToBitmap: Set the root window background to a caller supplied 
+ * SetBackgroundToBitmap: Set the root window background to a caller supplied
  *                        bitmap.
  */
 static void
@@ -412,8 +412,8 @@ CreateCursorFromFiles(char *cursor_file, char *mask_file)
     mask_bitmap = ReadBitmapFile(mask_file, &ww, &hh, (int *)NULL, (int *)NULL);
 
     if (width != ww || height != hh) {
-	fprintf(stderr, 
-"%s: dimensions of cursor bitmap and cursor mask bitmap are different\n", 
+	fprintf(stderr,
+"%s: dimensions of cursor bitmap and cursor mask bitmap are different\n",
 		program_name);
 	exit(1);
 	/*NOTREACHED*/
@@ -465,7 +465,7 @@ CreateCursorFromName(char *name)
 /*
  * MakeModulaBitmap: Returns a modula bitmap based on an x & y mod.
  */
-static Pixmap 
+static Pixmap
 MakeModulaBitmap(int mod_x, int mod_y)
 {
     long pattern_line = 0;
@@ -492,11 +492,11 @@ MakeModulaBitmap(int mod_x, int mod_y)
 /*
  * NameToXColor: Convert the name of a color to its Xcolor value.
  */
-static XColor 
+static XColor
 NameToXColor(char *name, unsigned long pixel)
 {
     XColor c;
-    
+
     if (!name || !*name) {
 	c.pixel = pixel;
 	XQueryColor(dpy, DefaultColormap(dpy, screen), &c);
@@ -509,7 +509,7 @@ NameToXColor(char *name, unsigned long pixel)
     return(c);
 }
 
-static unsigned long 
+static unsigned long
 NameToPixel(char *name, unsigned long pixel)
 {
     XColor ecolor;
@@ -534,8 +534,8 @@ NameToPixel(char *name, unsigned long pixel)
     return(ecolor.pixel);
 }
 
-static Pixmap 
-ReadBitmapFile(char *filename, unsigned int *width, unsigned int *height, 
+static Pixmap
+ReadBitmapFile(char *filename, unsigned int *width, unsigned int *height,
 	       int *x_hot, int *y_hot)
 {
     Pixmap bitmap;

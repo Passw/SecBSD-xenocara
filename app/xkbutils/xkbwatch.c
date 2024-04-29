@@ -6,19 +6,19 @@
  fee is hereby granted, provided that the above copyright
  notice appear in all copies and that both that copyright
  notice and this permission notice appear in supporting
- documentation, and that the name of Silicon Graphics not be 
- used in advertising or publicity pertaining to distribution 
+ documentation, and that the name of Silicon Graphics not be
+ used in advertising or publicity pertaining to distribution
  of the software without specific prior written permission.
- Silicon Graphics makes no representation about the suitability 
+ Silicon Graphics makes no representation about the suitability
  of this software for any purpose. It is provided "as is"
  without any express or implied warranty.
- 
- SILICON GRAPHICS DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS 
- SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY 
+
+ SILICON GRAPHICS DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS
+ SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
  AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL SILICON
- GRAPHICS BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL 
- DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, 
- DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE 
+ GRAPHICS BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL
+ DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE,
+ DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
  OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION  WITH
  THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
@@ -72,7 +72,7 @@ main(int argc, char *argv[])
     static Arg vArgs[] = { {XtNorientation, (XtArgVal) XtorientVertical} };
     static Arg onArgs[] = { {XtNon, (XtArgVal) True} };
     static Arg offArgs[] = { {XtNon, (XtArgVal) False} };
-    static char *fallback_resources[] = {
+    static String fallback_resources[] = {
         "*Box*background: grey50",
         "*Box*borderWidth: 0",
         "*Box*vSpace: 1",
@@ -86,7 +86,6 @@ main(int argc, char *argv[])
         }
     }
 
-    uSetErrorFile(NullString);
     toplevel = XtOpenApplication(&app_con, "XkbWatch",
                                  options, XtNumber(options), &argc, argv,
                                  fallback_resources,
@@ -138,34 +137,34 @@ main(int argc, char *argv[])
 
         char buf[30];
 
-        sprintf(buf, "base%d", i);
+        snprintf(buf, sizeof(buf), "base%d", i);
         if (state.base_mods & bit)
             list = onArgs;
         else
             list = offArgs;
         base[i] = XtCreateManagedWidget(buf, ledWidgetClass, baseBox, list, 1);
-        sprintf(buf, "latched%d", i);
+        snprintf(buf, sizeof(buf), "latched%d", i);
         if (state.latched_mods & bit)
             list = onArgs;
         else
             list = offArgs;
         latched[i] =
             XtCreateManagedWidget(buf, ledWidgetClass, latchBox, list, 1);
-        sprintf(buf, "locked%d", i);
+        snprintf(buf, sizeof(buf), "locked%d", i);
         if (state.locked_mods & bit)
             list = onArgs;
         else
             list = offArgs;
         locked[i] =
             XtCreateManagedWidget(buf, ledWidgetClass, lockBox, list, 1);
-        sprintf(buf, "effective%d", i);
+        snprintf(buf, sizeof(buf), "effective%d", i);
         if (state.mods & bit)
             list = onArgs;
         else
             list = offArgs;
         effective[i] =
             XtCreateManagedWidget(buf, ledWidgetClass, effBox, list, 1);
-        sprintf(buf, "compat%d", i);
+        snprintf(buf, sizeof(buf), "compat%d", i);
         if (state.compat_state & bit)
             list = onArgs;
         else

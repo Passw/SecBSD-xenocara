@@ -465,7 +465,7 @@ PIXMAPTYPE = dec
 EXTRA_LIBRARIES = -lauth
 XCOMM Use this if your site is using SIA:
 XCOMM  PASSWDDEF = -DSIA
-XCOMM  PASSWDLIB = -lsecurity 
+XCOMM  PASSWDLIB = -lsecurity
 #else
 
 #ifdef SCOArchitecture

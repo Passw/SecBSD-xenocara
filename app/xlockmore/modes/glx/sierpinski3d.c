@@ -136,7 +136,7 @@ static gasketstruct *gasket = (gasketstruct *) NULL;
 
 /* static GLuint limit; */
 
-
+
 /* Computing normal vectors (thanks to Nat Friedman <ndf@mit.edu>)
  */
 
@@ -222,7 +222,7 @@ do_normal(GLfloat x1, GLfloat y1, GLfloat z1,
 #endif /* DEBUG */
 }
 
-
+
 
 static void
 triangle (GLfloat x1, GLfloat y1, GLfloat z1,

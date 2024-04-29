@@ -54,7 +54,7 @@ main(int argc, char *argv[])
 
 
     if (!XF86DGAQueryVersion(dis, &MajorVersion, &MinorVersion))
-    { 
+    {
         fprintf(stderr, "Unable to query video extension version\n");
         exit(2);
     }
@@ -80,7 +80,7 @@ main(int argc, char *argv[])
       fprintf(stderr, "Xserver driver doesn't support DirectVideo on screen %d\n", DefaultScreen(dis) );
       exit(2);
     }
-	
+
    XGrabKeyboard(dis, DefaultRootWindow(dis), True, GrabModeAsync,
 		 GrabModeAsync,  CurrentTime);
 
@@ -90,9 +90,9 @@ main(int argc, char *argv[])
 		GrabModeAsync, GrabModeAsync, None,  None, CurrentTime);
    /* we want _our_ cmap */
    vis = DefaultVisual(dis, DefaultScreen(dis));
-   
+
    bpp = DisplayPlanes (dis, DefaultScreen(dis));
-   
+
 
    if (bpp <= 8)
    {
@@ -151,7 +151,7 @@ main(int argc, char *argv[])
       int n_chars = 0;
       char buf[21];
       KeySym ks = 0;
-      
+
       i = 0;
       XNextEvent(dis, &event);
       switch (event.type) {
@@ -195,7 +195,7 @@ main(int argc, char *argv[])
 	    {
 		XF86DGASetVidPage(dis, DefaultScreen(dis), i);
 
-		start_clock = GetTimeInMillis(); finish_clock = start_clock; 
+		start_clock = GetTimeInMillis(); finish_clock = start_clock;
 
 	        cycles=0;
 	        while ((finish_clock - start_clock) < 1000)
