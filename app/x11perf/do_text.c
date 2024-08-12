@@ -23,6 +23,7 @@ SOFTWARE.
 
 #include "x11perf.h"
 #include <stdio.h>
+#include "bitmaps.h"
 
 static char **charBuf;
 static XFontStruct *font, *bfont;
@@ -64,6 +65,8 @@ InitText(XParms xp, Parms p, int64_t reps)
     gcv.font = font->fid;
     XChangeGC(xp->d, xp->fggc, GCFont, &gcv);
     XChangeGC(xp->d, xp->bggc, GCFont, &gcv);
+
+    SetFillStyle(xp, p);
 
     charsPerLine = p->objects;
     charsPerLine = (charsPerLine + 3) & ~3;
@@ -406,13 +409,42 @@ InitAAText(XParms xp, Parms p, int64_t reps)
 {
     char		ch;
     XRenderColor	color;
+    FcValue             value;
+    int                 v_len;
+    FcPattern		*pat;
+    FcPattern		*match;
+    FcResult		result;
 
-    aafont = XftFontOpenName (xp->d, DefaultScreen (xp->d), p->font);
+    pat = FcNameParse((FcChar8 *) p->font);
+    match = XftFontMatch(xp->d, DefaultScreen(xp->d), pat, &result);
+    FcPatternDestroy(pat);
+    if (p->bfont) {
+	    FcPatternDel(match, XFT_RENDER);
+	    FcPatternAddBool(match, XFT_RENDER, False);
+    }
+
+    aafont = XftFontOpenPattern (xp->d, match);
 
     if (aafont == NULL)
     {
 	printf("Could not load font '%s', benchmark omitted\n",
 	       p->font);
+	return 0;
+    }
+    if (FcPatternGet(aafont->pattern, FC_FAMILY, 0, &value) != FcResultMatch ||
+        value.type != FcTypeString)
+    {
+	printf("Could not load font '%s', benchmark omitted\n",
+	       p->font);
+	XftFontClose (xp->d, aafont);
+	return 0;
+    }
+    v_len = strlen((char *) value.u.s);
+    if (strncmp((char *) value.u.s, p->font, v_len) != 0 || p->font[v_len] != ':') {
+	printf("Could not load font '%s' (found %s), benchmark omitted\n",
+	       p->font,
+               (char *) value.u.s);
+	XftFontClose (xp->d, aafont);
 	return 0;
     }
 

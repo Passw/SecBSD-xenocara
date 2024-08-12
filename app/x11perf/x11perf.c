@@ -319,7 +319,26 @@ ReportTimes(double usecs, int64_t n, char *str, int average)
 ************************************************/
 
 static char *program_name;
-static void usage(void) _X_NORETURN;
+typedef enum {
+    USAGE_OPTIONS,
+    USAGE_TESTS,
+    USAGE_ALL
+} usage_contents;
+_X_NORETURN _X_COLD static void usage(usage_contents, int);
+
+_X_NORETURN _X_COLD static void
+missing_arg(const char *option)
+{
+    fprintf(stderr, "Error: missing argument to %s\n", option);
+    usage(USAGE_OPTIONS, EXIT_FAILURE);
+}
+
+_X_NORETURN _X_COLD static void
+invalid_arg( const char *arg, const char *option)
+{
+    fprintf(stderr, "Error: invalid argument '%s' to %s\n", arg, option);
+    usage(USAGE_OPTIONS, EXIT_FAILURE);
+}
 
 /*
  * Get_Display_Name (argc, argv) Look for -display, -d, or host:dpy (obsolete)
@@ -337,7 +356,8 @@ Get_Display_Name(int *pargc, /* MODIFIED */
 	char *arg = argv[i];
 
 	if (!strcmp (arg, "-display") || !strcmp (arg, "-d")) {
-	    if (++i >= argc) usage ();
+	    if (++i >= argc)
+		missing_arg(arg);
 
 	    displayname = argv[i];
 	    *pargc -= 2;
@@ -356,8 +376,9 @@ Get_Display_Name(int *pargc, /* MODIFIED */
 
 
 /*
- * GetVersion (argc, argv) Look for -v1.2, -v1.3, or -v1.4.
+ * GetVersion (argc, argv) Look for -v followed by a version number.
  * If found remove it from command line.  Don't go past a lone -.
+ * Leave -v followed by non-numbers as it could be -vclass or -version.
  */
 
 static Version
@@ -366,49 +387,53 @@ GetVersion(int *pargc, /* MODIFIED */
 {
     int     argc = *pargc;
     char    **pargv = argv+1;
-    Version version = VERSION1_6;
+    Version version = VERSION1_7;
     Bool    found = False;
 
     for (int i = 1; i != argc; i++) {
 	char *arg = argv[i];
 
-	if (!strcmp (arg, "-v1.2")) {
-	    version = VERSION1_2;
-	    *pargc -= 1;
-	    if (found) {
-		fprintf(stderr, "Warning: multiple version specifications\n");
+	if (arg[0] == '-' && arg[1] == 'v') {
+	    if (arg[2] == '1' && arg[3] == '.' && arg[5] == '\0') {
+		switch (arg[4]) {
+		case '2':
+		    version = VERSION1_2;
+		    break;
+		case '3':
+		    version = VERSION1_3;
+		    break;
+		case '4':
+		    version = VERSION1_4;
+		    break;
+		case '5':
+		    version = VERSION1_5;
+		    break;
+		case '6':
+		    version = VERSION1_6;
+		    break;
+		case '7':
+		    version = VERSION1_7;
+		    break;
+		default:
+		    goto unknown_version;
+		}
+
+		if (found) {
+		    fprintf(stderr, "Warning: multiple version specifications\n");
+		}
+		found = True;
+
+		/* reduce arg count and skip copying this arg to pargv */
+		*pargc -= 1;
+		continue;
+	    } else if (isdigit(arg[2])) {
+	      unknown_version:
+		fprintf(stderr, "Error: unknown version specification: %s\n",
+			arg);
+		exit(1);
 	    }
-	    found = True;
-	    continue;
 	}
-	if (!strcmp (arg, "-v1.3")) {
-	    version = VERSION1_3;
-	    *pargc -= 1;
-	    if (found) {
-		fprintf(stderr, "Warning: multiple version specifications\n");
-	    }
-	    found = True;
-	    continue;
-	}
-	if (!strcmp (arg, "-v1.4")) {
-	    version = VERSION1_4;
-	    *pargc -= 1;
-	    if (found) {
-		fprintf(stderr, "Warning: multiple version specifications\n");
-	    }
-	    found = True;
-	    continue;
-	}
-	if (!strcmp (arg, "-v1.5")) {
-	    version = VERSION1_5;
-	    *pargc -= 1;
-	    if (found) {
-		fprintf(stderr, "Warning: multiple version specifications\n");
-	    }
-	    found = True;
-	    continue;
-	}
-	if (!strcmp(arg,"-")) {
+	else if (!strcmp(arg,"-")) {
 	    while (i<argc)  *pargv++ = argv[i++];
 	    break;
 	}
@@ -462,7 +487,7 @@ AbortTest(void)
 
 
 static void
-usage(void)
+usage(usage_contents show, int exit_status)
 {
     int     i = 0;
     static const char *help_message =
@@ -479,10 +504,10 @@ usage(void)
 "    -all                      do all tests\n"
 "    -range <test1>[,<test2>]  like all, but do <test1> to <test2>\n"
 "    -labels                   generate test labels for use by fillblnk\n"
-"    -fg                       the foreground color to use\n"
-"    -bg                       the background color to use\n"
+"    -fg <color-or-pixel>      the foreground color to use\n"
+"    -bg <color-or-pixel>      the background color to use\n"
 "    -clips <default>          default number of clip windows per test\n"
-"    -ddbg                     the background color to use for DoubleDash\n"
+"    -ddbg <color-or-pixel>    the background color to use for DoubleDash\n"
 "    -rop <rop0 rop1 ...>      use the given rops to draw (default = GXcopy)\n"
 "    -pm <pm0 pm1 ...>         use the given planemasks to draw (default = ~0)\n"
 "    -depth <depth>            use a visual with <depth> planes per pixel\n"
@@ -491,28 +516,34 @@ usage(void)
 "    -subs <s0 s1 ...>         a list of the number of sub-windows to use\n"
 "    -v1.2                     perform only v1.2 tests using old semantics\n"
 "    -v1.3                     perform only v1.3 tests using old semantics\n"
+"    -v1.4                     perform only v1.4 tests using old semantics\n"
+"    -v1.5                     perform only v1.5 tests using old semantics\n"
+"    -v1.6                     perform only v1.6 tests using old semantics\n"
+"    -v1.7                     perform only v1.7 tests using old semantics\n"
+"    -version                  print version and exit\n"
 "    -su                       request save unders on windows\n"
 "    -bs <backing_store_hint>  WhenMapped or Always (default = NotUseful)\n"
+"    -help [options|tests|all] list general options, test options, or both\n"
 ;
 
     fflush(stdout);
-    fprintf(stderr, "usage: %s [-options ...]\n%s", program_name, help_message);
-    while (test[i].option != NULL) {
-	if (test[i].versions & xparms.version ) {
-	    fprintf(stderr, "    %-24s   %s\n",
-		test[i].option,
-		test[i].label14 ? test[i].label14 : test[i].label);
-	}
-        i++;
+    if (show == USAGE_OPTIONS || show == USAGE_ALL) {
+        fprintf(stderr, "usage: %s [-options ...]\n%s",
+                program_name, help_message);
+    }
+    if (show == USAGE_TESTS || show == USAGE_ALL) {
+        while (test[i].option != NULL) {
+            if (test[i].versions & xparms.version ) {
+                fprintf(stderr, "    %-24s   %s\n",
+                        test[i].option,
+                        test[i].label14 ? test[i].label14 : test[i].label);
+            }
+            i++;
+        }
     }
     fprintf(stderr, "\n");
 
-    /* Print out original command line as the above usage message is so long */
-    for (i = 0; i != saveargc; i++) {
-	fprintf(stderr, "%s ", saveargv[i]);
-    }
-    fprintf(stderr, "\n\n");
-    exit (1);
+    exit (exit_status);
 }
 
 void
@@ -739,23 +770,14 @@ CreatePerfGCs(XParms xp, int func, unsigned long pm)
     gcvddfg.function = func;
     gcvddbg.function = func;
 
-    if (func == GXxor) {
-	/* Make test look good visually if possible */
-	gcvbg.foreground = gcvfg.foreground = bg ^ fg;
-	gcvbg.background = gcvfg.background = bg;
-	/* Double Dash GCs (This doesn't make a huge amount of sense) */
-	gcvddbg.foreground = gcvddfg.foreground = bg ^ fg;
-	gcvddbg.background = gcvddfg.foreground = bg ^ ddbg;
-    } else {
-	gcvfg.foreground = fg;
-	gcvfg.background = bg;
-	gcvbg.foreground = bg;
-	gcvbg.background = fg;
-	gcvddfg.foreground = fg;
-	gcvddfg.background = ddbg;
-	gcvddbg.foreground = ddbg;
-	gcvddbg.background = fg;
-    }
+    gcvfg.foreground = fg;
+    gcvfg.background = bg;
+    gcvbg.foreground = bg;
+    gcvbg.background = fg;
+    gcvddfg.foreground = fg;
+    gcvddfg.background = ddbg;
+    gcvddbg.foreground = ddbg;
+    gcvddbg.background = fg;
     xp->fggc = XCreateGC(xp->d, xp->w,
 	GCForeground | GCBackground | GCGraphicsExposures
       | GCFunction | GCPlaneMask, &gcvfg);
@@ -930,7 +952,7 @@ main(int argc, char *argv[])
 	    char *cp2;
 
 	    if (argc <= ++i)
-		usage();
+		missing_arg(argv[i-1]);
 	    cp1 = argv[i];
 	    if (*cp1 == '-')
 		cp1++;
@@ -951,13 +973,19 @@ main(int argc, char *argv[])
 		    } while (!(strcmp(cp2, (test[k].option + 1)) == 0 &&
 			       (test[k].versions & xparms.version)) &&
 			     test[++k].option != NULL);
-		    if (*cp2 != '-' && test[k].option == NULL)
-			usage();
+		    if (*cp2 != '-' && test[k].option == NULL) {
+			fprintf(stderr, "Error: unknown test %s listed for %s\n",
+				cp2, argv[i-1]);
+			usage(USAGE_OPTIONS, EXIT_FAILURE);
+		    }
 		    break;
 		}
 	    }
-	    if (test[j].option == NULL)
-		usage();
+	    if (test[j].option == NULL) {
+		fprintf(stderr, "Error: unknown test %s listed for %s\n",
+			argv[i], argv[i-1]);
+		usage(USAGE_OPTIONS, EXIT_FAILURE);
+	    }
 	    foundOne = True;
 	} else if (strcmp (argv[i], "-sync") == 0) {
 	    synchronous = True;
@@ -970,44 +998,44 @@ main(int argc, char *argv[])
 	} else if (strcmp (argv[i], "-repeat") == 0) {
 	    i++;
 	    if (argc <= i)
-		usage ();
+		missing_arg(argv[i-1]);
 	    repeat = atoi (argv[i]);
 	    if (repeat <= 0)
-	       usage ();
+		invalid_arg(argv[i], argv[i-1]);
 	} else if (strcmp (argv[i], "-time") == 0) {
 	    i++;
 	    if (argc <= i)
-		usage ();
+		missing_arg(argv[i-1]);
 	    seconds = atoi (argv[i]);
 	    if (seconds <= 0)
-	       usage ();
+		invalid_arg(argv[i], argv[i-1]);
         } else if (strcmp (argv[i], "-pause") == 0) {
             ++i;
 	    if (argc <= i)
-		usage ();
+		missing_arg(argv[i-1]);
 	    delay = atoi (argv[i]);
 	    if (delay < 0)
-	       usage ();
+                invalid_arg(argv[i], argv[i-1]);
 	} else if (strcmp(argv[i], "-fg") == 0) {
 	    i++;
 	    if (argc <= i)
-		usage ();
+		missing_arg(argv[i-1]);
 	    foreground = argv[i];
         } else if (strcmp(argv[i], "-bg") == 0) {
 	    i++;
 	    if (argc <= i)
-		usage ();
+		missing_arg(argv[i-1]);
 	    background = argv[i];
 	    if(ddbackground == NULL)
 		ddbackground = argv[i];
 	} else if (strcmp(argv[i], "-clips") == 0 ) {
 	    i++;
 	    if (argc <= i)
-		usage ();
+		missing_arg(argv[i-1]);
 	    clips = atoi( argv[i] );
 	} else if (strcmp(argv[i], "-ddbg") == 0) {
 	    if (argc <= i)
-		usage ();
+		missing_arg(argv[i-1]);
 	    i++;
 	    ddbackground = argv[i];
 	} else if (strcmp(argv[i], "-rop") == 0) {
@@ -1032,21 +1060,21 @@ main(int argc, char *argv[])
 	} else if (strcmp(argv[i], "-reps") == 0) {
 	    i++;
 	    if (argc <= i)
-		usage ();
+		missing_arg(argv[i-1]);
 	    fixedReps = atoi (argv[i]);
 	    if (fixedReps <= 0)
-		usage ();
+		invalid_arg(argv[i], argv[i-1]);
         } else if (strcmp(argv[i], "-depth") == 0) {
 	    i++;
 	    if (argc <= i)
-                usage ();
+                missing_arg(argv[i-1]);
             depth = atoi(argv[i]);
             if (depth <= 0)
-		usage ();
+		invalid_arg(argv[i], argv[i-1]);
         } else if (strcmp(argv[i], "-vclass") == 0) {
 	    i++;
 	    if (argc <= i)
-                usage ();
+                missing_arg(argv[i-1]);
 	    for (j = StaticGray; j <= DirectColor; j++) {
 		if (strcmp(argv[i], visualClassNames[j]) == 0) {
 		    vclass = j;
@@ -1054,25 +1082,42 @@ main(int argc, char *argv[])
 		}
 	    }
             if (vclass < 0)
-		usage ();
+                invalid_arg(argv[i], argv[i-1]);
 	} else if (strcmp(argv[i], "-subs") == 0) {
 	    skip = GetNumbers (i+1, argc, argv, subWindows, &numSubWindows);
 	    i += skip;
-	} else if (strcmp(argv[i], "-v1.2") == 0) {
-	    xparms.version = VERSION1_2;
-	} else if (strcmp(argv[i], "-v1.3") == 0) {
-	    xparms.version = VERSION1_3;
 	} else if (strcmp(argv[i], "-su") == 0) {
 	    xparms.save_under = True;
 	} else if (strcmp(argv[i], "-bs") == 0) {
 	    i++;
 	    if (argc <= i)
-		usage ();
+		missing_arg(argv[i-1]);
 	    if (strcmp(argv[i], "WhenMapped") == 0) {
 	      xparms.backing_store = WhenMapped;
 	    } else if (strcmp(argv[i], "Always") == 0) {
 	      xparms.backing_store = Always;
-	    } else usage ();
+	    } else
+                invalid_arg(argv[i], argv[i-1]);
+	} else if ((strcmp(argv[i], "-version") == 0) ||
+		   (strcmp(argv[i], "--version") == 0)) {
+	    puts(PACKAGE_STRING);
+	    exit(EXIT_SUCCESS);
+	} else if ((strcmp(argv[i], "-help") == 0) ||
+		   (strcmp(argv[i], "--help") == 0)) {
+	    i++;
+	    /* default is to just show general options */
+	    if (argc <= i || (strcmp(argv[i], "options") == 0)) {
+		usage (USAGE_OPTIONS, EXIT_SUCCESS);
+	    }
+	    else if (strcmp(argv[i], "tests") == 0) {
+		usage (USAGE_TESTS, EXIT_SUCCESS);
+	    }
+	    else if (strcmp(argv[i], "all") == 0) {
+		usage (USAGE_ALL, EXIT_SUCCESS);
+	    }
+	    else {
+		invalid_arg(argv[i], argv[i-1]);
+	    }
 	} else {
 	    int len,found;
 	    ForEachTest (j) {
@@ -1098,8 +1143,11 @@ main(int argc, char *argv[])
 		    doit[j] = found = True;
 		}
 	    }
-	    if(!found)
-		usage ();
+	    if (!found) {
+		fprintf(stderr,
+			"Error: unrecognized option %s\n", argv[i]);
+		usage (USAGE_OPTIONS, EXIT_FAILURE);
+	    }
 	LegalOption:
 		foundOne = True;
 	}
@@ -1174,8 +1222,10 @@ main(int argc, char *argv[])
 	exit(0);
     }
 
-    if (!foundOne)
-	usage ();
+    if (!foundOne) {
+	fprintf(stderr, "Error: no argument found for which test(s) to run\n");
+	usage (USAGE_OPTIONS, EXIT_FAILURE);
+    }
     xparms.d = Open_Display (displayName);
     screen = DefaultScreen(xparms.d);
 
@@ -1292,7 +1342,7 @@ main(int argc, char *argv[])
     HSy = HEIGHT-1;
     if (window_y + 1 + HEIGHT > DisplayHeight(xparms.d, screen))
 	HSy = DisplayHeight(xparms.d, screen) - (1 + window_y + 1);
-    status = CreatePerfWindow(&xparms, window_x, HEIGHT+5, WIDTH, 20);
+    status = CreatePerfWindow(&xparms, window_x, window_y + HEIGHT+3, WIDTH, 20);
     tgcv.foreground =
 	AllocateColor(xparms.d, "black", BlackPixel(xparms.d, screen));
     tgcv.background =
@@ -1421,7 +1471,7 @@ GetWords (int argi, int argc, char **argv, char **wordsp, int *nump)
     int	    count;
 
     if (argc <= argi)
-	usage();
+	missing_arg(argv[argi-1]);
     count = 0;
     while (argv[argi] && *(argv[argi]) != '-') {
 	*wordsp++ = argv[argi];
@@ -1496,7 +1546,7 @@ GetRops (int argi, int argc, char **argv, int *ropsp, int *nump)
 	    }
 	}
 	if (rop == NUM_ROPS) {
-	    usage ();
+	    usage (USAGE_OPTIONS, EXIT_FAILURE);
 	    fprintf (stderr, "unknown rop name %s\n", words[i]);
 	}
     }
@@ -1528,7 +1578,7 @@ GetPops (int argi, int argc, char **argv, int *popsp, int *nump)
 	    }
 	}
 	if (pop == NUM_POPS) {
-	    usage ();
+	    usage (USAGE_OPTIONS, EXIT_FAILURE);
 	    fprintf (stderr, "unknown picture op name %s\n", words[i]);
 	}
     }
@@ -1573,7 +1623,7 @@ GetFormats (int argi, int argc, char **argv, int *formatsp, int *nump)
 	}
 	format = FormatFromName (words[i]);
 	if (format < 0) {
-	    usage ();
+	    usage (USAGE_OPTIONS, EXIT_FAILURE);
 	    fprintf (stderr, "unknown format name %s\n", words[i]);
 	}
 	formatsp[i] = format;

@@ -66,7 +66,9 @@ int
 InitScroll(XParms xp, Parms p, int64_t reps)
 {
     InitBltLines();
+    XSetFunction(xp->d, xp->fggc, GXcopy);
     XDrawLines(xp->d, xp->w, xp->fggc, points, NUMPOINTS, CoordModeOrigin);
+    XSetFunction(xp->d, xp->fggc, xp->func);
     return reps;
 }
 
@@ -208,25 +210,57 @@ InitCopyPix(XParms xp, Parms p, int64_t reps)
     return reps;
 }
 
-int
-InitGetImage(XParms xp, Parms p, int64_t reps)
+static int
+InitImage(XParms xp, Parms p, int64_t reps, long pm)
 {
     (void) InitCopyWin(xp, p, reps);
 
     /* Create image to stuff bits into */
-    image = XGetImage(xp->d, xp->w, 0, 0, WIDTH, HEIGHT, xp->planemask,
-		      p->font==NULL?ZPixmap:XYPixmap);
+    image = XGetImage(xp->d, xp->w, 0, 0, WIDTH, HEIGHT, pm,
+		      p->font==NULL ? ZPixmap : (strcmp(p->font, "XY") == 0? XYPixmap : ZPixmap));
     if(image==NULL){
 	printf("XGetImage failed\n");
 	return False;
+    }
+    if (p->font && !strcmp(p->font, "XYBitmap")) {
+	    int		bytes_per_line = (WIDTH + 31) / 8;
+	    char	*data = malloc (bytes_per_line * HEIGHT);
+	    XImage	*new = XCreateImage(xp->d, xp->vinfo.visual, 1, XYBitmap, 0,
+					    data, WIDTH, HEIGHT, 32, bytes_per_line);
+	    int		x, y;
+	    unsigned long	zero_pixel;
+	    int		has_zero = 0;
+
+	    for (y = 0; y < HEIGHT; y++)
+		    for (x = 0; x < WIDTH; x++) {
+			    unsigned long src_pixel = XGetPixel(image, x, y);
+			    unsigned long dst_pixel = 0;
+			    if (!has_zero) {
+				    zero_pixel = src_pixel;
+				    has_zero = 1;
+			    }
+			    if (src_pixel == zero_pixel)
+				    dst_pixel = 0;
+			    else
+				    dst_pixel = 1;
+			    XPutPixel(new, x, y, dst_pixel);
+		    }
+	    XDestroyImage(image);
+	    image = new;
     }
     return reps;
 }
 
 int
+InitGetImage(XParms xp, Parms p, int64_t reps)
+{
+    return InitImage(xp, p, reps, xp->planemask);
+}
+
+int
 InitPutImage(XParms xp, Parms p, int64_t reps)
 {
-    if(!InitGetImage(xp, p, reps))return False;
+    if(!InitImage(xp, p, reps, 0xffffffff))return False;
     XClearWindow(xp->d, xp->w);
     return reps;
 }
@@ -372,7 +406,7 @@ InitShmImage(XParms xp, Parms p, int64_t reps, Bool read_only)
 {
     int	image_size;
 
-    if(!InitGetImage(xp, p, reps))return False;
+    if(!InitImage(xp, p, reps, 0xffffffff))return False;
     if (!XShmQueryExtension(xp->d)) {
 	/*
  	 * Clean up here because cleanup function is not called if this

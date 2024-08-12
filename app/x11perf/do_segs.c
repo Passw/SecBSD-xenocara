@@ -208,13 +208,11 @@ InitDoubleDashedSegments(XParms xp, Parms p, int64_t reps)
     return reps;
 }
 
-int
-InitHorizSegments(XParms xp, Parms p, int64_t reps)
+static int
+InitHorizSegmentsWidth(XParms xp, Parms p, int64_t reps, int width)
 {
     int     size;
-    int     half;
     int     i;
-    int     rows;       /* Number of rows filled in current column      */
     int     x, y;	/* base of square to draw in			*/
     int     y1;		/* y position inside square			*/
     int     inc;
@@ -223,39 +221,33 @@ InitHorizSegments(XParms xp, Parms p, int64_t reps)
     pgc = xp->fggc;
 
     size = p->special;
-    half = (size + 19) / 20;
 
     segments = malloc((p->objects) * sizeof(XSegment));
 
-    x = half;
-    y = half;
+    x = width / 2 + 1;
+    y = width / 2 + 1;
     y1 = 0;
-    rows = 0;
-    inc = size / p->objects;
-    if (inc == 0) inc = 1;
+    inc = width + 1;
 
     for (i = 0; i != p->objects; i++) {
 	if (i % 2) {
 	    segments[i].x1 = x + size;
 	    segments[i].x2 = x;
-	    segments[i].y1 = y + size - y1;
-	    segments[i].y2 = y + size - y1;
-	    y1 += inc;
-	    if (y1 >= size) y1 -= size;
+	    segments[i].y1 = y + (HEIGHT - width - 2) - y1;
+	    segments[i].y2 = y + (HEIGHT - width - 2) - y1;
+            y1 += inc;
 	} else {
 	    segments[i].x1 = x;
 	    segments[i].x2 = x + size;
 	    segments[i].y1 = y + y1;
 	    segments[i].y2 = y + y1;
 	}
-	rows++;
-	y += size;
-	if (y >= HEIGHT - size - half || rows == MAXROWS) {
-	    rows = 0;
-	    y = half;
-	    x += size;
-	    if (x >= WIDTH - size - half)
-		x = half;
+        /* Go to next row */
+	if (y1 >= HEIGHT / 2 - (width + 2)) {
+	    y1 =0;
+	    x += size + inc;
+	    if (x >= WIDTH - size - width)
+		x = width/2 + 1;
 	}
     }
     gcv.cap_style = CapNotLast;
@@ -265,13 +257,18 @@ InitHorizSegments(XParms xp, Parms p, int64_t reps)
 }
 
 int
+InitHorizSegments(XParms xp, Parms p, int64_t reps)
+{
+    return InitHorizSegmentsWidth(xp, p, reps, 1);
+}
+
+int
 InitWideHorizSegments(XParms xp, Parms p, int64_t reps)
 {
-    int size;
+    int size = p->special;
 
-    (void)InitHorizSegments(xp, p, reps);
+    (void)InitHorizSegmentsWidth(xp, p, reps, (int) ((size + 9) / 10));
 
-    size = p->special;
     XSetLineAttributes(xp->d, xp->bggc, (int) ((size + 9) / 10),
 	LineSolid, CapRound, JoinRound);
     XSetLineAttributes(xp->d, xp->fggc, (int) ((size + 9) / 10),
@@ -280,14 +277,11 @@ InitWideHorizSegments(XParms xp, Parms p, int64_t reps)
     return reps;
 }
 
-
-int
-InitVertSegments(XParms xp, Parms p, int64_t reps)
+static int
+InitVertSegmentsWidth(XParms xp, Parms p, int64_t reps, int width)
 {
     int     size;
-    int     half;
     int     i;
-    int     rows;       /* Number of rows filled in current column      */
     int     x, y;	/* base of square to draw in			*/
     int     x1;		/* x position inside square			*/
     int     inc;
@@ -296,41 +290,33 @@ InitVertSegments(XParms xp, Parms p, int64_t reps)
     pgc = xp->fggc;
 
     size = p->special;
-    half = (size + 19) / 20;
 
     segments = malloc((p->objects) * sizeof(XSegment));
 
-    x = half;
-    y = half;
+    x = width / 2 + 1;
+    y = width / 2 + 1;
     x1 = 0;
-    rows = 0;
-    inc = size / p->objects;
-    if (inc == 0) inc = 1;
+    inc = width + 1;
 
     for (i = 0; i != p->objects; i++) {
 	if (i % 2) {
-	    segments[i].x1 = x + size - x1;
-	    segments[i].x2 = x + size - x1;
+	    segments[i].x1 = x + (WIDTH - width - 2) - x1;
+	    segments[i].x2 = x + (WIDTH - width - 2) - x1;
 	    segments[i].y1 = y + size;
 	    segments[i].y2 = y;
-	    x1 += inc;
-	    if (x1 >= size) x1 -= size;
+            x1 += inc;
 	} else {
 	    segments[i].x1 = x + x1;
 	    segments[i].x2 = x + x1;
 	    segments[i].y1 = y;
 	    segments[i].y2 = y + size;
 	}
-	rows++;
-	y += size;
-	if (y >= HEIGHT - size - half || rows == MAXROWS) {
-	    /* Go to next column */
-	    rows = 0;
-	    y = half;
-	    x += size;
-	    if (x >= WIDTH - size - half) {
-		x = half;
-	    }
+        /* Go to next column */
+	if (x1 >= WIDTH / 2 - (width + 2)) {
+	    x1 = 0;
+            y += size + inc;
+            if (y >= HEIGHT - size - width)
+                y = width/2 + 1;
 	}
     }
     gcv.cap_style = CapNotLast;
@@ -340,13 +326,18 @@ InitVertSegments(XParms xp, Parms p, int64_t reps)
 }
 
 int
+InitVertSegments(XParms xp, Parms p, int64_t reps)
+{
+    return InitVertSegmentsWidth(xp, p, reps, 1);
+}
+
+int
 InitWideVertSegments(XParms xp, Parms p, int64_t reps)
 {
-    int size;
+    int    size = p->special;
 
-    (void)InitVertSegments(xp, p, reps);
+    (void)InitVertSegmentsWidth(xp, p, reps, (size + 9) / 10);
 
-    size = p->special;
     XSetLineAttributes(xp->d, xp->bggc, (int) ((size + 9) / 10),
 	LineSolid, CapRound, JoinRound);
     XSetLineAttributes(xp->d, xp->fggc, (int) ((size + 9) / 10),
@@ -354,7 +345,6 @@ InitWideVertSegments(XParms xp, Parms p, int64_t reps)
 
     return reps;
 }
-
 
 void
 DoSegments(XParms xp, Parms p, int64_t reps)
@@ -380,4 +370,3 @@ EndSegments(XParms xp, Parms p)
 {
     free(segments);
 }
-
