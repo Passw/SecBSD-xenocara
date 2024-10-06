@@ -29,7 +29,7 @@ from the X Consortium.
 
 */
 
-/*
+/* 
  * actions.h - action table declaring externally available procedures for xcalc
  *
  * Author:  Donna Converse, MIT X Consortium
@@ -38,7 +38,7 @@ from the X Consortium.
 extern void
     add(), back(), bell(), clearit(), cosine(), decimal(),
     degree(), digit(), divide(), e(), enter(), epower(), equal(),
-    exchange(), factorial(),
+    exchange(), factorial(), 
     inverse(), leftParen(), logarithm(), multiply(), naturalLog(),
     negate(), nop(), off(), pi(), power(), quit(), recall(),
     reciprocal(), rightParen(), roll(), scientific(), selection(), sine(),

@@ -8,7 +8,7 @@ documentation for any purpose is hereby granted without fee, provided that
 the above copyright notice appear in all copies and that both that
 copyright notice and this permission notice appear in supporting
 documentation.
-
+  
 The above copyright notice and this permission notice shall be included
 in all copies or substantial portions of the Software.
 
@@ -299,7 +299,7 @@ Add_Mapping (Atom atom, const char *format, const char *dformat)
 /*
  *
  * Setup_Mapping: Routine to setup default atom to format, dformat mapping:
- *
+ * 
  */
 
 typedef struct _propertyRec {
@@ -417,7 +417,7 @@ static propertyRec windowPropTable[] = {
 #undef WM_SIZE_HINTS_DFORMAT
 #undef WM_STATE_DFORMAT
 
-/*
+/* 
  * Font-specific mapping of property names to types:
  */
 static propertyRec fontPropTable[] = {
@@ -476,7 +476,7 @@ static propertyRec fontPropTable[] = {
 
     { "FONT",			XA_FONT,		"32a",	0 },
     { "FONT_NAME",		XA_FONT_NAME,		"32a",	0 },
-};
+};    
 
 static int XpropMode;
 #define XpropWindowProperties 0
@@ -487,7 +487,7 @@ Setup_Mapping (void)
 {
     int n;
     propertyRec *p;
-
+    
     if (XpropMode == XpropWindowProperties) {
 	n = sizeof(windowPropTable) / sizeof(propertyRec);
 	p = windowPropTable;
@@ -502,7 +502,7 @@ Setup_Mapping (void)
 		continue;
 	}
 	Add_Mapping(p->atom, p->format, p->dformat);
-    }
+    }	
 }
 
 static const char *
@@ -740,7 +740,7 @@ Format_Len_String (const char *string, int len, int unicode)
     free(data);
 
     return result;
-}
+}  
 
 static int
 is_utf8_locale (void)
@@ -784,7 +784,7 @@ Format_Icons (const unsigned long *icon, int len)
 	unsigned int icon_pixel_bytes;
 	unsigned int icon_line_bytes;
 	int offset;
-
+	
 	width = *icon++;
 	height = *icon++;
 	display_width = width * 2; /* Two characters per icon pixel. */
@@ -799,10 +799,10 @@ Format_Icons (const unsigned long *icon, int len)
 	icon_line_bytes = 8 + display_width * icon_pixel_bytes + 1;
 
 	offset = (tail - result);
-
+	
 	alloced += 80;				/* For the header, final newline, color reset */
 	alloced += icon_line_bytes * height;	/* For the rows */
-
+	
 	result = realloc (result, alloced);
 	if (!result)
 	    Fatal_Error("Out of memory!");
@@ -819,22 +819,22 @@ Format_Icons (const unsigned long *icon, int len)
 	    icon += width * height;
 	    continue;
 	}
-
+	
 	for (unsigned int h = 0; h < height; ++h)
 	{
 	    tail += sprintf (tail, "\t");
-
+	    
 	    for (unsigned int w = 0; w < width; ++w)
 	    {
 		unsigned char a, r, g, b;
 		unsigned long pixel = *icon++;
 		unsigned long brightness;
-
+		
 		a = (pixel & 0xff000000) >> 24;
 		r = (pixel & 0x00ff0000) >> 16;
 		g = (pixel & 0x0000ff00) >> 8;
 		b = (pixel & 0x000000ff);
-
+		
 		brightness =
 		    (a / 255.0) * (1000 - ((299 * (r / 255.0)) +
 					   (587 * (g / 255.0)) +
@@ -871,9 +871,9 @@ Format_Icons (const unsigned long *icon, int len)
 		    static const char palette[] =
 			" .'`,^:\";~-_+<>i!lI?/\\|()1{}[]rcvunxzjftLCJUYXZO0Qoahkbdpqwm*WMB8&%$#@";
 		    int idx;
-
+		    
 		    idx = (brightness * (sizeof(palette) - 2)) / 1000;
-
+		    
 		    *tail++ = palette[idx];
 		    *tail++ = palette[idx];
 		}
@@ -1446,7 +1446,7 @@ Get_Font_Property_Data_And_Type (Atom atom,
                                  long *length, Atom *type, int *size)
 {
     *type = None;
-
+	
     for (int i = 0; i < font->n_properties; i++)
 	if (atom == font->properties[i].name) {
 	    _font_prop = font->properties[i].card32;
@@ -1691,9 +1691,9 @@ Set_Property (Display *display, Window w, const char *propname, const char *valu
 	switch(size) {
 	    case 8:
 	        data8[0] = intvalue; data = (const unsigned char *) data8; break;
-	    case 16:
+	    case 16:    
 	        data16[0] = intvalue; data = (const unsigned char *) data16; break;
-	    case 32:
+	    case 32:    
 	        data32[0] = intvalue; data = (const unsigned char *) data32; break;
 	}
 	tmp = strtok(NULL,",");
@@ -1702,9 +1702,9 @@ Set_Property (Display *display, Window w, const char *propname, const char *valu
 	    switch(size) {
 		case 8:
 	    	    data8[nelements] = intvalue; break;
-		case 16:
+		case 16:    
 	    	    data16[nelements] = intvalue; break;
-		case 32:
+		case 32:    
 	    	    data32[nelements] = intvalue; break;
 	    }
 	    nelements++;
@@ -1714,7 +1714,7 @@ Set_Property (Display *display, Window w, const char *propname, const char *valu
 	    }
 	    tmp = strtok(NULL,",");
 	}
-
+	
 	type = XA_CARDINAL;
 	free(value2);
 	break;
@@ -1731,9 +1731,9 @@ Set_Property (Display *display, Window w, const char *propname, const char *valu
 	switch(size) {
 	    case 8:
 	        data8[0] = intvalue; data = (const unsigned char *) data8; break;
-	    case 16:
+	    case 16:    
 	        data16[0] = intvalue; data = (const unsigned char *) data16; break;
-	    case 32:
+	    case 32:    
 	        data32[0] = intvalue; data = (const unsigned char *) data32; break;
 	}
 	tmp = strtok(NULL,",");
@@ -1742,9 +1742,9 @@ Set_Property (Display *display, Window w, const char *propname, const char *valu
 	    switch(size) {
 		case 8:
 	    	    data8[nelements] = intvalue; break;
-		case 16:
+		case 16:    
 	    	    data16[nelements] = intvalue; break;
-		case 32:
+		case 32:    
 	    	    data32[nelements] = intvalue; break;
 	    }
 	    nelements++;
@@ -1754,7 +1754,7 @@ Set_Property (Display *display, Window w, const char *propname, const char *valu
 	    }
 	    tmp = strtok(NULL,",");
 	}
-
+	
 	type = XA_INTEGER;
 	free(value2);
 	break;
@@ -1803,7 +1803,7 @@ Set_Property (Display *display, Window w, const char *propname, const char *valu
 }
 
 /*
- *
+ * 
  * Routines for parsing command line:
  *
  */
@@ -1834,7 +1834,7 @@ print_help (void)
     fflush (stdout);
 
     fprintf (stderr,
-	     "usage:  %s [-options ...] [[format [dformat]] atom] ...\n\n",
+	     "usage:  %s [-options ...] [[format [dformat]] atom] ...\n\n", 
 	     program_name);
     fprintf (stderr, "%s\n", help_message);
 }
@@ -1888,7 +1888,7 @@ Parse_Format_Mapping (int *argc, char ***argv)
 #define OPTION ARGV[0]
 #define NXTOPT if (++ARGV, --ARGC==0) usage("insufficient arguments for -format")
     char *type_name, *format, *dformat;
-
+  
     NXTOPT; type_name = OPTION;
 
     NXTOPT; format = OPTION;
@@ -2088,7 +2088,7 @@ main (int argc, char **argv)
     if (spy && target_win != (Window) -1) {
 	XEvent event;
 	const char *format, *dformat;
-
+	
 	XSelectInput(dpy, target_win, PropertyChangeMask | StructureNotifyMask);
  	old_error_handler = XSetErrorHandler(spy_error_handler);
 	for (;;) {

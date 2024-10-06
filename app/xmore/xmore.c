@@ -30,17 +30,17 @@ in this Software without prior written authorization from The Open Group.
 #endif
 
 /* Force ANSI C prototypes from X11 headers */
-#ifndef FUNCPROTO
+#ifndef FUNCPROTO 
 #define FUNCPROTO 15
 #endif /* !FUNCPROTO */
 
-#include <X11/StringDefs.h>
-#include <X11/Intrinsic.h>
+#include <X11/StringDefs.h> 
+#include <X11/Intrinsic.h> 
 #include <X11/Shell.h>
 #include <X11/Xaw/Form.h>
 #include <X11/Xaw/List.h>
 #include <X11/Xaw/Command.h>
-#include <X11/Xaw/AsciiText.h>
+#include <X11/Xaw/AsciiText.h> 
 #include <X11/Xaw/Cardinals.h>
 
 #include "xmore.h"
@@ -165,7 +165,7 @@ int main( int argc, char *argv[] )
 
   XtSetLanguageProc(NULL, NULL, NULL);
   toplevel = XtOpenApplication(&app, "XMore",
-                               options, XtNumber(options),
+                               options, XtNumber(options), 
                                &argc, argv, fallback_resources,
                                sessionShellWidgetClass, NULL, ZERO);
 
@@ -179,9 +179,9 @@ int main( int argc, char *argv[] )
     usage(stderr, EXIT_FAILURE);
   }
 
-  XtGetApplicationResources(toplevel, (XtPointer)&userOptions, resources,
+  XtGetApplicationResources(toplevel, (XtPointer)&userOptions, resources, 
                             XtNumber(resources), NULL, 0);
-
+ 
   XtAppAddActions(app, actions, XtNumber(actions));
 
   viewFileName = argv[1];
@@ -204,11 +204,11 @@ int main( int argc, char *argv[] )
   XtSetArg(args[n], XtNlabel,           "Quit");      n++;
   quitbutton = XtCreateManagedWidget("quit", commandWidgetClass, form, args, n);
   XtAddCallback(quitbutton, XtNcallback, quitXtProc, NULL);
-
+  
   XtRealizeWidget(toplevel);
-
+  
   XtAppMainLoop(app);
 
   return EXIT_SUCCESS;
 }
-
+         

@@ -50,7 +50,7 @@ folds = []
 
 def ucs4_to_utf8(ucs4):
     utf8_rep = []
-
+    
     if ucs4 < 0x80:
         utf8_rep.append(ucs4)
         bits = -6
@@ -190,7 +190,7 @@ if __name__=='__main__':
         tmpl_file = open(args.template_file, 'r', encoding='utf-8')
     else:
         tmpl_file = sys.stdin
-
+    
     # Scan the input until the marker is found
     # FIXME: this is a bit silly really, might just as well harcode
     #        the license header in the script and drop the template
@@ -198,7 +198,7 @@ if __name__=='__main__':
         if line.strip() == '@@@':
             break
         print(line, end='')
-
+    
     # Dump these tables
     print('#define FC_NUM_CASE_FOLD\t{}'.format(len(folds)))
     print('#define FC_NUM_CASE_FOLD_CHARS\t{}'.format(len(foldChars)))
@@ -236,5 +236,5 @@ if __name__=='__main__':
     # And flush out the rest of the input file
     for line in tmpl_file:
         print(line, end='')
-
+    
     sys.stdout.flush()

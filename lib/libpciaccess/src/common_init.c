@@ -61,7 +61,7 @@ pci_system_init( void )
     err = pci_system_freebsd_create();
 #elif defined(__NetBSD__)
     err = pci_system_netbsd_create();
-#elif defined(__OpenBSD__) || defined(__SecBSD__)
+#elif defined(__OpenBSD__)
     err = pci_system_openbsd_create();
 #elif defined(__sun)
     err = pci_system_solx_devfs_create();
@@ -79,7 +79,7 @@ pci_system_init( void )
 void
 pci_system_init_dev_mem(int fd)
 {
-#if defined(__OpenBSD__) || defined(__SecBSD__)
+#if defined(__OpenBSD__)
     pci_system_openbsd_init_dev_mem(fd);
 #endif
 }

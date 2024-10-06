@@ -226,7 +226,7 @@ if test x$xthreads = xyes ; then
     freebsd*)
         XTHREAD_CFLAGS="-D_THREAD_SAFE"
         XTHREADLIB="-pthread" ;;
-    dragonfly*|openbsd*|secbsd*)
+    dragonfly*|openbsd*)
         XTHREADLIB="-pthread" ;;
     solaris*)
 	XTHREAD_CFLAGS="-D_REENTRANT -D_POSIX_PTHREAD_SEMANTICS" ;;

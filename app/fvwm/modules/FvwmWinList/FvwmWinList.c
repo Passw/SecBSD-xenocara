@@ -185,7 +185,7 @@ int main(int argc, char **argv)
   sigemptyset(&sigact.sa_mask);
   sigact.sa_handler = TerminateHandler;
   sigaction(SIGPIPE, &sigact, NULL);
-  sigaction(SIGTERM, &sigact, NULL);
+  sigaction(SIGTERM, &sigact, NULL);  
 #else
   signal(SIGPIPE, TerminateHandler);
   signal(SIGTERM, TerminateHandler);
@@ -1066,7 +1066,7 @@ PropMwmHints prop;
 int ErrorHandler(Display *d, XErrorEvent *event)
 {
     char errmsg[256];
-
+    
     XGetErrorText(d, event->error_code, errmsg, sizeof(errmsg));
     ConsoleMessage("%s failed request: %s\n", Module, errmsg);
     ConsoleMessage("Major opcode: 0x%x, resource id: 0x%x\n",

@@ -30,12 +30,12 @@ in this Software without prior written authorization from The Open Group.
 #include "xsm.h"
 #include "xtwatch.h"
 
-static void _XtIceWatchProc(IceConn ice_conn, IcePointer client_data,
+static void _XtIceWatchProc(IceConn ice_conn, IcePointer client_data, 
 			    Bool opening, IcePointer *watch_data );
-static void _XtProcessIceMsgProc(XtPointer client_data, int *source,
+static void _XtProcessIceMsgProc(XtPointer client_data, int *source, 
 				 XtInputId *id);
 
-
+
 Status
 InitWatchProcs(XtAppContext appContext)
 {
@@ -45,7 +45,7 @@ InitWatchProcs(XtAppContext appContext)
 
 
 static void
-_XtIceWatchProc(IceConn ice_conn, IcePointer client_data, Bool opening,
+_XtIceWatchProc(IceConn ice_conn, IcePointer client_data, Bool opening, 
 		IcePointer *watch_data)
 {
     if (opening)
@@ -97,7 +97,7 @@ _XtProcessIceMsgProc(XtPointer client_data, int *source, XtInputId *id)
 		break;
 	    }
 	}
-
+	 
 	if (!found)
 	{
 	    /*

@@ -43,13 +43,13 @@ char *CatString3(char *a, char *b, char *c)
 
 /***************************************************************************
  * A simple routine to copy a string, stripping spaces and mallocing
- * space for the new string
+ * space for the new string 
  ***************************************************************************/
 void CopyString(char **dest, char *source)
 {
   int len;
   char *start;
-
+  
   if (source == NULL)
     {
       *dest = NULL;
@@ -66,7 +66,7 @@ void CopyString(char **dest, char *source)
     len++;
     source++;
   }
-
+  
   source--;
   while((isspace(*source))&&(*source != 0)&&(len >0))
   {
@@ -75,15 +75,15 @@ void CopyString(char **dest, char *source)
   }
   *dest = safemalloc(len+1);
   strncpy(*dest,start,len);
-  (*dest)[len]=0;
+  (*dest)[len]=0;	  
 }
 
 /****************************************************************************
- *
+ * 
  * Copies a string into a new, malloc'ed string
  * Strips leading spaces and trailing spaces and new lines
  *
- ****************************************************************************/
+ ****************************************************************************/ 
 char *stripcpy(char *source)
 {
   char *tmp,*ptr;
@@ -106,7 +106,7 @@ char *stripcpy(char *source)
   ptr[len]=0;
   return ptr;
 }
-
+  
 int StrEquals(char *s1,char *s2)
 {
   if (!s1 && !s2)

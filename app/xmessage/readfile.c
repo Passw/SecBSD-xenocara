@@ -42,7 +42,7 @@ from the X Consortium.
 #include "readfile.h"
 
 /*
- * get_data_from_file - read data from a file into a single buffer; meant
+ * get_data_from_file - read data from a file into a single buffer; meant 
  * for small files containing messages.
  */
 static char *

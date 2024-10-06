@@ -30,7 +30,7 @@ in this Software without prior written authorization from The Open Group.
 #include "prop.h"
 #include <X11/Xaw/List.h>
 
-
+
 void
 FreePropValues(List *propValues)
 {
@@ -48,7 +48,7 @@ FreePropValues(List *propValues)
 }
 
 
-
+
 void
 FreeProp(Prop *prop)
 {
@@ -59,7 +59,7 @@ FreeProp(Prop *prop)
 }
 
 
-
+
 void
 SetInitialProperties(ClientRec *client, List *props)
 {
@@ -119,7 +119,7 @@ SetInitialProperties(ClientRec *client, List *props)
 }
 
 
-
+
 void
 SetProperty(ClientRec *client, SmProp *theProp, Bool freeIt)
 {
@@ -217,7 +217,7 @@ SetProperty(ClientRec *client, SmProp *theProp, Bool freeIt)
 }
 
 
-
+
 void
 DeleteProperty(ClientRec *client, char *propname)
 {
@@ -252,9 +252,9 @@ DeleteProperty(ClientRec *client, char *propname)
 }
 
 
-
+
 void
-SetPropertiesProc(SmsConn smsConn, SmPointer managerData, int numProps,
+SetPropertiesProc(SmsConn smsConn, SmPointer managerData, int numProps, 
 		  SmProp **props)
 {
     ClientRec	*client = (ClientRec *) managerData;
@@ -293,9 +293,9 @@ SetPropertiesProc(SmsConn smsConn, SmPointer managerData, int numProps,
 }
 
 
-
+
 void
-DeletePropertiesProc(SmsConn smsConn, SmPointer managerData,
+DeletePropertiesProc(SmsConn smsConn, SmPointer managerData, 
 		     int numProps, char **propNames)
 
 {
@@ -322,7 +322,7 @@ DeletePropertiesProc(SmsConn smsConn, SmPointer managerData,
 }
 
 
-
+
 void
 GetPropertiesProc(SmsConn smsConn, SmPointer managerData)
 {

@@ -229,10 +229,10 @@ main(int argc, char *argv[])
 
 #ifdef HAVE_PLEDGE
     {
-        /* force reading of XErrorDB into memory to avoid adding "rpath" to
+        /* force reading of XErrorDB into memory to avoid adding "rpath" to 
            pledge below */
         char buf[1];
-
+        
 	(void)XGetErrorDatabaseText(XtDisplay(toplevel), "XProtoError", "0", "",  buf, 1);
     }
     if (pledge("stdio", NULL) == -1)

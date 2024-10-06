@@ -40,7 +40,7 @@ void DumpButtons(button_info *b)
   else
     fprintf(stderr,"0x%lx(%ix%i@,0x%04lx): ",(unsigned long)b,
 	    b->BWidth,b->BHeight,b->flags);
-
+    
   if(b->flags&b_Font)
     fprintf(stderr,"Font(%s,0x%lx) ",b->font_string,(unsigned long)b->font);
   if(b->flags&b_Padding)
@@ -267,7 +267,7 @@ void SaveButtons(button_info *b)
       fprintf(stderr,")");
     }
   fprintf(stderr,"\n");
-
+  
   if(b->flags&b_Container)
     {
       i=0;

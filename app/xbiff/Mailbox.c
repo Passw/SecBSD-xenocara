@@ -102,19 +102,19 @@ typedef union wait	waitType;
 
 /*
  * The default user interface is to have the mailbox turn itself off whenever
- * the user presses a button in it.  Expert users might want to make this
+ * the user presses a button in it.  Expert users might want to make this 
  * happen on EnterWindow.  It might be nice to provide support for some sort of
  * exit callback so that you can do things like press q to quit.
  */
 
-static char defaultTranslations[] =
+static char defaultTranslations[] = 
   "<ButtonPress>:  unset()";
 
 static void Set (Widget gw, XEvent *event, String *params, Cardinal *nparams);
 static void Check(Widget gw, XEvent *event, String *params, Cardinal *nparams);
 static void Unset(Widget gw, XEvent *event, String *params, Cardinal *nparams);
 
-static XtActionsRec actionsList[] = {
+static XtActionsRec actionsList[] = { 
     { "check",	Check },
     { "unset",	Unset },
     { "set",	Set },
@@ -130,7 +130,7 @@ static Dimension defDim = 48;
 static Pixmap nopix = None;
 
 static XtResource resources[] = {
-    { XtNwidth, XtCWidth, XtRDimension, sizeof (Dimension),
+    { XtNwidth, XtCWidth, XtRDimension, sizeof (Dimension), 
 	goffset (width), XtRDimension, (XtPointer)&defDim },
     { XtNheight, XtCHeight, XtRDimension, sizeof (Dimension),
 	goffset (height), XtRDimension, (XtPointer)&defDim },
@@ -351,7 +351,7 @@ static Pixmap make_pixmap (Display *dpy, MailboxWidget w, Pixmap bitmap,
 	fore = w->mailbox.foreground_pixel;
 	back = w->core.background_pixel;
     }
-    return XmuCreatePixmapFromBitmap (dpy, w->core.window, bitmap,
+    return XmuCreatePixmapFromBitmap (dpy, w->core.window, bitmap, 
 				      width, height, depth, fore, back);
 }
 
@@ -373,7 +373,7 @@ static void Realize (Widget gw, XtValueMask *valuemaskp,
      * build up the pixmaps that we'll put into the image
      */
     if (w->mailbox.full.bitmap == None) {
-	w->mailbox.full.bitmap =
+	w->mailbox.full.bitmap = 
 	  XCreateBitmapFromData (dpy, w->core.window, (char *) mailfull_bits,
 				 mailfull_width, mailfull_height);
     }
@@ -391,11 +391,11 @@ static void Realize (Widget gw, XtValueMask *valuemaskp,
 					  depth, w->mailbox.flipit,
 					  &w->mailbox.full.width,
 					  &w->mailbox.full.height);
-
+			 
     if (w->mailbox.empty.mask == None && w->mailbox.full.mask == None)
       w->mailbox.shapeit = False;
 
-    w->mailbox.interval_id =
+    w->mailbox.interval_id = 
 	XtAppAddTimeOut (XtWidgetToApplicationContext((Widget) w),
 			 w->mailbox.update * 1000, clock_tic, (XtPointer) w);
 
@@ -477,7 +477,7 @@ static void check_mailbox (MailboxWidget w, Boolean force_redraw, Boolean reset)
      * Now check for changes.  If reset is set then we want to pretent that
      * there is no mail.  If the mailbox is empty then we want to turn off
      * the flag.  Otherwise if the mailbox has changed size then we want to
-     * put the flag up, unless the mailbox has been read since the last
+     * put the flag up, unless the mailbox has been read since the last 
      * write.
      *
      * The cases are:
@@ -506,10 +506,10 @@ static void check_mailbox (MailboxWidget w, Boolean force_redraw, Boolean reset)
 	}
     } else if (mailboxsize != w->mailbox.last_size) {  /* different size */
 	if (!w->mailbox.once_only || !w->mailbox.flag_up)
-	    beep(w);
+	    beep(w); 
 	if (!w->mailbox.flag_up)
 	    force_redraw = w->mailbox.flag_up = TRUE;
-    }
+    } 
 
     w->mailbox.last_size = mailboxsize;
     if (force_redraw) redraw_mailbox (w);
@@ -572,7 +572,7 @@ static Boolean SetValues (Widget gcurrent, Widget grequest, Widget gnew,
     Boolean redisplay = FALSE;
 
     if (current->mailbox.update != new->mailbox.update) {
-	if (current->mailbox.interval_id)
+	if (current->mailbox.interval_id) 
 	  XtRemoveTimeOut (current->mailbox.interval_id);
 	new->mailbox.interval_id =
 	    XtAppAddTimeOut (XtWidgetToApplicationContext(gnew),

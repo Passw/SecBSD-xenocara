@@ -141,7 +141,7 @@ Draw (Moving *mp, int n)
 {
     XPoint  xp[MAX_POINTS];
     int	    i;
-    for (i = 0; i < n; i++)
+    for (i = 0; i < n; i++) 
     {
 	xp[i].x = mp[i].x; xp[i].y = mp[i].y;
     }
@@ -242,7 +242,7 @@ Timeout (XtPointer closure, XtIntervalId *id)
     }
 }
 
-static void
+static void 
 StartSaver (void)
 {
     if (screen_saved)
@@ -261,13 +261,13 @@ StopSaver (void)
     screen_saved = False;
 }
 
-static int
+static int 
 ignoreError (Display *dpy, XErrorEvent *error)
 {
     return 0;
 }
 
-int
+int 
 main(int argc, char *argv[])
 {
     Widget toplevel;
@@ -348,14 +348,14 @@ main(int argc, char *argv[])
     saver = info->window;
     if (info->state == ScreenSaverOn)
     {
-	if (info->kind != ScreenSaverExternal)
+	if (info->kind != ScreenSaverExternal) 
 	{
 	    XResetScreenSaver (display);
 	    XActivateScreenSaver (display);
 	}
 	StartSaver ();
     }
-    for (;;)
+    for (;;) 
     {
 	XtAppNextEvent (app_con, &event);
 	if (event.type == ss_event) {

@@ -1,4 +1,4 @@
-/* FvwmBacker Module for Fvwm.
+/* FvwmBacker Module for Fvwm. 
  *
  *  Copyright 1994,  Mike Finger (mfinger@mermaid.micro.umn.edu or
  *                               Mike_Finger@atk.com)
@@ -18,7 +18,7 @@
  * own risk. Permission to use this program for any purpose is given,
  * as long as the copyright is kept intact. */
 
-#include "../../libs/fvwmlib.h"
+#include "../../libs/fvwmlib.h"     
 
 /* Function Prototypes */
 

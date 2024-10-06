@@ -1,17 +1,17 @@
 ****  Purify instrumented xlock/xlock (pid 23212 at Mon Dec 12 14:55:57 2005)
-  * Purify 2003a.06.15 Solaris 2 (32-bit) (c) Copyright IBM Corp. 1992, 2005 All rights reserved.
+  * Purify 2003a.06.15 Solaris 2 (32-bit) (c) Copyright IBM Corp. 1992, 2005 All rights reserved.  
   * For contact information type: "purify -help"
   * For TTY output, use the option "-windows=no"
-  * Command-line: xlock/xlock -modelist ant,fzort -inwindow
+  * Command-line: xlock/xlock -modelist ant,fzort -inwindow 
   * Options settings: -chain-length=25 -cache-dir=purify-cache \
     -windows=yes -g++=yes -purify \
     -purify-home=/mu/sdk/purify/releases/purify.sol.2003a.06.15 \
     -gcc3_path=/opt/gnu/bin/g++.sh -cache-dir=purify-cache \
     -demangle_program=/opt/gnu/bin/c++filt -threads=yes \
     -use-internal-locks=yes -thread_stack_change=0x4000 -mt_safe_malloc=yes \
-    -language=english
+    -language=english 
   * License successfully checked out.
-  * Command-line: xlock/xlock -modelist ant,fzort -inwindow
+  * Command-line: xlock/xlock -modelist ant,fzort -inwindow 
 
 ****  Purify instrumented xlock/xlock (pid 23212)  ****
 UMR: Uninitialized memory read (1107 times):
@@ -165,13 +165,13 @@ Thread Summary : 1 threads in existence
 8<------------------------------------------------------------------------>8
 
 ****  Purify instrumented xlock/xlock (pid 4834 at Wed Aug  9 17:07:56 2000)
-  * Purify 5.1 Solaris 2 (32-bit), Copyright (C) 1992-2000 Rational Software Corp. All rights reserved.
+  * Purify 5.1 Solaris 2 (32-bit), Copyright (C) 1992-2000 Rational Software Corp. All rights reserved. 
   * For contact information type: "purify -help"
   * For TTY output, use the option "-windows=no"
   * Command-line: xlock/xlock -sequential -verbose -modelist all
   * Options settings: -chain-length=25 -windows=yes -g++=yes -purify \
     -purify-home=/opt/pure/purify-5.1-solaris2 -threads=yes \
-    -use-internal-locks=yes -thread_stack_change=0x4000 -mt_safe_malloc=yes
+    -use-internal-locks=yes -thread_stack_change=0x4000 -mt_safe_malloc=yes 
   * Command-line: xlock/xlock -sequential -verbose -modelist all
 
 ****  Purify instrumented xlock/xlock (pid 4834)  ****

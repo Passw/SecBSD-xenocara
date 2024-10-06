@@ -418,7 +418,7 @@ InitShmImage(XParms xp, Parms p, int64_t reps, Bool read_only)
     	free(segsa);
     	free(segsb);
     	return False;
-    }
+    }	
     shm_image = *image;
     image_size = image->bytes_per_line * image->height;
     /* allow XYPixmap choice: */

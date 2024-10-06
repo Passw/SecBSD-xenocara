@@ -3690,6 +3690,8 @@ printf "%s\n" "$ac_cv_should_define__xopen_source" >&6; }
 
   printf "%s\n" "#define _OPENBSD_SOURCE 1" >>confdefs.h
 
+  printf "%s\n" "#define _SECBSD_SOURCE 1" >>confdefs.h
+
   printf "%s\n" "#define _POSIX_PTHREAD_SEMANTICS 1" >>confdefs.h
 
   printf "%s\n" "#define __STDC_WANT_IEC_60559_ATTRIBS_EXT__ 1" >>confdefs.h

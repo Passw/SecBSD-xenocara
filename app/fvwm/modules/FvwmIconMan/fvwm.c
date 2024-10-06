@@ -120,7 +120,7 @@ static void set_draw_mode (WinManager *man, int flag)
   else if (man->we_are_drawing && !flag) {
     the_manager = man;
     num = accumulate_walk_hashtab (count_nonsticky_in_hashtab);
-    ConsoleDebug (FVWM, "SetDrawMode on 0x%lx, num = %d\n",
+    ConsoleDebug (FVWM, "SetDrawMode on 0x%lx, num = %d\n", 
 		  (unsigned long)man, num);
 
     if (num == 0)
@@ -383,9 +383,9 @@ static void mini_icon (FvwmPacketBody *body)
 		   body->mini_icon_data.width, body->mini_icon_data.height);
 
 
-  ConsoleDebug (FVWM, "mini_icon: 0x%lx 0x%lx %dx%dx%d\n",
+  ConsoleDebug (FVWM, "mini_icon: 0x%lx 0x%lx %dx%dx%d\n", 
 		(unsigned long) win->pic.picture,
-		(unsigned long) win->pic.mask,
+		(unsigned long) win->pic.mask, 
 		win->pic.width, win->pic.height, win->pic.depth);
 }
 #endif

@@ -210,7 +210,7 @@ menu_complete_path(struct menu_ctx *mc)
 		else if (!mr->abort)
 			strlcpy(mr->text, mc->searchstr, sizeof(mr->text));
 	}
-
+	
 	menuq_clear(&menuq);
 
 	return mr;

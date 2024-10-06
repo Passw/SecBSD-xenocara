@@ -90,7 +90,7 @@ main(int argc, char **argv)
     snprintf (name, sizeof(name), "%s.dir", dbname);
     fd = open (name, O_WRONLY|O_CREAT, 0666);
     if (fd < 0) {
-	fprintf (stderr,
+	fprintf (stderr, 
 		 "%s:  unable to create dbm file \"%s\" (error %d, %s)\n",
 		 ProgramName, name, errno, strerror(errno));
 	exit (1);
@@ -100,7 +100,7 @@ main(int argc, char **argv)
     snprintf (name, sizeof(name), "%s.pag", dbname);
     fd = open (name, O_WRONLY|O_CREAT, 0666);
     if (fd < 0) {
-	fprintf (stderr,
+	fprintf (stderr, 
 		 "%s:  unable to create dbm file \"%s\" (error %d, %s)\n",
 		 ProgramName, name, errno, strerror(errno));
 	exit (1);

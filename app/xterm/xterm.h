@@ -157,7 +157,7 @@
 #endif
 #endif
 
-#if defined(__OpenBSD__) || (__SecBSD__)
+#if defined(__OpenBSD__)
 #define USE_UTMP_SETGID True
 #define DEFDELETE_DEL True
 #define DEF_BACKARO_ERASE True

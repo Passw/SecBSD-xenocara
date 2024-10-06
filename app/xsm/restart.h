@@ -32,7 +32,7 @@ in this Software without prior written authorization from The Open Group.
 
 extern Bool CheckIsManager(char *program);
 extern void GetRestartInfo(char *restart_service_prop, char *client_host_name,
-			   Bool *run_local, char **restart_protocol,
+			   Bool *run_local, char **restart_protocol, 
 			   char **restart_machine);
 extern Status Restart(int flag);
 extern void Clone(ClientRec *client, Bool useSavedState);

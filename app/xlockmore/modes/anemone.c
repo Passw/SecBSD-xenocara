@@ -25,12 +25,12 @@ static const char sccsid[] = "@(#)anemone.c	5.22 2006/03/04 xlockmore";
   |  DESCRIPTION     Anemone.
   |
   |  WRITTEN BY      Gabriel Finch
-  |
+  |                  
   |
   |
   |  MODIFICATIONS   june 2001 started
   |                  March 2006 adaption for xlockmore
-  |
+  |           
   +----------------------------------------------------------------------*/
 
 
@@ -251,7 +251,7 @@ initAppendages(anemonestruct *sp)
 {
   int    i;
   /*int    marginx, marginy; */
-
+    
   /*double scalex, scaley;*/
 
   double x,y,z,dist;
@@ -298,7 +298,7 @@ initAppendages(anemonestruct *sp)
     sp->vCurr->sy=(int) ((sp->vCurr->y-sp->my/2)/5);
     sp->vCurr->sz=(int) (sp->vCurr->z/5);
 
-
+    
     sp->vNext->x=sp->vCurr->x+sp->vCurr->sx;
     sp->vNext->y=sp->vCurr->y+sp->vCurr->sy;
     sp->vNext->z=sp->vCurr->z+sp->vCurr->sz;
@@ -358,7 +358,7 @@ initAnemone( ModeInfo * mi , anemonestruct *sp )
       }
   }
   else
-    {
+    {	
      sp->b= sp->window;
     }
 
@@ -392,7 +392,7 @@ createPoints(anemonestruct *sp)
 	if (!(--sp->aCurr->growth)) sp->aCurr->growth=-NRAND(sp->finpoints)-1;
 	sp->vCurr = sp->vPendage + (sp->finpoints + 1) * i + sp->aCurr->numpt-1;
 	if (sp->aCurr->numpt<sp->finpoints - 1) {
-	  /* add a piece */
+	  /* add a piece */	
 	  sp->vNext=sp->vCurr + 1;
 	  sp->aCurr->numpt++;
 	  sp->vNext->sx=sp->vCurr->sx+NRAND(3)-1;
@@ -417,7 +417,7 @@ drawImage(Drawable curr_window, double sint, double cost , anemonestruct *sp)
 
   if ((numpt=sp->aCurr->numpt)==1) return;
   XSetForeground(sp->dpy, sp->gcDraw, sp->aCurr->col);
-
+    
   sp->vNext=sp->vCurr+1;
 
   cx=sp->vCurr->x;
@@ -500,11 +500,11 @@ init_anemone(ModeInfo * mi)
 
    animateAnemone( sp->b , sp );
 }
-
+   
 void draw_anemone (ModeInfo * mi)
 {
    anemonestruct *sp = &anemones[MI_SCREEN(mi)];
-
+   
    if (anemones == NULL)
 	return;
    MI_IS_DRAWN(mi) = True;

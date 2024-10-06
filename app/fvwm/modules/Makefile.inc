@@ -1,4 +1,4 @@
-# -*- makefile -*-
+# -*- makefile -*- 
 # $OpenBSD: Makefile.inc,v 1.9 2012/09/30 10:12:51 espie Exp $
 
 .ifndef FVWM_MAKEFILE_INC

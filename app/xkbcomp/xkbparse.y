@@ -342,8 +342,8 @@ KeyAliasDecl	:	ALIAS KeyName EQUALS KeyName SEMI
 			{
 			    KeyAliasDef	*def;
 			    def= KeyAliasCreate($2,$4);
-			    if ($2)	free($2);
-			    if ($4)	free($4);
+			    if ($2)	free($2);	
+			    if ($4)	free($4);	
 			    $$= def;
 			}
 		;
@@ -373,9 +373,9 @@ InterpretDecl	:	INTERPRET InterpretMatch OBRACE
 			}
 		;
 
-InterpretMatch	:	KeySym PLUS Expr
+InterpretMatch	:	KeySym PLUS Expr	
 			{ $$= InterpCreate($1, $3); }
-		|	KeySym
+		|	KeySym			
 			{ $$= InterpCreate($1, NULL); }
 		;
 
@@ -557,7 +557,7 @@ FieldSpec	:	Ident			{ $$= $1; }
 		|	Element			{ $$= $1; }
 		;
 
-Element		:	ACTION_TOK
+Element		:	ACTION_TOK		
 			{ $$= XkbInternAtom(NULL,"action",False); }
 		|	INTERPRET
 			{ $$= XkbInternAtom(NULL,"interpret",False); }
@@ -571,11 +571,11 @@ Element		:	ACTION_TOK
 			{$$=XkbInternAtom(NULL,"modifier_map",False);}
 		|	INDICATOR
 			{ $$= XkbInternAtom(NULL,"indicator",False); }
-		|	SHAPE
+		|	SHAPE	
 			{ $$= XkbInternAtom(NULL,"shape",False); }
-		|	ROW
+		|	ROW	
 			{ $$= XkbInternAtom(NULL,"row",False); }
-		|	SECTION
+		|	SECTION	
 			{ $$= XkbInternAtom(NULL,"section",False); }
 		|	TEXT
 			{ $$= XkbInternAtom(NULL,"text",False); }
@@ -727,7 +727,7 @@ KeySymList	:	KeySymList COMMA KeySym
 
 KeySym		:	IDENT           { $$= strdup(scanBuf); }
 		|	SECTION         { $$= strdup("section"); }
-		|	Integer
+		|	Integer		
 			{
 			    if ($1<10)	{ $$= malloc(2); $$[0]= '0' + $1; $$[1]= '\0'; }
 			    else	{ $$= malloc(19); snprintf($$, 19, "0x%x", $1); }

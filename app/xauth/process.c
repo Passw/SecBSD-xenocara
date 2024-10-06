@@ -654,7 +654,7 @@ static const char *xauth_filename = NULL;
 static volatile Bool dying = False;
 
 
-/* poor man's puts(), for under signal handlers,
+/* poor man's puts(), for under signal handlers, 
    extended to ignore warn_unused_result */
 #define WRITES(fd, S) {if(write((fd), (S), strlen((S)))){}}
 
@@ -1095,11 +1095,11 @@ match_auth_dpy(register Xauth *a, register Xauth *b)
 {
     if (a->family != FamilyWild && b->family != FamilyWild) {
         /* Both "a" and "b" are not FamilyWild, they are "normal" families. */
-
+	
 	/* Make sure, that both families match: */
 	if (a->family != b->family)
             return 0;
-
+	
 	/* By looking at 'man Xsecurity' and the code in
 	 * GetAuthByAddr() and XauGetBestAuthByAddr() in libXau, we
 	 * decided, that the address is only relevant for "normal"
@@ -1109,14 +1109,14 @@ match_auth_dpy(register Xauth *a, register Xauth *b)
             memcmp(a->address, b->address, a->address_length) != 0)
             return 0;
     }
-
+    
     if (a->number_length != 0 && b->number_length != 0) {
 	/* Both "a" and "b" have a number, make sure they match: */
 	if (a->number_length != b->number_length ||
 	    memcmp(a->number, b->number, a->number_length) != 0)
             return 0;
     }
-
+    
     return 1;
 }
 

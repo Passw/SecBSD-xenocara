@@ -734,7 +734,7 @@ FcCharSetIsSubset (const FcCharSet *a, const FcCharSet *b)
 	{
 	    FcChar32	*am = FcCharSetLeaf(a, ai)->map;
 	    FcChar32	*bm = FcCharSetLeaf(b, bi)->map;
-
+	
 	    if (am != bm)
 	    {
 		int	i = 256/32;
@@ -957,7 +957,7 @@ FcNameUnparseCharSet (FcStrBuf *buf, const FcCharSet *c)
 	FcCharSet	*check;
 	FcChar32	missing;
 	FcCharSetIter	ci, checki;
-
+	
 	/* null terminate for parser */
 	FcStrBufChar (buf, '\0');
 	/* step back over null for life after test */
@@ -1352,7 +1352,7 @@ FcCharSetSerialize(FcSerialize *serialize, const FcCharSet *cs)
 	if (!cs)
 	    return NULL;
     }
-
+		
     cs_serialized = FcSerializePtr (serialize, cs);
     if (!cs_serialized)
 	return NULL;
@@ -1369,7 +1369,7 @@ FcCharSetSerialize(FcSerialize *serialize, const FcCharSet *cs)
 
 	cs_serialized->leaves_offset = FcPtrToOffset (cs_serialized,
 						      leaves_serialized);
-
+	
 	numbers = FcCharSetNumbers (cs);
 	numbers_serialized = FcSerializePtr (serialize, numbers);
 	if (!numbers)

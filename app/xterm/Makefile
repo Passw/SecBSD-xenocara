@@ -39,7 +39,7 @@ misc.o:	builtin_icons.h
 
 trace.o: VTparse.cin
 
-# do this to quiet gcc -Wcast-qual warnings
+# do this to quiet gcc -Wcast-qual warnings 
 builtin_icons.h :
 	@echo "#if OPT_BUILTIN_XPMS" >$@
 	@echo "#include <icons/mini.xterm.xpms>" >>$@

@@ -34,10 +34,10 @@ extern void ShowHint(ClientRec *client);
 extern void DisplayProps(ClientRec *client);
 extern char * GetProgramName(char *fullname);
 extern void UpdateClientList(void);
-extern void ClientInfoStructureNotifyXtHandler(Widget w, XtPointer closure,
-					       XEvent *event,
+extern void ClientInfoStructureNotifyXtHandler(Widget w, XtPointer closure, 
+					       XEvent *event, 
 					       Boolean *continue_to_dispatch);
-extern void ClientInfoXtProc(Widget w, XtPointer client_data,
+extern void ClientInfoXtProc(Widget w, XtPointer client_data, 
 			     XtPointer callData);
 extern void create_client_info_popup(void);
 

@@ -145,7 +145,7 @@ AC_TRY_COMPILE([#include <stdint.h>],[int_least32_t v = 0;],
 [ac_cv_stdint_result="(assuming C99 compatible system)"
  ac_cv_header_stdint_t="stdint.h"; ],
 [ac_cv_header_stdint_t=""])
-if test "$GCC" = "yes" && test ".$ac_cv_header_stdint_t" = "."; then
+if test "$GCC" = "yes" && test ".$ac_cv_header_stdint_t" = "."; then 
 CFLAGS="-std=c99"
 AC_TRY_COMPILE([#include <stdint.h>],[int_least32_t v = 0;],
 [AC_MSG_WARN(your GCC compiler has a defunct stdint.h for its default-mode)])

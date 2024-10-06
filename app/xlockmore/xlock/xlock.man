@@ -2349,25 +2349,25 @@ Use a random start point for models at startup for
 .TP 5
 .B \-preset \ num
 Use the preset
-.I num
+.I num 
 [1-5] for
 .I biof.
 .TP 5
 .B \-lines \ num
-Use
-.I num
+Use 
+.I num 
 lines in
 .I biof.
 .TP 5
 .B \-points \ num
-Use
-.I num
+Use 
+.I num 
 points in
 .I biof.
 .TP 5
 .B -/+offangle
-Use
-.I offangle
+Use 
+.I offangle 
 in
 .I biof.
 .TP 5

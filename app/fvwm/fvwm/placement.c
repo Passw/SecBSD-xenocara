@@ -597,7 +597,7 @@ Bool PlaceWindow(FvwmWindow *tmp_win, unsigned long tflag,int Desk, int PageX, i
       /*  RBW - allow StartsOnPage to go through, even if iconic.  */
       ( ((!((tmp_win->wmhints)&&
 	    (tmp_win->wmhints->flags & StateHint)&&
-	    (tmp_win->wmhints->initial_state == IconicState)))
+	    (tmp_win->wmhints->initial_state == IconicState))) 
 	 || (HonorStartsOnPage)) ) )
   {
     /* Get user's window placement, unless RandomPlacement is specified */

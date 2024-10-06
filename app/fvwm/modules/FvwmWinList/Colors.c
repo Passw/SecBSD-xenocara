@@ -1,4 +1,4 @@
-/* Part of the FvwmWinList Module for Fvwm.
+/* Part of the FvwmWinList Module for Fvwm. 
  *
  *  Copyright 1994, Mike Finger (mfinger@mermaid.micro.umn.edu or
  *                               Mike_Finger@atk.com)
@@ -27,7 +27,7 @@ extern Window Root;
 
 /****************************************************************************
   Loads a single color
-*****************************************************************************/
+*****************************************************************************/ 
 Pixel GetColor(char *name)
 {
   XColor color;
@@ -35,9 +35,9 @@ Pixel GetColor(char *name)
 
   XGetWindowAttributes(dpy,Root,&attributes);
   color.pixel = 0;
-   if (!XParseColor (dpy, attributes.colormap, name, &color))
+   if (!XParseColor (dpy, attributes.colormap, name, &color)) 
      nocolor("parse",name);
-   else if(!XAllocColor (dpy, attributes.colormap, &color))
+   else if(!XAllocColor (dpy, attributes.colormap, &color)) 
        nocolor("alloc",name);
   return color.pixel;
 }

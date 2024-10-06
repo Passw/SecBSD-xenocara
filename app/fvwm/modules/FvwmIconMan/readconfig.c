@@ -65,7 +65,7 @@ static int num_builtins = sizeof (builtin_functions) / sizeof (FunctionType);
 /************************************************************************/
 
 
-struct charstring
+struct charstring 
 {
   char key;
   int  value;
@@ -133,19 +133,19 @@ void print_args (int numargs, BuiltinArg *args)
       break;
 
     case ButtonArg:
-      ConsoleDebug (CONFIG, "Button: %d %d ",
+      ConsoleDebug (CONFIG, "Button: %d %d ", 
 		    args[i].value.button_value.offset,
 		    args[i].value.button_value.base);
       break;
 
     case WindowArg:
-      ConsoleDebug (CONFIG, "Window: %d %d ",
+      ConsoleDebug (CONFIG, "Window: %d %d ", 
 		    args[i].value.button_value.offset,
 		    args[i].value.button_value.base);
       break;
 
     case ManagerArg:
-      ConsoleDebug (CONFIG, "Manager: %d %d ",
+      ConsoleDebug (CONFIG, "Manager: %d %d ", 
 		    args[i].value.button_value.offset,
 		    args[i].value.button_value.base);
       break;
@@ -174,7 +174,7 @@ static void print_binding (Binding *binding)
     ConsoleDebug (CONFIG, "\tMouse: %d\n", binding->Button_Key);
   }
   else {
-    ConsoleDebug (CONFIG, "\tKey or action: %d %s\n", binding->Button_Key,
+    ConsoleDebug (CONFIG, "\tKey or action: %d %s\n", binding->Button_Key, 
 		  binding->key_name);
   }
 
@@ -185,7 +185,7 @@ static void print_binding (Binding *binding)
   while (func) {
     for (i = 0; i < num_builtins; i++) {
       if (func->func == builtin_functions[i].func) {
-	ConsoleDebug (CONFIG, "\tFunction: %s %p ",
+	ConsoleDebug (CONFIG, "\tFunction: %s %p ", 
 		      builtin_functions[i].name, func->func);
 	break;
       }
@@ -197,7 +197,7 @@ static void print_binding (Binding *binding)
     func = func->next;
   }
 }
-#endif
+#endif 
 
 void print_bindings (Binding *list)
 {
@@ -265,9 +265,9 @@ static int extract_int (char *p, int *n)
   }
 
   *n = atoi (p) * sign;
-
+  
   return 1;
-}
+}   
 
 /****************************************************************************
  *
@@ -276,7 +276,7 @@ static int extract_int (char *p, int *n)
  * Return value is ptr to indata,updated to point to text after the word
  * which is extracted.
  * token is the extracted word, which is copied into a malloced
- * space, and must be freed after use.
+ * space, and must be freed after use. 
  *
  **************************************************************************/
 
@@ -344,7 +344,7 @@ static char *parse_button (char *string, BuiltinArg *arg, int *flag,
   char *rest, *token;
   ButtonValue *bv;
   int n;
-
+  
   ConsoleDebug (CONFIG, "parse_term: %s\n", string);
 
   *flag = 1;
@@ -396,7 +396,7 @@ static char *parse_button (char *string, BuiltinArg *arg, int *flag,
     *flag = 0;
     return NULL;
   }
-
+  
   Free (token);
   return rest;
 }
@@ -405,7 +405,7 @@ static void free_function_list (Function *func)
 {
   int i;
   Function *fp = func;
-
+  
   while (fp) {
     for (i = 0; i < fp->numargs; i++) {
       if (fp->args[i].type == StringArg)
@@ -416,7 +416,7 @@ static void free_function_list (Function *func)
     Free (func);
   }
 }
-
+  
 static int funccasecmp(const void *key /* actually char* */,
 			       const void *member /* actually FunctionType* */)
 {
@@ -474,7 +474,7 @@ static Function *parse_function (char **line, char *pstop_char)
     ftype->func = builtin_functions_i->func;
     ftype->numargs = builtin_functions_i->numargs;
     ftype->next = NULL;
-
+    
     for (j = 0; j < builtin_functions_i->numargs && *pstop_char != ','; j++) {
       ftype->args[j].type = builtin_functions_i->args[j];
       switch (builtin_functions_i->args[j]) {
@@ -488,7 +488,7 @@ static Function *parse_function (char **line, char *pstop_char)
 	  return NULL;
 	}
 	if (extract_int (tok, &ftype->args[j].value.int_value) == 0) {
-	  ConsoleMessage ("%s: expect integer argument: %s\n",
+	  ConsoleMessage ("%s: expect integer argument: %s\n", 
 			  builtin_functions_i->name, tok);
 	  Free (tok);
 	  Free(ftype);
@@ -497,7 +497,7 @@ static Function *parse_function (char **line, char *pstop_char)
 	}
 	Free (tok);
 	break;
-
+	
       case StringArg:
 	ptr = DoGetNextToken (ptr, &ftype->args[j].value.string_value,NULL,
 			      ",", pstop_char);
@@ -511,7 +511,7 @@ static Function *parse_function (char **line, char *pstop_char)
 	}
 	ftype->args[j].type = builtin_functions_i->args[j];
 	break;
-
+	
       case ButtonArg:
       case WindowArg:
       case ManagerArg:
@@ -525,7 +525,7 @@ static Function *parse_function (char **line, char *pstop_char)
 	}
 	ftype->args[j].type = builtin_functions_i->args[j];
 	break;
-
+	
 	/* JmpArg can be a string or an int. However, if 'JmpArg'
 	 * is recorded as the argument type in the argument array
 	 * for a command, it means it is a string; the code for
@@ -553,7 +553,7 @@ static Function *parse_function (char **line, char *pstop_char)
 	  Free(tok);
 	}
 	break;
-
+	
       default:
 	ConsoleMessage ("internal error in parse_function\n");
 	Free(ftype);
@@ -561,18 +561,18 @@ static Function *parse_function (char **line, char *pstop_char)
 	return NULL;
       }
     }
-
+    
     if (j != builtin_functions_i->numargs) {
       ConsoleMessage ("%s: too few arguments\n", builtin_functions_i->name);
       Free(ftype);
       *line = NULL;
       return NULL;
     }
-
+    
     *line = ptr;
     return ftype;
   }
-
+  
   ConsoleMessage ("Unknown function: %s\n", name);
   Free (name);
 
@@ -661,7 +661,7 @@ static Function *parse_function_list (char *line)
     ConsoleMessage ("No function defined\n");
   return ret;
 }
-
+  
 
 Binding *ParseMouseEntry (char *tline)
 {
@@ -672,25 +672,25 @@ Binding *ParseMouseEntry (char *tline)
   int mods;
 
   /* tline points after the key word "key" */
-  action = DoGetNextToken(tline,&token, NULL, ",", NULL);
+  action = DoGetNextToken(tline,&token, NULL, ",", NULL);  
   if(token != NULL) {
     n1 = sscanf(token,"%d",&button);
     Free(token);
   }
 
-  action = DoGetNextToken(action,&token, NULL, ",", NULL);
+  action = DoGetNextToken(action,&token, NULL, ",", NULL); 
   if(token != NULL) {
     n2 = sscanf(token,"%19s",modifiers);
     Free(token);
   }
   if((n1 != 1)||(n2 != 1))
     ConsoleMessage ("Mouse binding: Syntax error");
-
+  
   find_context(modifiers,&mods,key_modifiers,tline);
   if((mods & AnyModifier)&&(mods&(~AnyModifier))) {
     ConsoleMessage ("Binding specified AnyModifier and other modifers too. Excess modifiers will be ignored.");
   }
-
+  
   new  = (Binding *)safemalloc(sizeof(Binding));
   new->IsMouse = 1;
   new->Button_Key = button;
@@ -700,7 +700,7 @@ Binding *ParseMouseEntry (char *tline)
   new->Function = parse_function_list (action);
   new->NextBinding = NULL;
   new->LastBinding = new;
-
+  
   if (!new->Function) {
     ConsoleMessage ("Bad action: %s\n", action);
     Free (new->Action);
@@ -727,13 +727,13 @@ static Binding *ParseKeyEntry (char *tline)
   /* tline points after the key word "key" */
   ptr = tline;
 
-  ptr = DoGetNextToken(ptr,&token, NULL, ",", NULL);
+  ptr = DoGetNextToken(ptr,&token, NULL, ",", NULL);  
   if(token != NULL) {
     n1 = sscanf(token,"%19s",key);
     Free(token);
   }
-
-  action = DoGetNextToken(ptr,&token, NULL, ",", NULL);
+  
+  action = DoGetNextToken(ptr,&token, NULL, ",", NULL);  
   if(token != NULL) {
     n2 = sscanf(token,"%19s",modifiers);
     Free(token);
@@ -751,13 +751,13 @@ static Binding *ParseKeyEntry (char *tline)
    * Don't let a 0 keycode go through, since that means AnyKey to the
    * XGrabKey call in GrabKeys().
    */
-  if ((keysym = XStringToKeysym(key)) == NoSymbol ||
+  if ((keysym = XStringToKeysym(key)) == NoSymbol || 
       XKeysymToKeycode(theDisplay, keysym) == 0) {
     ConsoleMessage ("Can't find keysym: %s\n", key);
     return NULL;
   }
-
-
+  
+ 
   XDisplayKeycodes(theDisplay, &min, &max);
   for (i=min; i<=max; i++) {
     if (XKeycodeToKeysym(theDisplay, i, 0) == keysym) {
@@ -893,13 +893,13 @@ static char *read_next_cmd (ReadOption flag)
         retstring = cur_pos;
         cur_pos += ModuleLen;
         displaced = *cur_pos;
-        if (displaced == '*')
+        if (displaced == '*') 
           status = READ_OPTION;
         else if (displaced == '\0')
           status = READ_LINE;
         else if (iswhite (displaced))
           status = READ_ARG;
-        else
+        else 
           status = READ_LINE;
         break;
       }
@@ -909,7 +909,7 @@ static char *read_next_cmd (ReadOption flag)
   case READ_OPTION:
     *cur_pos = displaced;
     retstring = ++cur_pos;
-    while (*cur_pos != '*' && !iswhite (*cur_pos))
+    while (*cur_pos != '*' && !iswhite (*cur_pos)) 
       cur_pos++;
     displaced = *cur_pos;
     *cur_pos = '\0';
@@ -919,7 +919,7 @@ static char *read_next_cmd (ReadOption flag)
       status = READ_LINE;
     else if (iswhite (displaced))
       status = READ_ARG;
-    else
+    else 
       status = READ_LINE;
     break;
 
@@ -935,7 +935,7 @@ static char *read_next_cmd (ReadOption flag)
       status = READ_LINE;
     else if (iswhite (displaced))
       status = READ_ARG;
-    else
+    else 
       status = READ_LINE;
     break;
 
@@ -1020,8 +1020,8 @@ static NameType parse_format_dependencies (char *format)
 static void handle_button_config (int manager, int context, char *option)
 {
   char *p;
-  ButtonState state;
-
+  ButtonState state; 
+	   
   p = read_next_cmd (READ_ARG);
   if (!p) {
     ConsoleMessage ("Bad line: %s\n", current_line);
@@ -1048,7 +1048,7 @@ static void handle_button_config (int manager, int context, char *option)
     ConsoleMessage ("This isn't a valid button state: %s\n", p);
     return;
   }
-  ConsoleDebug (CONFIG, "Setting buttonState[%s] to %s\n",
+  ConsoleDebug (CONFIG, "Setting buttonState[%s] to %s\n", 
 		contextDefaults[context].name, p);
   SET_MANAGER (manager, buttonState[context], state);
 
@@ -1056,18 +1056,18 @@ static void handle_button_config (int manager, int context, char *option)
   p = read_next_cmd (READ_ARG);
   if ( !p )
     return;
-
-  SET_MANAGER (manager, foreColorName[context],
+         
+  SET_MANAGER (manager, foreColorName[context], 
 	       copy_string (&globals.managers[id].foreColorName[context], p));
 
   /* check for optional back color */
   p = read_next_cmd (READ_ARG);
   if ( !p )
     return;
-
+         
   ConsoleDebug (CONFIG, "Setting backColorName[%s] to %s\n",
 		contextDefaults[context].name, p);
-  SET_MANAGER (manager, backColorName[context],
+  SET_MANAGER (manager, backColorName[context], 
 	       copy_string (&globals.managers[id].backColorName[context], p));
 }
 
@@ -1131,7 +1131,7 @@ void read_in_resources (char *file)
 	  ConsoleDebug (CONFIG, "In transient mode. Ignoring this line\n");
 	  continue;
 	}
-	if (extract_int (option1, &manager) == 0 ||
+	if (extract_int (option1, &manager) == 0 || 
 	    manager <= 0 || manager > globals.num_managers) {
 	  ConsoleMessage ("Bad line: %s\n", current_line);
 	  ConsoleMessage ("This is not a valid manager: %s.\n", option1);
@@ -1191,7 +1191,7 @@ void read_in_resources (char *file)
 	  ConsoleMessage ("Need an action\n");
 	  continue;
 	}
-
+	
 	switch (i) {
 	case MOUSE:
 	  binding = ParseMouseEntry (q);
@@ -1235,8 +1235,8 @@ void read_in_resources (char *file)
 	ConsoleDebug (CONFIG, "default background: %s\n", p);
 
         for ( i = 0; i < NUM_CONTEXTS; i++ )
-	  SET_MANAGER (manager, backColorName[i],
-	    conditional_copy_string (&globals.managers[id].backColorName[i],
+	  SET_MANAGER (manager, backColorName[i], 
+	    conditional_copy_string (&globals.managers[id].backColorName[i], 
 				     p));
       }
       else if (!strcasecmp (option1, "buttongeometry")) {
@@ -1246,7 +1246,7 @@ void read_in_resources (char *file)
 	  continue;
 	}
 
-	SET_MANAGER (manager, button_geometry_str,
+	SET_MANAGER (manager, button_geometry_str, 
 		     copy_string (&globals.managers[id].button_geometry_str, p));
       }
       else if (!strcasecmp (option1, "dontshow")) {
@@ -1335,7 +1335,7 @@ void read_in_resources (char *file)
 	}
 	ConsoleDebug (CONFIG, "font: %s\n", p);
 
-	SET_MANAGER (manager, fontname,
+	SET_MANAGER (manager, fontname, 
 		     copy_string (&globals.managers[id].fontname, p));
       }
       else if (!strcasecmp (option1, "foreground")) {
@@ -1347,8 +1347,8 @@ void read_in_resources (char *file)
 	ConsoleDebug (CONFIG, "default foreground: %s\n", p);
 
         for ( i = 0; i < NUM_CONTEXTS; i++ )
-	SET_MANAGER (manager, foreColorName[i],
-           conditional_copy_string (&globals.managers[id].foreColorName[i],
+	SET_MANAGER (manager, foreColorName[i], 
+           conditional_copy_string (&globals.managers[id].foreColorName[i], 
 				    p));
       }
       else if (!strcasecmp (option1, "format")) {
@@ -1366,7 +1366,7 @@ void read_in_resources (char *file)
 	    token = (char *)safemalloc(1);
 	    *token = 0;
 	  }
-
+	
 	SET_MANAGER (manager, formatstring,
 		     copy_string (&globals.managers[id].formatstring, token));
 	flags = parse_format_dependencies (token);
@@ -1390,7 +1390,7 @@ void read_in_resources (char *file)
 	    token = (char *)safemalloc(1);
 	    *token = 0;
 	  }
-
+	
 	SET_MANAGER (manager, iconname,
 		     copy_string (&globals.managers[id].iconname, token));
 	Free (token);
@@ -1402,7 +1402,7 @@ void read_in_resources (char *file)
 	  continue;
 	}
 
-	SET_MANAGER (manager, geometry_str,
+	SET_MANAGER (manager, geometry_str, 
 		     copy_string (&globals.managers[id].geometry_str, p));
       }
       else if (!strcasecmp (option1, "resolution")) {
@@ -1494,9 +1494,9 @@ void read_in_resources (char *file)
 	if (!strcasecmp (p, "name")) {
 	  i = SortName;
 	}
-	else if (!strcasecmp (p, "namewithcase")) {
-	 i = SortNameCase;
-	}
+	else if (!strcasecmp (p, "namewithcase")) { 
+	 i = SortNameCase; 
+	} 
 	else if (!strcasecmp (p, "id")) {
 	  i = SortId;
 	}
@@ -1531,7 +1531,7 @@ void read_in_resources (char *file)
 	    token = (char *)safemalloc(1);
 	    *token = 0;
 	  }
-
+	
 	SET_MANAGER (manager, titlename,
 		     copy_string (&globals.managers[id].titlename, token));
 	Free (token);

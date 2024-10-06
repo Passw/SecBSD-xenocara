@@ -1,6 +1,6 @@
 /****************************************************************************
  * This is an all new program to set the root window to an Xpm pixmap.
- * Copyright 1993, Rob Nation
+ * Copyright 1993, Rob Nation 
  * You may use this file for anything you want, as long as the copyright
  * is kept intact. No guarantees of any sort are made in any way regarding
  * this program or anything related to it.
@@ -13,7 +13,7 @@
 #include <string.h>
 #include <X11/Xos.h>
 #include <X11/Xatom.h>
-#include "../libs/fvwmlib.h"
+#include "../libs/fvwmlib.h"     
 #include <X11/xpm.h> /* Has to be after Intrinsic.h gets included */
 
 int save_colors = 0;
@@ -39,7 +39,7 @@ int main(int argc, char **argv)
       exit(1);
     }
   dpy = XOpenDisplay(display_name);
-  if (!dpy)
+  if (!dpy) 
     {
       fprintf(stderr, "Xpmroot:  unable to open display '%s'\n",
 	      XDisplayName (display_name));
@@ -47,11 +47,11 @@ int main(int argc, char **argv)
     }
   screen = DefaultScreen(dpy);
   root = RootWindow(dpy, screen);
-
+  
   SetRootWindow(argv[1]);
 
   prop = XInternAtom(dpy, "_XSETROOT_ID", False);
-
+  
   (void)XGetWindowProperty(dpy, root, prop, 0L, 1L, True, AnyPropertyType,
 			   &type, &format, &length, &after, &data);
   if ((type == XA_PIXMAP) && (format == 32) && (length == 1) && (after == 0))
@@ -76,8 +76,8 @@ void SetRootWindow(char *tline)
   xpm_attributes.colormap = root_attr.colormap;
   xpm_attributes.valuemask = XpmSize | XpmReturnPixels|XpmColormap;
   if((val = XpmReadFileToPixmap(dpy,root, tline,
-			 &rootXpm, &shapeMask,
-			 &xpm_attributes))!= XpmSuccess)
+			 &rootXpm, &shapeMask, 
+			 &xpm_attributes))!= XpmSuccess) 
     {
       if(val == XpmOpenFailed)
 	fprintf(stderr, "Couldn't open pixmap file\n");

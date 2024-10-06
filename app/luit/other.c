@@ -353,7 +353,7 @@ stack_hkscs(unsigned c, OtherStatePtr s)
  *  The 4Bytes MB char is defined in gb18030.2000-1
  *  Please note that the mapping in 2000-1 is not a 4Bytes seq => 2Bytes value
  *  mapping.
- *  To use the 2000-1 we need to 'linear' the 4Bytes sequence and 'lookup' the
+ *  To use the 2000-1 we need to 'linear' the 4Bytes sequence and 'lookup' the 
  *  unicode value after that.
  *
  *  For more info on GB18030 standard pls check:

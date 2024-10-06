@@ -25,7 +25,7 @@ build:
 build:
 	umask ${WOBJUMASK}; exec ${MAKE} do-build
 
-do-build:
+do-build: 
 	@if [[ `id -u` -ne 0 ]]; then \
 		echo $@ must be called by root >&2; \
 		false; \

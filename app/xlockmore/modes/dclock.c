@@ -562,10 +562,10 @@ drawadot(ModeInfo * mi, int startx, int starty, int filled)
 	dclockstruct *dp = &dclocks[MI_SCREEN(mi)];
 
 	if (filled)
-		XFillArc(display, dp->pixmap, dp->fgGC, startx, starty,
+		XFillArc(display, dp->pixmap, dp->fgGC, startx, starty, 
 			BINARY_WIDTH, BINARY_HEIGHT, 0, 23040);
 	else
-		XDrawArc(display, dp->pixmap, dp->fgGC, startx, starty,
+		XDrawArc(display, dp->pixmap, dp->fgGC, startx, starty, 
 			BINARY_WIDTH, BINARY_HEIGHT, 0, 23040);
 }
 

@@ -40,7 +40,7 @@ static char *addAuthFile = NULL;
 static char *remAuthFile = NULL;
 
 
-
+
 /*
  * Host Based Authentication Callback.  This callback is invoked if
  * the connecting client can't offer any authentication methods that
@@ -54,7 +54,7 @@ HostBasedAuthProc(char *hostname)
 }
 
 
-
+
 /*
  * We use temporary files which contain commands to add/remove entries from
  * the .ICEauthority file.
@@ -79,7 +79,7 @@ write_iceauth(FILE *addfp, FILE *removefp, IceAuthDataEntry *entry)
 }
 
 
-
+
 #ifndef HAVE_MKSTEMP
 static char *
 unique_filename(const char *path, const char *prefix)
@@ -104,13 +104,13 @@ unique_filename(const char *path, const char *prefix, int *pFd)
     else
 	return (NULL);
 #endif
-#else
+#else 
     char tempFile[PATH_MAX];
     char *ptr;
 
     snprintf (tempFile, sizeof(tempFile), "%s/%sXXXXXX", path, prefix);
     ptr = strdup(tempFile);
-    if (ptr != NULL)
+    if (ptr != NULL) 
     {
 	*pFd =  mkstemp(ptr);
     }
@@ -120,7 +120,7 @@ unique_filename(const char *path, const char *prefix, int *pFd)
 
 
 
-
+
 /*
  * Provide authentication data to clients that wish to connect
  */
@@ -128,7 +128,7 @@ unique_filename(const char *path, const char *prefix, int *pFd)
 #define MAGIC_COOKIE_LEN 16
 
 Status
-SetAuthentication(int count, IceListenObj *listenObjs,
+SetAuthentication(int count, IceListenObj *listenObjs, 
 		  IceAuthDataEntry **authDataEntries)
 {
     FILE	*addfp = NULL;
@@ -167,15 +167,15 @@ SetAuthentication(int count, IceListenObj *listenObjs,
 #else
     if ((addAuthFile = unique_filename (path, ".xsm", &fd)) == NULL)
 	goto bad;
-
-    if (!(addfp = fdopen(fd, "wb")))
+    
+    if (!(addfp = fdopen(fd, "wb"))) 
 	goto bad;
     fcntl(fileno(addfp), F_SETFD, FD_CLOEXEC);
 
     if ((remAuthFile = unique_filename (path, ".xsm", &fd)) == NULL)
 	goto bad;
-
-    if (!(removefp = fdopen(fd, "wb")))
+    
+    if (!(removefp = fdopen(fd, "wb"))) 
 	goto bad;
     fcntl(fileno(removefp), F_SETFD, FD_CLOEXEC);
 #endif
@@ -200,7 +200,7 @@ SetAuthentication(int count, IceListenObj *listenObjs,
 	(*authDataEntries)[i+1].protocol_name = "XSMP";
 	(*authDataEntries)[i+1].auth_name = "MIT-MAGIC-COOKIE-1";
 
-	(*authDataEntries)[i+1].auth_data =
+	(*authDataEntries)[i+1].auth_data = 
 	    IceGenerateMagicCookie (MAGIC_COOKIE_LEN);
 	(*authDataEntries)[i+1].auth_data_length = MAGIC_COOKIE_LEN;
 
@@ -247,7 +247,7 @@ SetAuthentication(int count, IceListenObj *listenObjs,
 }
 
 
-
+
 /*
  * Free up authentication data.
  */

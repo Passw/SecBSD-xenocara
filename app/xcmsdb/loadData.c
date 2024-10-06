@@ -136,7 +136,7 @@ static DefineEntry VisualClassTbl[] = {
     { "",			-1 }
 };
 
-
+
 /************************************************************************
  *									*
  *			 PRIVATE ROUTINES				*
@@ -178,7 +178,7 @@ StrToDefine(DefineEntry pde[],   /* IN: table of X string-define pairs     */
     }
     return (-1);
 }
-
+
 /*
  *	NAME
  *		DefineToStr
@@ -242,7 +242,7 @@ SCKeyOf(const char *string)
 {
     return (StrToDefine(KeyTbl, string));
 }
-
+
 /*
  *	NAME
  *		SCScrnClassOf - convert screen class string into class ID
@@ -270,7 +270,7 @@ SCScrnClassOf(const char *string)
 {
     return (StrToDefine(ScrnClassTbl, string));
 }
-
+
 /*
  *	NAME
  *		SCScrnClassStringOf - convert screen class id into class string
@@ -306,7 +306,7 @@ closeS(FILE *stream, XDCCC_Correction *pCorrection)
         pCorrection = pNext;
     }
 }
-
+
 /*
  *  Get a line of text from the stream.
  */
@@ -316,7 +316,7 @@ nextline(char *buf, int maxch, FILE *stream)
     linenum++;
     return (fgets(buf, maxch, stream));
 }
-
+
 static int
 ProcessColorimetric(FILE *stream, XDCCC_Matrix *pMatrix, int VisualFlag)
 {
@@ -511,7 +511,7 @@ ProcessColorimetric(FILE *stream, XDCCC_Matrix *pMatrix, int VisualFlag)
     }
     return (0);
 }
-
+
 static int
 ProcessIProfile(FILE *stream, XDCCC_Correction *pCorrection)
 {
@@ -720,7 +720,7 @@ ProcessIProfile(FILE *stream, XDCCC_Correction *pCorrection)
     }
     return (0);
 }
-
+
 static void
 PutTableType0Card8(IntensityTbl *pTbl, unsigned char **pCard8)
 {
@@ -738,7 +738,7 @@ PutTableType0Card8(IntensityTbl *pTbl, unsigned char **pCard8)
         *pCard8 += 1;
     }
 }
-
+
 static void
 PutTableType1Card8(IntensityTbl *pTbl, unsigned char **pCard8)
 {
@@ -754,7 +754,7 @@ PutTableType1Card8(IntensityTbl *pTbl, unsigned char **pCard8)
         *pCard8 += 1;
     }
 }
-
+
 static void
 PutTableType0Card16(IntensityTbl *pTbl, unsigned short **pCard16)
 {
@@ -772,7 +772,7 @@ PutTableType0Card16(IntensityTbl *pTbl, unsigned short **pCard16)
         *pCard16 += 1;
     }
 }
-
+
 static void
 PutTableType1Card16(IntensityTbl *pTbl, unsigned short **pCard16)
 {
@@ -788,7 +788,7 @@ PutTableType1Card16(IntensityTbl *pTbl, unsigned short **pCard16)
         *pCard16 += 1;
     }
 }
-
+
 static void
 PutTableType0Card32(IntensityTbl *pTbl, unsigned long **pCard32)
 {
@@ -806,7 +806,7 @@ PutTableType0Card32(IntensityTbl *pTbl, unsigned long **pCard32)
         *pCard32 += 1;
     }
 }
-
+
 static void
 PutTableType1Card32(IntensityTbl *pTbl, unsigned long **pCard32)
 {
@@ -822,7 +822,7 @@ PutTableType1Card32(IntensityTbl *pTbl, unsigned long **pCard32)
         *pCard32 += 1;
     }
 }
-
+
 static void
 LoadMatrix(Display * pDpy, Window root, XDCCC_Matrix * pMatrix)
 {
@@ -848,7 +848,7 @@ LoadMatrix(Display * pDpy, Window root, XDCCC_Matrix * pMatrix)
     XChangeProperty(pDpy, root, MatricesAtom, XA_INTEGER, 32,
                     PropModeReplace, (unsigned char *) Card32Array, 18);
 }
-
+
 static int
 LoadCorrections(Display *pDpy, Window root, XDCCC_Correction *pCorrection,
                 int targetFormat)
@@ -1128,7 +1128,7 @@ LoadCorrections(Display *pDpy, Window root, XDCCC_Correction *pCorrection,
 }
 
 #ifdef GRAY
-
+
 static int
 LoadDataGray(Display *pDpy, window root, int tableType,
              LINEAR_RGB_SCCData *pScreenData, int targetFormat)
@@ -1250,7 +1250,7 @@ LoadDataGray(Display *pDpy, window root, int tableType,
     return (1);
 }
 #endif                          /* GRAY */
-
+
 static void
 PrintVisualOptions(XDCCC_Correction * pCorrection)
 {
@@ -1295,7 +1295,7 @@ PrintVisualOptions(XDCCC_Correction * pCorrection)
                 pCorrection->visual_info.bits_per_rgb);
     }
 }
-
+
 static int
 ParseVisualOptions(Display *pDpy, XDCCC_Correction *pCorrection, char *pbuf)
 {
@@ -1440,7 +1440,7 @@ ParseVisualOptions(Display *pDpy, XDCCC_Correction *pCorrection, char *pbuf)
     memcpy(&pCorrection->visual_info, vinfo, sizeof(XVisualInfo));
     return (1);
 }
-
+
 /************************************************************************
  *									*
  *			 PUBLIC ROUTINES				*

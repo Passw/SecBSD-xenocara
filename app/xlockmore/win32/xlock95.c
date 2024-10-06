@@ -1,4 +1,4 @@
-#include <windows.h>
+#include <windows.h> 
 #include <scrnsave.h>
 #include <stdlib.h>
 #include <time.h>
@@ -34,10 +34,10 @@ char *xlock95_get_modelist() {
     else {
       TCHAR buf[10];
       DWORD size = sizeof(buf);
-      if (RegQueryValueEx(skey,"Enabled",NULL,NULL,(LPBYTE)buf, &size)
+      if (RegQueryValueEx(skey,"Enabled",NULL,NULL,(LPBYTE)buf, &size) 
 	  !=ERROR_SUCCESS)
 	enabled[m] = 1; /* Default is enabled */
-      else
+      else	
 	enabled[m] = (strncmp(buf, "1", 2) == 0);
       RegCloseKey(skey);
     }
@@ -65,7 +65,7 @@ BOOL WINAPI ScreenSaverConfigureDialog(hDlg, message, wParam, lParam)
   LONG res;
   char key[1024];
 
-    switch(message)
+    switch(message) 
       {
       case WM_INITDIALOG:
 	m=8;
@@ -79,15 +79,15 @@ BOOL WINAPI ScreenSaverConfigureDialog(hDlg, message, wParam, lParam)
 	}
         break;
       case WM_COMMAND:
-        switch(LOWORD(wParam))
+        switch(LOWORD(wParam)) 
           {
           case MODE_LIST:
-            switch (HIWORD(wParam))
+            switch (HIWORD(wParam)) 
               {
               case LBN_SELCHANGE:
         	m = SendDlgItemMessage(hDlg, MODE_LIST, LB_GETCURSEL, 0, 0);
-		if(m >= 0 && m < numprocs-1) {
-		  SetDlgItemText(hDlg, DESC_LABEL, LockProcs[m].desc);
+		if(m >= 0 && m < numprocs-1) {       	
+		  SetDlgItemText(hDlg, DESC_LABEL, LockProcs[m].desc);  
 		  SetDlgItemText(hDlg, DELAY_TEXT,
 				 _itoa(LockProcs[m].def_delay, tchBuffer, 10));
 		  SetDlgItemText(hDlg, COUNT_TEXT,
@@ -101,10 +101,10 @@ BOOL WINAPI ScreenSaverConfigureDialog(hDlg, message, wParam, lParam)
 		return TRUE;
 		break;
 	      case LBN_DBLCLK:
-		m = SendDlgItemMessage(hDlg, MODE_LIST, LB_GETCURSEL, 0, 0);
+		m = SendDlgItemMessage(hDlg, MODE_LIST, LB_GETCURSEL, 0, 0); 
         	if(m >= 0 && m < numprocs-1) {
 		  enabled[m] = !enabled[m];
-
+		
 		  SendDlgItemMessage(hDlg, ENABLE_BUTTON, BM_SETCHECK,
 				     (WPARAM)(enabled[m]?
 					      BST_CHECKED:BST_UNCHECKED), 0);
@@ -119,7 +119,7 @@ BOOL WINAPI ScreenSaverConfigureDialog(hDlg, message, wParam, lParam)
 	      }
             break;
           case ENABLE_BUTTON:
-            switch (HIWORD(wParam))
+            switch (HIWORD(wParam)) 
               {
               case BN_CLICKED:
 		m = SendDlgItemMessage(hDlg, MODE_LIST, LB_GETCURSEL, 0, 0);
@@ -195,8 +195,8 @@ LONG WINAPI ScreenSaverProc(HWND myhwnd, UINT msg, WPARAM wParam, LPARAM lParam)
     case WM_DESTROY:
       {
 	// Stop the timer
-	if (uTimer)
-	  KillTimer(hwnd, uTimer);
+	if (uTimer) 
+	  KillTimer(hwnd, uTimer); 
         xlockmore_destroy();
       }
       break;

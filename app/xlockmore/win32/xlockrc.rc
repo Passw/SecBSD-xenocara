@@ -16,7 +16,7 @@ FONT 8, "MS Shell Dlg"
 BEGIN
     GROUPBOX    "Mode",         MODE_BOX,      5, 10, 80, 105
     LISTBOX                     MODE_LIST,    10, 20, 70, 100, WS_VSCROLL|LBS_USETABSTOPS
-
+ 
     GROUPBOX    "",	        DESC_LABEL,    90, 10, 80, 80
     LTEXT       "Delay",	DELAY_LABEL,  100, 20, 20, 10
     LTEXT       "", 		DELAY_TEXT,   130, 20, 20, 10

@@ -96,7 +96,7 @@ send_fd(int s, int fd)
 	vec.iov_len = sizeof(int);
 	msg.msg_iov = &vec;
 	msg.msg_iovlen = 1;
-
+	
 	if ((n = sendmsg(s, &msg, 0)) == -1)
 		warn("%s: sendmsg(%d)", __func__, s);
 	if (n != sizeof(int))
@@ -178,7 +178,7 @@ priv_init(uid_t uid, gid_t gid)
 		return 0;
 	}
 	/* son */
-	for (i = 1; i <= _NSIG; i++)
+	for (i = 1; i <= _NSIG; i++) 
 		signal(i, SIG_DFL);
 #ifdef HAVE_SETPROCTILE
 	setproctitle("[priv]");
@@ -199,9 +199,9 @@ priv_init(uid_t uid, gid_t gid)
 			}
 			send_fd(socks[0], pty);
 			send_fd(socks[0], tty);
-			if (pty != -1)
+			if (pty != -1) 
 				close(pty);
-			if (tty != -1)
+			if (tty != -1) 
 				close(tty);
 			break;
 		case PRIV_REDIRECT_CONSOLE:
@@ -228,23 +228,23 @@ priv_openpty(int *pty_ptr, int *tty_ptr)
 {
 	int cmd;
 	int pty, tty;
-
+	
 	if (priv_fd != -1) {
 		cmd = PRIV_OPEN_PTY;
 		write(priv_fd, &cmd, sizeof(int));
 		pty = receive_fd(priv_fd);
 		tty = receive_fd(priv_fd);
 		if (tty < 0 || pty < 0) {
-			fprintf(stderr, "openpty: %d %d %d\n",
+			fprintf(stderr, "openpty: %d %d %d\n", 
 			    pty, tty, errno);
 			return -1;
 		}
-		if (pty_ptr != NULL)
+		if (pty_ptr != NULL) 
 			*pty_ptr = pty;
-		if (tty_ptr != NULL)
+		if (tty_ptr != NULL) 
 			*tty_ptr = tty;
 		return 0;
-	} else
+	} else 
 		return openpty(pty_ptr, tty_ptr, NULL, NULL, NULL);
 }
 

@@ -14,7 +14,7 @@ URL: https://invisible-island.net/xterm/
 Provides: x-terminal-emulator >= %{version}
 
 # This part (the build-requires) would be useful if the various distributions
-# had provided stable package-naming, or virtual packages to cover transitions.
+# had provided stable package-naming, or virtual packages to cover transitions. 
 # However, they have not done this in the past.
 %define use_x_manpage %(test "x$_use_x_manpage" = xyes && echo 1 || echo 0)
 %if "%{use_x_manpage}"

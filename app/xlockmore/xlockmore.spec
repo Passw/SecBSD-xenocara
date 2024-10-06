@@ -132,7 +132,7 @@ install -m 644 etc/xlock.pamd $RPM_BUILD_ROOT/etc/pam.d/xlock
 
 install etc/xlockmore.desktop $RPM_BUILD_ROOT%{gnome_appsdir}
 
-# xlock shared data directory
+# xlock shared data directory 
 mkdir -p $RPM_BUILD_ROOT%{xlock_datadir}
 # You can put all TrueType fonts here
 mkdir -p $RPM_BUILD_ROOT%{xlock_datadir}/fonts/
@@ -168,7 +168,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 * Thu Nov 22 2001 Eric Lassauge <lassauge AT users.sourceforge.net>
-- added quality and stableversion defines for STABLE/ALPHA/BETA versions
+- added quality and stableversion defines for STABLE/ALPHA/BETA versions 
 - modified configure flags: use MY_CFLAGS and MY_CONFFLAGS if needed
 * Thu Oct 25 2001 Eric Lassauge <lassauge AT users.sourceforge.net>
 - created xlock_datadir define

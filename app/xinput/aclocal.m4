@@ -2766,7 +2766,7 @@ AC_ARG_WITH(lint, [AS_HELP_STRING([--with-lint],
 # Obtain platform specific info like program name and options
 # The lint program on FreeBSD and NetBSD is different from the one on Solaris
 case $host_os in
-  *linux* | *secbsd* | kfreebsd*-gnu | darwin* | cygwin*)
+  *linux* | *openbsd* | *secbsd* | kfreebsd*-gnu | darwin* | cygwin*)
 	lint_name=splint
 	lint_options="-badflag"
 	;;

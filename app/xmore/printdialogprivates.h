@@ -35,7 +35,7 @@ in this Software without prior written authorization from The Open Group.
 #include <X11/CoreP.h>
 #include <X11/Xaw/AsciiText.h>
 #include <X11/Xaw/Cardinals.h>
-#include <X11/Xaw/Command.h>
+#include <X11/Xaw/Command.h>    
 #include <X11/Xaw/Label.h>
 #include <X11/Xaw/DialogP.h>
 #include <X11/Xaw/XawInit.h>
@@ -72,10 +72,10 @@ typedef struct _PrintDialogPart {
     Pixmap	   icon;		/* icon bitmap			 */
     XtCallbackList ok_callback,
                    cancel_callback;
-
+        
     /* private */
     Widget	iconW;		/* widget to display the icon	 */
-
+    
     struct
     {
         Widget form,
@@ -143,7 +143,7 @@ typedef struct _PrintDialogPart {
     XpuMediumSourceSizeList  paperlist;
     int                      num_papers;
     String                  *widget_paperlist;
-
+    
     XpuResolutionList        resolutionlist;
     int                      num_resolutions;
     String                  *widget_resolutionlist;

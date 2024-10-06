@@ -1,4 +1,4 @@
-#include "fvwmlib.h"
+#include "fvwmlib.h"       
 
 #define STICKY 1
 #define ICONIFIED     32 /* is it an icon now? */
@@ -24,7 +24,7 @@ struct list
 /*************************************************************************
  *
  * Subroutine Prototypes
- *
+ * 
  *************************************************************************/
 void Loop(int *fd);
 void SendInfo(int *fd,char *message,unsigned long window);

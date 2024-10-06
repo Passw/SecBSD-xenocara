@@ -5,20 +5,20 @@
  * the above copyright notice appear in all copies and that both that
  * copyright notice and this permission notice appear in supporting
  * documentation.  No representations are made about the suitability of this
- * software for any purpose.  It is provided "as is" without express or
+ * software for any purpose.  It is provided "as is" without express or 
  * implied warranty.
  */
 
 /* 1999-Nov-21 Modified by Jim Knoble <jmknoble@jmknoble.cx>.
  * Modifications:
- *
+ * 
  *   - Made get_boolean_resource() accept a third parameter, default_value,
  *     which determines the result of get_boolean_resource if either (a)
  *     no such resource exists, or (b) the resource value does not conform
  *     to the syntax of a boolean resource.
- *
+ * 
  *   - Same for get_integer_resource().
- *
+ * 
  *   - 1999-Dec-24 Trimmed unused functions.
  */
 

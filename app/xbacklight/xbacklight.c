@@ -88,7 +88,7 @@ backlight_get (xcb_connection_t *conn, xcb_randr_output_t output)
     xcb_randr_get_output_property_reply_t *prop_reply = NULL;
     xcb_randr_get_output_property_cookie_t prop_cookie;
     long value;
-
+    
     backlight = backlight_new;
     if (backlight != XCB_ATOM_NONE) {
 	prop_cookie = xcb_randr_get_output_property (conn, output,

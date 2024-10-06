@@ -427,8 +427,8 @@ CursorSave(XtermWidget xw)
  *	https://github.com/mattiase/wraptest
  *
  * states
- *	The LCF is saved/restored by the Save/Restore Cursor (DECSC/DECRC)
- *	control sequences.  The DECAWM flag is not included in the state
+ *	The LCF is saved/restored by the Save/Restore Cursor (DECSC/DECRC)      
+ *	control sequences.  The DECAWM flag is not included in the state        
  *	managed by these operations.
  *
  * DEC 070 does mention the ANSI color text extension saying that it, too, is

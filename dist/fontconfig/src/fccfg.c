@@ -421,7 +421,7 @@ FcConfigAddCache (FcConfig *config, FcCache *cache,
     if (fs)
     {
 	int	nref = 0;
-
+	
 	for (i = 0; i < fs->nfont; i++)
 	{
 	    FcPattern	*font = FcFontSetFont (fs, i);
@@ -505,7 +505,7 @@ FcConfigAddDirList (FcConfig *config, FcSetName set, FcStrSet *dirSet)
     dirlist = FcStrListCreate (dirSet);
     if (!dirlist)
         return FcFalse;
-
+	
     while ((dir = FcStrListNext (dirlist)))
     {
 	if (FcDebug () & FC_DBG_FONTSET)
@@ -534,7 +534,7 @@ FcConfigBuildFonts (FcConfig *config)
     config = FcConfigReference (config);
     if (!config)
 	return FcFalse;
-
+	
     fonts = FcFontSetCreate ();
     if (!fonts)
     {
@@ -1331,7 +1331,7 @@ FcConfigEvaluate (FcPattern *p, FcPattern *p_pat, FcMatchKind kind, FcExpr *e)
 	v.u.b = FcConfigCompareValue (&vl, e->op, &vr);
 	FcValueDestroy (vl);
 	FcValueDestroy (vr);
-	break;
+	break;	
     case FcOpOr:
     case FcOpAnd:
     case FcOpPlus:
@@ -1347,7 +1347,7 @@ FcConfigEvaluate (FcPattern *p, FcPattern *p_pat, FcMatchKind kind, FcExpr *e)
 	    switch ((int) vle.type) {
 	    case FcTypeDouble:
 		switch ((int) op) {
-		case FcOpPlus:
+		case FcOpPlus:	
 		    v.type = FcTypeDouble;
 		    v.u.d = vle.u.d + vre.u.d;
 		    break;
@@ -1396,7 +1396,7 @@ FcConfigEvaluate (FcPattern *p, FcPattern *p_pat, FcMatchKind kind, FcExpr *e)
 		    str = FcStrPlus (vle.u.s, vre.u.s);
 		    v.u.s = FcStrdup (str);
 		    FcStrFree (str);
-
+			
 		    if (!v.u.s)
 			v.type = FcTypeVoid;
 		    break;
@@ -2829,7 +2829,7 @@ FcConfigAppFontAddFile (FcConfig    *config,
 	}
 	FcConfigSetFonts (config, set, FcSetApplication);
     }
-
+	
     if (!FcFileScanConfig (set, subdirs, file, config))
     {
 	FcStrSetDestroy (subdirs);

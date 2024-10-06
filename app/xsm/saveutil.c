@@ -32,7 +32,7 @@ in this Software without prior written authorization from The Open Group.
 
 static char 		 session_save_file[PATH_MAX];
 
-
+
 void
 set_session_save_file_name(const char *session_name)
 {
@@ -51,7 +51,7 @@ set_session_save_file_name(const char *session_name)
 }
 
 
-
+
 int
 ReadSave(const char *session_name, char **sm_id)
 {
@@ -196,7 +196,7 @@ ReadSave(const char *session_name, char **sm_id)
 		val->value = XtNewString(p);
 	    }
 
-	    if(!ListAddLast(prop->values, (char *)val)) nomem();
+	    if(!ListAddLast(prop->values, (char *)val)) nomem(); 
 	}
     }
 
@@ -251,7 +251,7 @@ ReadSave(const char *session_name, char **sm_id)
 }
 
 
-
+
 static void
 SaveClient(FILE *f, ClientRec *client)
 {
@@ -295,7 +295,7 @@ SaveClient(FILE *f, ClientRec *client)
 }
 
 
-
+
 void
 WriteSave(const char *sm_id)
 {
@@ -312,7 +312,7 @@ WriteSave(const char *sm_id)
     {
 	char msg[36 + sizeof(session_save_file)];
 
-	snprintf (msg, sizeof(msg), "%s: Error creating session save file %s",
+	snprintf (msg, sizeof(msg), "%s: Error creating session save file %s", 
 		  Argv[0], session_save_file);
 	add_log_text (msg);
 	perror (msg);
@@ -404,7 +404,7 @@ WriteSave(const char *sm_id)
 }
 
 
-
+
 Status
 DeleteSession(const char *session_name)
 {
@@ -515,7 +515,7 @@ DeleteSession(const char *session_name)
 }
 
 
-
+
 Bool
 getnextline(char **pbuf, int *plen, FILE *f)
 {

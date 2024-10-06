@@ -599,7 +599,7 @@ print_text_field(xcb_connection_t *dpy, const char *s, xcb_get_property_reply_t 
 
 /* returns the number of characters printed */
 static int
-print_quoted_word(char *s,
+print_quoted_word(char *s, 
 		  int maxlen)		/* max number of chars we can print */
 {
     register char *cp;
@@ -612,7 +612,7 @@ print_quoted_word(char *s,
      */
     for (cp = s; *cp; cp++) {
 
-	if (! ((isascii(*cp) && isalnum(*cp)) ||
+	if (! ((isascii(*cp) && isalnum(*cp)) || 
 	       (*cp == '-' || *cp == '_' || *cp == '.' || *cp == '+' ||
 		*cp == '/' || *cp == '=' || *cp == ':' || *cp == ','))) {
 	    need_quote = True;
@@ -637,8 +637,8 @@ print_quoted_word(char *s,
 	    }
 	    putchar (other_quote);
 	    charsprinted++; maxlen--;
-	    {
-		char tmp = other_quote;
+	    { 
+		char tmp = other_quote; 
 		other_quote = quote_char; quote_char = tmp;
 	    }
 	    in_quote = True;

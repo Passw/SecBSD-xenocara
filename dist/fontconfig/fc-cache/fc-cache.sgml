@@ -8,7 +8,7 @@
 manpage.1: manpage.sgml
 	docbook-to-man $< > $@
 
-
+    
 	The docbook-to-man binary is found in the docbook-to-man package.
 	Please remember that if you create the nroff version in one of the
 	debian/rules file targets (such as build), you will need to include
@@ -77,7 +77,7 @@ manpage.1: manpage.sgml
       <arg><option>--version</option></arg>
       <arg><option>--help</option></arg>
       <arg rep="repeat"><option><replaceable>dir</replaceable></option></arg>
-
+      
      </cmdsynopsis>
   </refsynopsisdiv>
   <refsect1>
@@ -123,7 +123,7 @@ manpage.1: manpage.sgml
 	  <option>--chroot <replacable>root</replacable></option>
 	</term>
 	<listitem>
-	  <para>Change root directory into <replacable>root</replacable>
+	  <para>Change root directory into <replacable>root</replacable> 
 	    before starting.</para>
 	</listitem>
         <term><option>-f</option>
@@ -198,7 +198,7 @@ manpage.1: manpage.sgml
     <title>RETURN CODES</title>
     <para><command>fc-cache</command> returns zero if the caches successfully generated. otherwise non-zero.</para>
   </refsect1>
-
+  
   <refsect1>
     <title>FILES</title>
     <variablelist>

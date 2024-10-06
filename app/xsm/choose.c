@@ -63,9 +63,9 @@ static Widget chooseSessionFailSafeButton;
 static Widget chooseSessionCancelButton;
 
 
-
+
 int
-GetSessionNames(int *count_ret, String **short_names_ret,
+GetSessionNames(int *count_ret, String **short_names_ret, 
 		String **long_names_ret, Bool **locked_ret)
 {
     DIR *dir;
@@ -80,7 +80,7 @@ GetSessionNames(int *count_ret, String **short_names_ret,
 	if (!path)
 	    path = ".";
     }
-
+    
     *count_ret = 0;
     *short_names_ret = NULL;
     *locked_ret = NULL;
@@ -166,9 +166,9 @@ GetSessionNames(int *count_ret, String **short_names_ret,
 }
 
 
-
+
 void
-FreeSessionNames(int count, String *namesShort, String *namesLong,
+FreeSessionNames(int count, String *namesShort, String *namesLong, 
 		 Bool *lockFlags)
 {
     int i;
@@ -189,7 +189,7 @@ FreeSessionNames(int count, String *namesShort, String *namesLong,
 }
 
 
-
+
 static void
 SessionSelected(int number, Bool highlight)
 {
@@ -213,7 +213,7 @@ SessionSelected(int number, Bool highlight)
 }
 
 
-
+
 static void
 AddSessionNames(int count, String *names)
 {
@@ -233,10 +233,10 @@ AddSessionNames(int count, String *names)
 }
 
 
-
+
 void
-ChooseWindowStructureNotifyXtHandler(Widget w, XtPointer closure,
-				     XEvent *event,
+ChooseWindowStructureNotifyXtHandler(Widget w, XtPointer closure, 
+				     XEvent *event, 
 				     Boolean *continue_to_dispatch)
 {
     if (event->type == MapNotify)
@@ -277,7 +277,7 @@ ChooseSession(void)
     /*
      * Center popup containing choice of sessions
      */
-
+    
     XtRealizeWidget (chooseSessionPopup);
 
     XtVaGetValues (chooseSessionPopup,
@@ -322,7 +322,7 @@ ChooseSession(void)
 }
 
 
-
+
 static void
 CheckDeleteCancel (void)
 {
@@ -351,12 +351,12 @@ CheckBreakLockCancel(void)
 }
 
 
-
+
 static void
 ChooseSessionUp(Widget w, XEvent *event, String *params, Cardinal *numParams)
 {
     XawListReturnStruct *current;
-
+    
     CheckDeleteCancel ();
     CheckBreakLockCancel ();
 
@@ -371,7 +371,7 @@ static void
 ChooseSessionDown(Widget w, XEvent *event, String *params, Cardinal *numParams)
 {
     XawListReturnStruct *current;
-
+    
     CheckDeleteCancel ();
     CheckBreakLockCancel ();
 
@@ -382,9 +382,9 @@ ChooseSessionDown(Widget w, XEvent *event, String *params, Cardinal *numParams)
 }
 
 
-
+
 static void
-ChooseSessionBtn1Down(Widget w, XEvent *event, String *params,
+ChooseSessionBtn1Down(Widget w, XEvent *event, String *params, 
 		      Cardinal *numParams)
 {
     XawListReturnStruct *current;
@@ -398,7 +398,7 @@ ChooseSessionBtn1Down(Widget w, XEvent *event, String *params,
 }
 
 
-
+
 static void
 ChooseSessionLoadXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -447,7 +447,7 @@ ChooseSessionLoadXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 static void
 ChooseSessionDeleteXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -541,9 +541,9 @@ ChooseSessionDeleteXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 static void
-ChooseSessionBreakLockXtProc(Widget w, XtPointer client_data,
+ChooseSessionBreakLockXtProc(Widget w, XtPointer client_data, 
 			     XtPointer callData)
 {
     XawListReturnStruct *current;
@@ -614,9 +614,9 @@ ChooseSessionBreakLockXtProc(Widget w, XtPointer client_data,
 }
 
 
-
+
 static void
-ChooseSessionFailSafeXtProc(Widget w, XtPointer client_data,
+ChooseSessionFailSafeXtProc(Widget w, XtPointer client_data, 
 			    XtPointer callData)
 {
     /*
@@ -649,7 +649,7 @@ ChooseSessionFailSafeXtProc(Widget w, XtPointer client_data,
 }
 
 
-
+
 static void
 ChooseSessionCancelXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -667,7 +667,7 @@ ChooseSessionCancelXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 void
 create_choose_session_popup(void)
 
@@ -686,7 +686,7 @@ create_choose_session_popup(void)
 	"chooseSessionPopup", transientShellWidgetClass, topLevel,
 	XtNallowShellResize, True,
 	NULL);
-
+    
 
     chooseSessionForm = XtVaCreateManagedWidget (
 	"chooseSessionForm", formWidgetClass, chooseSessionPopup,

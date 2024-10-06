@@ -48,7 +48,7 @@
 
 *saveMessageLabel.label:	Session name
 
-*saveTypeLabel.label:		Save Type
+*saveTypeLabel.label:		Save Type     
 *saveTypeNone.label:		None
 *saveTypeLocal.label:		Local
 *saveTypeGlobal.label:		Global

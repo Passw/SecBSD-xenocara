@@ -123,7 +123,7 @@ followed by the widget instance name.
 The application class name is Xfd.
 .sp
 .nf
-.\" default T 0.8i tab stops will work here;
+.\" default T 0.8i tab stops will work here; 
 .\" avoids a warning during XML conversion.
 Xfd  xfd
 	Paned  pane

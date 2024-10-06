@@ -221,9 +221,9 @@ char *expand(char *input, char *arguments[],FvwmWindow *tmp_win)
   l2 = l;
 
   if(strncasecmp(input, "AddToFunc", 9) == 0 || input[0] == '+')
-  {
+  {     
     addto = 1;
-  }
+  } 
   i=0;
   while(i<l)
     {

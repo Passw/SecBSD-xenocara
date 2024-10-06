@@ -38,7 +38,7 @@ in this Software without prior written authorization from The Open Group.
 #include <xcb/xcb.h>
 #include <xcb/xproto.h>
 
-#define ATOMS_PER_BATCH 100 /* This number can be tuned
+#define ATOMS_PER_BATCH 100 /* This number can be tuned 
 				higher for fewer round-trips
 				lower for less bandwidth wasted */
 
@@ -152,7 +152,7 @@ main(int argc, char *argv[])
 static void
 do_name(xcb_connection_t *c, const char *format, char *name)
 {
-    xcb_intern_atom_reply_t *a = xcb_intern_atom_reply(c,
+    xcb_intern_atom_reply_t *a = xcb_intern_atom_reply(c, 
 	xcb_intern_atom_unchecked(c, 1, strlen(name), name), NULL);
 
     if (a && a->atom != XCB_NONE) {

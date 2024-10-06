@@ -273,7 +273,7 @@ void checkPanFrames(void)
     }
     return;
   }
-
+  
   /* check they are the right size */
   if (edge_thickness != last_edge_thickness) {
     XResizeWindow (dpy, Scr.PanFrameTop.win, Scr.MyDisplayWidth, edge_thickness);
@@ -425,7 +425,7 @@ void initPanFrames()
 		   valuemask, &attributes);
   Scr.PanFrameTop.isMapped=Scr.PanFrameLeft.isMapped=
     Scr.PanFrameRight.isMapped= Scr.PanFrameBottom.isMapped=False;
-
+    
   edge_thickness = saved_thickness;
 }
 

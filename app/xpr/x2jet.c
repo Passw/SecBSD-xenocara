@@ -65,7 +65,7 @@ from the X Consortium.
 
 */
 
-
+
 #include <stdio.h>
 #include <stdarg.h>
 #include <X11/Xlib.h>
@@ -261,7 +261,7 @@ static void write_image (
 static void fatal_err (const char *s, ...)
   _X_NORETURN _X_ATTRIBUTE_PRINTF(1,2);
 
-
+
 /* Computes the centipoint width of one printer dot. */
 #define dot_centipoints(s,d)	((7200.0 * (s)) / (d))
 
@@ -326,7 +326,7 @@ void set_header_trailer_limits (char *header, char *trailer, long printwidth)
   }
 }
 
-
+
 static
 void set_print_locations (
   int scale, int density,
@@ -371,7 +371,7 @@ void set_print_locations (
   }
 }
 
-
+
 static
 int scale_raster (
   int density,
@@ -407,7 +407,7 @@ int scale_raster (
 	  : 1);
 }
 
-
+
 static
 void scale_and_orient_image (
   int *scale, int *density,
@@ -501,7 +501,7 @@ void scale_and_orient_image (
 
 }
 
-
+
 static unsigned short fullintensity;
 
 #define BLACK 1
@@ -556,7 +556,7 @@ static struct {
   RGBshiftmask sm;
 } color;
 
-
+
 static
 void setup_RGBshiftmask (
   RGBshiftmask *sm,
@@ -597,7 +597,7 @@ void swap_black_and_white (void)
       color->red = color->green = color->blue = fullintensity;
 }
 
-
+
 static
 void reset_color_mapping (void)
 {
@@ -627,7 +627,7 @@ void reset_color_mapping (void)
       *cmap = EMPTY;
 }
 
-
+
 #define Intensity(r,g,b)	((r) * 0.30 + (g) * 0.59 + (b) * 0.11)
 
 static
@@ -684,7 +684,7 @@ void prepare_color_mapping (
   reset_color_mapping();
 }
 
-
+
 /* On a PaintJet printer, the programmable color intensity ranges are:
  *
  *	red:	4..90		green:	4..88		blue:	6..85
@@ -723,7 +723,7 @@ void select_grey (int level, int *r, int *g, int *b)
   }
 }
 
-
+
 static
 int load_printer_color (
   long index,
@@ -776,7 +776,7 @@ int load_printer_color (
   return(0);  /* "failure" */
 }
 
-
+
 /* Lookup the image color index on the color.indexchain list.  If found
  * return the corresponding printer color index, otherwise -1.  The index
  * chain is a singly linked circular list.  Its head pointer is left at
@@ -804,7 +804,7 @@ int lookup_color_index (long i)
   return(-1);  /* not found */
 }
 
-
+
 /* Calculate the individual and composite printer RGB values.  (Only the
  * composite value is set for monochrome output.)
  */
@@ -870,7 +870,7 @@ int color_already_in_printer (long compositeRGB, long *pindex)
   return(0);  /* not found */
 }
 
-
+
 static
 int program_new_printer_color (
   int red, int green, int blue,
@@ -925,7 +925,7 @@ long find_nearest_programmed_color (long compositeRGB)
   return(nearest);
 }
 
-
+
 static
 void add_index_to_chain (
   long cindex,
@@ -991,7 +991,7 @@ int load_printer_color_DT (
   return(0); /* failure */
 }
 
-
+
 static
 int load_line_colors (
   long *line,
@@ -1038,7 +1038,7 @@ void download_colors (
   }
 }
 
-
+
 static _X_INLINE _X_NORETURN
 void invalid_depth_for_visual(int depth, const char *name)
 {
@@ -1153,7 +1153,7 @@ void read_xwd_data (FILE *in)
 
 }
 
-
+
 static
 void write_image_prefix (
   FILE *out,
@@ -1272,7 +1272,7 @@ void write_image_prefix (
 
 }
 
-
+
 static
 void write_image_suffix (
   FILE *out,
@@ -1311,7 +1311,7 @@ void write_image_suffix (
   }
 }
 
-
+
 static
 unsigned long Z_image_pixel (int x, int y)
 {
@@ -1376,7 +1376,7 @@ unsigned long Z_image_pixel (int x, int y)
   return (pixel & Z_pixel_mask);
 }
 
-
+
 static
 unsigned long XY_image_pixel (int x, int y)
 {
@@ -1401,7 +1401,7 @@ unsigned long XY_image_pixel (int x, int y)
   return(xwd_image[offset] & byte_mask ? 1 : 0);
 }
 
-
+
 static
 void direct_by_pixel(
   FILE *out,
@@ -1419,7 +1419,7 @@ void direct_by_pixel(
    }
 }
 
-
+
 static
 void index_by_pixel(
   FILE *out,
@@ -1444,7 +1444,7 @@ void index_by_pixel(
    free(line_pixels);
 }
 
-
+
 static
 void write_raster_line (
   FILE *out,
@@ -1517,7 +1517,7 @@ void write_raster_line (
   free(raster_line);
 }
 
-
+
 static
 void write_portrait_Z_image (
   FILE *out,
@@ -1567,7 +1567,7 @@ void write_landscape_Z_image (
   }
 }
 
-
+
 static
 void write_portrait_XY_image (
   FILE *out,
@@ -1617,7 +1617,7 @@ void write_landscape_XY_image (
   }
 }
 
-
+
 static
 void write_Z_image (
   FILE *out,
@@ -1667,7 +1667,7 @@ void write_image (
   }
 }
 
-
+
 void x2jet(
   FILE *in, FILE *out,
   int scale, int density,

@@ -71,7 +71,7 @@ static Event * BuildEvent ( ProtocolStream * stream );
 static void FreeEvent ( Event * event );
 static char * DispatchEvent ( Event * event );
 
-
+
 
 /*	Function Name: ClientTimedOut
  *	Description: Called if the client takes too long to take our selection.
@@ -96,7 +96,7 @@ ClientTimedOut(XtPointer data, XtIntervalId *id)
   SetMessage(global_screen_data.info_label, msg);
 }
 
-
+
 
 /*	Function Name: GetClientWindow
  *	Description: Gets the Client's window by asking the user.
@@ -169,7 +169,7 @@ GetClientWindow(Widget w, int *x, int *y)
   return(XmuClientWindow(dpy, target_win));
 }
 
-
+
 
 /*	Function Name: SetCommand
  *	Description: Causes this widget to own the resource editor's
@@ -244,7 +244,7 @@ SetCommand(Widget w, ResCommand command, String msg)
 					  ClientTimedOut, (XtPointer) w);
 }
 
-
+
 
 /*	Function Name: TellUserAboutMessage
  *	Description: Informs the user that we have sent a message to the client
@@ -285,7 +285,7 @@ TellUserAboutMessage(Widget label, ResCommand command)
     SetMessage(label, msg);
 }
 
-
+
 
 /*	Function Name: ConvertCommand
  *	Description: Converts the command string into a selection that can
@@ -310,7 +310,7 @@ ConvertCommand(Widget w, Atom *selection, Atom *target, Atom *type_ret,
     return(TRUE);
 }
 
-
+
 
 /*	Function Name: SelectionDone
  *	Description: done with the selection.
@@ -325,7 +325,7 @@ SelectionDone(Widget w, Atom *sel, Atom *targ)
     /* Keep the toolkit from automatically freeing the selection value */
 }
 
-
+
 
 /*	Function Name: LoseSelection
  *	Description: Called when we have lost the selection, asks client
@@ -347,7 +347,7 @@ LoseSelection(Widget w, Atom *sel)
 			NULL, XtLastTimestampProcessed(XtDisplay(w)));
 }
 
-
+
 
 /*	Function Name: GetClientValue
  *	Description: Gets the value out of the client, and does good things
@@ -459,7 +459,7 @@ GetClientValue(Widget w, XtPointer data, Atom *selection, Atom *type,
     XtFree(error_str);
 }
 
-
+
 
 /*	Function Name: BuildHeader
  *	Description: Puts the header into the message.
@@ -529,7 +529,7 @@ BuildHeader(CurrentClient *client_data)
     stream->size = old_size;
 }
 
-
+
 
 /*	Function Name: BuildEvent
  *	Description: Builds the event structure from the
@@ -758,7 +758,7 @@ BuildEvent(ProtocolStream *stream)
     return(NULL);
 }
 
-
+
 
 /*	Function Name: FreeEvent
  *	Description: Frees all memory associated with the event.
@@ -860,7 +860,7 @@ FreeEvent(Event *event)
     }
 }
 
-
+
 
 /*	Function Name: DispatchEvent
  *	Description: Handles the event, calling the proper function.
@@ -903,7 +903,7 @@ DispatchEvent(Event *event)
     return(error);
 }
 
-
+
 
 /*	Function Name: InternAtoms
  *	Description: interns all static atoms.

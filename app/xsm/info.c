@@ -65,7 +65,7 @@ static Widget clientPropDoneButton;
 static Widget clientPropTextWidget;
 
 
-
+
 void
 ShowHint(ClientRec *client)
 {
@@ -88,7 +88,7 @@ ShowHint(ClientRec *client)
 }
 
 
-
+
 typedef struct {
     char *bufStart;
     char *bufPtr;
@@ -259,7 +259,7 @@ DisplayProps(ClientRec *client)
 }
 
 
-
+
 static void
 ClientListXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -268,7 +268,7 @@ ClientListXtProc(Widget w, XtPointer client_data, XtPointer callData)
 
     if (!current || current->list_index < 0)
 	return;
-
+	
     client = clientListRecs[current->list_index];
     ShowHint (client);
     current_client_selected = current->list_index;
@@ -278,7 +278,7 @@ ClientListXtProc(Widget w, XtPointer client_data, XtPointer callData)
 
 
 
-
+
 static void
 ViewPropXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -300,7 +300,7 @@ ViewPropXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 static void
 CloneXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -325,7 +325,7 @@ CloneXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 static void
 KillClientXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -349,7 +349,7 @@ KillClientXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 static void
 listDoneXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -358,7 +358,7 @@ listDoneXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 char *
 GetProgramName(char *fullname)
 {
@@ -368,7 +368,7 @@ GetProgramName(char *fullname)
     for (i = 0; i < (int) strlen (fullname); i++)
 	if (fullname[i] == '/')
 	    lastSlash = &fullname[i];
-
+    
     if (lastSlash)
 	return (lastSlash + 1);
     else
@@ -376,7 +376,7 @@ GetProgramName(char *fullname)
 }
 
 
-
+
 void
 UpdateClientList(void)
 {
@@ -515,7 +515,7 @@ UpdateClientList(void)
 	{
 	    Prop *pprop = (Prop *) pl->thing;
 	    List *vl = ListFirst (pprop->values);
-
+	    
 	    if (vl != NULL)
 	    {
 	    	PropValue *pval = (PropValue *) vl->thing;
@@ -579,7 +579,7 @@ UpdateClientList(void)
 }
 
 
-
+
 static void
 RestartHintXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -626,7 +626,7 @@ RestartHintXtProc(Widget w, XtPointer client_data, XtPointer callData)
 	if (strcmp (SmRestartStyleHint, pprop->name) == 0)
 	{
 	    List *vl = ListFirst (pprop->values);
-
+	    
 	    PropValue *pval = (PropValue *) vl->thing;
 
 	    *((char *) (pval->value)) = hint;
@@ -646,7 +646,7 @@ RestartHintXtProc(Widget w, XtPointer client_data, XtPointer callData)
 	prop.vals = &propval;
 	propval.value = (SmPointer) &hint;
 	propval.length = 1;
-
+	
 	SetProperty (client, &prop, False /* don't free it */);
     }
 
@@ -664,7 +664,7 @@ RestartHintXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 static void
 clientPropDoneXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -673,10 +673,10 @@ clientPropDoneXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 void
-ClientInfoStructureNotifyXtHandler(Widget w, XtPointer closure,
-				   XEvent *event,
+ClientInfoStructureNotifyXtHandler(Widget w, XtPointer closure, 
+				   XEvent *event, 
 				   Boolean *continue_to_dispatch)
 {
     if (event->type == MapNotify)
@@ -692,7 +692,7 @@ ClientInfoStructureNotifyXtHandler(Widget w, XtPointer closure,
 }
 
 
-
+
 void
 ClientInfoXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -746,16 +746,16 @@ static unsigned char check_bits[] = {
 };
 
 
-
+
 static void
-DelClientInfoWinAction(Widget w, XEvent *event, String *params,
+DelClientInfoWinAction(Widget w, XEvent *event, String *params, 
 		       Cardinal *num_params)
 {
     XtCallCallbacks (clientInfoDoneButton, XtNcallback, NULL);
 }
 
 
-
+
 static void
 DelPropWinAction(Widget w, XEvent *event, String *params, Cardinal *num_params)
 {
@@ -763,7 +763,7 @@ DelPropWinAction(Widget w, XEvent *event, String *params, Cardinal *num_params)
 }
 
 
-
+
 void
 create_client_info_popup(void)
 
@@ -797,7 +797,7 @@ create_client_info_popup(void)
 	"clientInfoPopup", topLevelShellWidgetClass, topLevel,
 	XtNallowShellResize, True,
 	NULL);
-
+    
 
     clientInfoForm = XtVaCreateManagedWidget (
 	"clientInfoForm", formWidgetClass, clientInfoPopup,
@@ -952,7 +952,7 @@ create_client_info_popup(void)
 	"clientPropPopup", topLevelShellWidgetClass, topLevel,
 	XtNallowShellResize, True,
 	NULL);
-
+    
 
     clientPropForm = XtVaCreateManagedWidget (
 	"clientPropForm", formWidgetClass, clientPropPopup,

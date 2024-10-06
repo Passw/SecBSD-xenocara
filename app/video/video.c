@@ -39,8 +39,8 @@
 #include <X11/Xatom.h>
 
 /*
- * XvListImageFormats(3) reports YUY2 for the format defined
- * as YUYV in videoio.h.
+ * XvListImageFormats(3) reports YUY2 for the format defined 
+ * as YUYV in videoio.h. 
  */
 #define V_V4L2_PIX_FMT_YUY2    v4l2_fourcc('Y', 'U', 'Y', '2')
 
@@ -1303,7 +1303,7 @@ parse_ctrl(struct video *vid, int argc, char **argv)
 				}
 			}
 			if (i == CTRL_LAST)
-				warnx("%s: unknown control", *argv);
+				warnx("%s: unknown control", *argv);	
 			continue;
 		}
 

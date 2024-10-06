@@ -1,4 +1,4 @@
-#include "fvwmlib.h"
+#include "fvwmlib.h"       
 
 extern Display *dpy;
 extern char *MyName;

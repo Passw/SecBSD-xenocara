@@ -364,7 +364,7 @@ int main(int argc, char **argv)
     gethostname(client,MAXHOSTNAME);
     buflen = len+14 + strlen(client);
     rdisplay_string = safemalloc(buflen);
-    snprintf(rdisplay_string, buflen,
+    snprintf(rdisplay_string, buflen, 
 	"HOSTDISPLAY=%s:%s",client,&display_string[9]);
     putenv(rdisplay_string);
   }

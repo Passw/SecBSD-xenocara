@@ -35,7 +35,7 @@ extern struct queue_buff_struct **pipeQueue;
 #define M_MAP                (1<<16)
 
 /* It turns out this is defined by <sys/stream.h> on Solaris 2.6.
-   I suspect that simply redefining this will lead to trouble;
+   I suspect that simply redefining this will lead to trouble; 
    at some point, these should probably be renamed (FVWM_MSG_ERROR?). */
 #ifdef M_ERROR
 #  undef M_ERROR

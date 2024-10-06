@@ -4,7 +4,7 @@
 /***********************************************************************
  *
  *  Procedure:
- *	safemalloc - mallocs specified space or exits if there's a
+ *	safemalloc - mallocs specified space or exits if there's a 
  *		     problem
  *
  ***********************************************************************/

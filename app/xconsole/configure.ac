@@ -79,7 +79,7 @@ if test "x$USE_PRIVSEP" = "xyes" ; then
 			[Define to 1 if you have the 'setproctitle function.])
 	fi
 	AC_CHECK_FUNCS(setresuid, [
-		dnl Some platorms have setresuid that isn't implemented,
+		dnl Some platorms have setresuid that isn't implemented, 
 		dnl test for this
 		AC_MSG_CHECKING(if setresuid seems to work)
 		AC_RUN_IFELSE(
@@ -89,14 +89,14 @@ if test "x$USE_PRIVSEP" = "xyes" ; then
 int main(){errno=0; setresuid(0,0,0); if (errno==ENOSYS) exit(1); else exit(0);}
 			]])],
 			[AC_MSG_RESULT(yes)],
-			[AC_DEFINE(BROKEN_SETRESUID, 1,
+			[AC_DEFINE(BROKEN_SETRESUID, 1, 
 				[ENOSYS: Not implemented])
 		 	AC_MSG_RESULT(not implemented)]
 		)
 	])
 
 	AC_CHECK_FUNCS(setresgid, [
-		dnl Some platorms have setresgid that isn't implemented,
+		dnl Some platorms have setresgid that isn't implemented, 
 		dnl test for this
 		AC_MSG_CHECKING(if setresgid seems to work)
 		AC_RUN_IFELSE(
@@ -106,7 +106,7 @@ int main(){errno=0; setresuid(0,0,0); if (errno==ENOSYS) exit(1); else exit(0);}
 int main(){errno=0; setresgid(0,0,0); if (errno==ENOSYS) exit(1); else exit(0);}
 			]])],
 			[AC_MSG_RESULT(yes)],
-			[AC_DEFINE(BROKEN_SETRESGID, 1,
+			[AC_DEFINE(BROKEN_SETRESGID, 1, 
 				[ENOSYS: Not implemented])
 		 	AC_MSG_RESULT(not implemented)]
 		)
@@ -119,7 +119,7 @@ AC_ARG_WITH(privsep-user,
 	privsep_user="$withval",
 	privsep_user="_x11")
 if test "x$USE_PRIVSEP" = "xyes" ; then
-	AC_DEFINE_UNQUOTED(XCONSOLE_USER, "$privsep_user",
+	AC_DEFINE_UNQUOTED(XCONSOLE_USER, "$privsep_user", 
 		[Unprivileged userid])
 fi
 

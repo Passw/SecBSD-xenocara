@@ -864,7 +864,7 @@ cf_prefer_openpt=no
 case $host_os in
 (darwin[[0-9]].*)
 	;;
-(openbsd[0-9].* | secbsd[[0-9]].*)
+(openbsd[[0-9]].* | secbsd[[0-9]].*)
 	# The POSIX entrypoints exist, but have never worked.
 	;;
 (linux*)

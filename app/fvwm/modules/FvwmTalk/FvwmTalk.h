@@ -1,4 +1,4 @@
-#include "fvwmlib.h"
+#include "fvwmlib.h"     
 
 #define ACTION1 1
 #define ACTION2 2
@@ -15,7 +15,7 @@ struct list
 /*************************************************************************
  *
  * Subroutine Prototypes
- *
+ * 
  *************************************************************************/
 void Loop(int *fd);
 void SendInfo(int *fd,char *message,unsigned long window);

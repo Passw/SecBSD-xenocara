@@ -27,7 +27,7 @@ manual volume numbers.
     <cmdsynopsis>
       <command>xmore</command>
 
-      <arg><option><replaceable>filename</replaceable></option></arg>
+      <arg><option><replaceable>filename</replaceable></option></arg>     
     </cmdsynopsis>
   </refsynopsisdiv>
   <refsect1>
@@ -52,7 +52,7 @@ manual volume numbers.
       <simplelist type="inline">
         <!-- specific references -->
         <!-- none -->
-
+        
         <member><citerefentry><refentrytitle>X11</refentrytitle><manvolnum>__miscmansuffix__</manvolnum></citerefentry></member>
         <member><citerefentry><refentrytitle>xman</refentrytitle><manvolnum>__appmansuffix__</manvolnum></citerefentry></member>
       </simplelist>

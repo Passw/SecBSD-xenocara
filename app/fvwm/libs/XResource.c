@@ -38,7 +38,7 @@
       int opt_argc = argc - 6; /* options start at 6th argument for modules */
       char **opt_argv = argv + 6;
 
-      /* ... (open config file, etc.) */
+      /* ... (open config file, etc.) */ 
 
       /* Get global X resources */
       MergeXResources(NULL, &db, False);

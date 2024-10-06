@@ -1,7 +1,7 @@
 /*
  * xauth - manipulate authorization file
  *
- *
+ * 
 Copyright 1989, 1998  The Open Group
 
 Permission to use, copy, modify, distribute, and sell this software and its
@@ -55,7 +55,7 @@ static const char *defsource = "(stdin)";
 static void _X_NORETURN
 usage (int exitcode)
 {
-    static const char prefixmsg[] =
+    static const char prefixmsg[] = 
 "\n"
 "where options include:\n"
 "    -f authfilename                name of authority file to use\n"
@@ -66,7 +66,7 @@ usage (int exitcode)
 "    -V                             print version and exit\n"
 "\n"
 "and commands have the following syntax:\n";
-    static const char suffixmsg[] =
+    static const char suffixmsg[] = 
 "A dash may be used with the \"merge\" and \"source\" to read from the\n"
 "standard input.  Commands beginning with \"n\" use numeric format.\n";
 

@@ -19,7 +19,7 @@ http://www.math.missouri.edu/\~{}stephen}
 
 \maketitle
 
-This document describes a program I wrote to simulate the
+This document describes a program I wrote to simulate the 
 two dimensional Euler Equation --- a program that is part
 of the {\tt xlock} screensaver as the {\tt euler2d}
 mode.  A similar explanation may also be found in the
@@ -106,7 +106,7 @@ unusual initial distribution for the vorticity --- that the
 vorticity is a finite sum of dirac delta masses.
 \[ w(0,x) = \sum_{k=1}^N w_k \delta(x-x_k(0)) .\]
 Here $x_k(0)$ is the initial place where the points
-of vorticity are concentrated, with values $w_k$.
+of vorticity are concentrated, with values $w_k$.  
 Then at time $t$, the vorticity becomes
 \[ w(t,x) = \sum_{k=1}^N w_k \delta(x-x_k(t)) .\]
 The points of fluid $x_k(t)$ are pushed by the
@@ -132,7 +132,7 @@ the equations become
 
 We solve this $2N$ system of equations using standard
 numerical methods, in our case, using the second order midpoint method
-for the first step, and thereafter using the second order Adams-Bashforth
+for the first step, and thereafter using the second order Adams-Bashforth 
 method.  (See for example the book
 by Burden and Faires \cite{BF}).
 
@@ -142,8 +142,8 @@ The computer program solves equation (\ref{tildex-p1}), and displays
 the results on the screen, with a boundary.  All the information
 for solving the equation and displaying the output is countained
 in the structure {\tt euler2dstruct}.  Let us describe some of
-the fields in {\tt euler2dstruct}.
-The points $\tilde x_k$ are contained
+the fields in {\tt euler2dstruct}.  
+The points $\tilde x_k$ are contained 
 in {\tt double *x}: with the coordinates of
 $\tilde x_k$ being the two numbers
 {\tt x[2*k+0]}, {\tt x[2*k+1]}.  The values $w_k$ are contained
@@ -178,13 +178,13 @@ Here, and in the rest of this discussion, $R_{a,b}$ is a function
 that returns a random variable uniformly distributed over the interval
 $[a,b]$.
 
-This works fine for $\Delta$, but for $p(\Delta)$, the points
+This works fine for $\Delta$, but for $p(\Delta)$, the points 
 $p(\tilde x_k)$ are not uniformly distributed over $p(\Delta)$,
 but are distributed with a density proportional to
 $1/|p'(\tilde x_k)|^2$.  So to restore the uniform density we need
 to reject this value of $\tilde x_k$ with probability proportional
-to $|p'(\tilde x_k)|^2$.  Noticing that the condition
-$\sum_{n=2}^{\tt deg\_p} n |c_n| = 1$ implies that
+to $|p'(\tilde x_k)|^2$.  Noticing that the condition 
+$\sum_{n=2}^{\tt deg\_p} n |c_n| = 1$ implies that 
 $|p'(\tilde x_k)| \le 2$, we
 do this by rejecting if $|p'(\tilde x_k)|^2 < R_{0,4}$.
 (This makes use of the function {\tt calc\_mod\_dp2} which calculates
@@ -196,7 +196,7 @@ The main loop of the program is in the function {\tt draw\_euler2d}.
 Most of the drawing operations are contained in this function, and
 the numerical aspects are sent to the function {\tt ode\_solve}.
 But there is an aspect of this that I would like
-to discuss in the next section, and so we will look at a simple method for
+to discuss in the next section, and so we will look at a simple method for 
 numerically solving differential equations.
 
 The Euler Method
@@ -208,7 +208,7 @@ the solution of the equation:
 \label{method-simple}
 \tilde x_k(t+h) = \tilde x_k(t) + h \tilde\alpha_k(t) .
 \end{equation}
-The more sophisticated methods we use are variations of
+The more sophisticated methods we use are variations of 
 the Euler Method, and so the discussion in the following section
 still applies.
 
@@ -227,9 +227,9 @@ so now it is not used.
 One problem using a numerical scheme such as the Euler Method occurs
 when the points $\tilde x_k$ get close to the boundary
 of $\Delta$.  In that case, it is possible that the new
-points will be pushed outside of the boundary.  Even if they
+points will be pushed outside of the boundary.  Even if they 
 are not pushed out of the boundary, they may be much closer
-or farther from the boundary than they should be.
+or farther from the boundary than they should be.  
 Our system of equations is very sensitive to how close points
 are to the boundary --- points with non-zero vorticity
 (``vortex points'') that are close to the boundary travel
@@ -238,7 +238,7 @@ inversely proportional to the distance from the boundary.
 
 A way to try to mitigate this problem is something that I call
 ``subtle perturbation.''
-We map the points in
+We map the points in 
 the unit disk to points in the plane using the map
 \begin{equation*}
 F(x) = f(|x|) \frac x{|x|} ,
@@ -248,7 +248,7 @@ bijection.  It turns out that a good choice is
 \begin{equation*}
 f(t) = -\log(1-t) .
 \end{equation*}
-(The reason for this is that points close to each other
+(The reason for this is that points close to each other 
 that are a distance
 about $r$ from the boundary will be pushed around so that
 their distance from each other is about multiplied by the
@@ -268,12 +268,12 @@ $y_k = F(\tilde x_k)$.  In effect this is what we do.
 Instead of performing the computation (\ref{method-simple}),
 we do the calculation
 \begin{equation*}
-y_k = F(\tilde x_k(t)) + h {\cal A}(\tilde x_k) \tilde\alpha_k(t)
+y_k = F(\tilde x_k(t)) + h {\cal A}(\tilde x_k) \tilde\alpha_k(t) 
 \end{equation*}
 where
 ${\cal A}(x)$ is the matrix of partial derivatives of $F$:
 \begin{equation*}
-{\cal A}(x) =
+{\cal A}(x) = 
 \frac{f(|x|)}{|x|}
 \left[
 \begin{matrix}
@@ -300,10 +300,10 @@ the quantity {\tt SUBTLE\_PERTURB} is set.
 \section{Drawing the Points}
 
 As we stated earlier, most of the drawing functions are contained
-in the function {\tt draw\_euler2d}.  If the variable
+in the function {\tt draw\_euler2d}.  If the variable 
 {\tt hide\_vortex} is set (and the function {\tt init\_euler2d}
 will set this with probability $3/4$), then we only display
-the points $\tilde x_k$ for ${\tt Nvortex} < k \le N$.  If
+the points $\tilde x_k$ for ${\tt Nvortex} < k \le N$.  If 
 {\tt hide\_vortex} is not set, then the ``vortex points''
 $\tilde x_k$ ($1 \le k \le {\tt Nvortex}$) are displayed in white.
 In fact the points $p(\tilde x_k)$ are what are put onto the screen,
@@ -319,7 +319,7 @@ is replace by
 $$ K_1(x,y) = \frac{(x-y)^\perp}{|x-y|^{m+1}}, $$
 and
 $$ K_2(x,y) = K_1(x,y) - |y|^{1-m} K_1(x,y) .$$
-So for example, setting $m=2$ corresponds to the
+So for example, setting $m=2$ corresponds to the 
 quasi-geostrophic equation.  (I haven't yet figured out
 what $K_p$ should be, so if $m \ne 1$ we use the unit circle
 as the boundary.)

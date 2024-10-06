@@ -41,7 +41,7 @@ Author: Alan Coopersmith <alan.coopersmith@oracle.com>
 Date:   Tue Jul 12 10:37:50 2022 -0700
 
     xmessage 1.0.6
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
 
 commit f8be5016e618dcd650540b4cea5f710fd9a16e00
@@ -49,7 +49,7 @@ Author: Alan Coopersmith <alan.coopersmith@oracle.com>
 Date:   Sat Apr 16 16:01:36 2022 -0700
 
     gitlab CI: stop requiring Signed-off-by in commits
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
 
 commit a2d2c371a11302d8df204527119c6ec91cc9e898
@@ -57,10 +57,10 @@ Author: Alan Coopersmith <alan.coopersmith@oracle.com>
 Date:   Sat Apr 16 15:58:42 2022 -0700
 
     Stop casting function return values to void
-
+    
     This was used to make lint stop warning that you weren't checking
     the return value.
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
 
 commit 55cc3615df9045684c70293dcfcbaa26371e46ad
@@ -68,10 +68,10 @@ Author: Alan Coopersmith <alan.coopersmith@oracle.com>
 Date:   Sat Apr 16 15:57:02 2022 -0700
 
     Stop casting arguments to free()
-
+    
     This was needed for some pre-ANSI systems that declared free() to take
     'char *' instead of 'void *' arguments, but hasn't been needed in decades.
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
 
 commit cda8cd860d7cbbcab8da5d0bb28b0e55b35c000f
@@ -79,7 +79,7 @@ Author: Alan Coopersmith <alan.coopersmith@oracle.com>
 Date:   Tue Dec 7 12:29:45 2021 -0800
 
     Build xz tarballs instead of bzip2
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
 
 commit bed195ac430ffa991e9e5c89ad447c6efc1ed2c8
@@ -87,7 +87,7 @@ Author: Alan Coopersmith <alan.coopersmith@oracle.com>
 Date:   Tue Dec 7 12:29:42 2021 -0800
 
     gitlab CI: add a basic build test
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
 
 commit e315069848aea3aaeb72bd3bc9a5d0bdb1242ed7
@@ -95,7 +95,7 @@ Author: Alan Coopersmith <alan.coopersmith@oracle.com>
 Date:   Wed Nov 21 17:15:50 2018 -0800
 
     Update configure.ac bug URL for gitlab migration
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
 
 commit f1e22dc070daa73857ff2fd951424b9d1ef31a54
@@ -103,7 +103,7 @@ Author: Alan Coopersmith <alan.coopersmith@oracle.com>
 Date:   Fri Mar 9 18:00:17 2018 -0800
 
     xmessage 1.0.5
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
 
 commit 5112040e247e6d9003e8f5d5dc8533f2eda5ced9
@@ -111,7 +111,7 @@ Author: Mihail Konev <k.mvc@ya.ru>
 Date:   Thu Jan 26 14:00:21 2017 +1000
 
     autogen: add default patch prefix
-
+    
     Signed-off-by: Mihail Konev <k.mvc@ya.ru>
 
 commit a6730b5c7a824f87accb2f339a0599c4d799dc3f
@@ -119,10 +119,10 @@ Author: Emil Velikov <emil.l.velikov@gmail.com>
 Date:   Mon Mar 9 12:00:52 2015 +0000
 
     autogen.sh: use quoted string variables
-
+    
     Place quotes around the $srcdir, $ORIGDIR and $0 variables to prevent
     fall-outs, when they contain space.
-
+    
     Signed-off-by: Emil Velikov <emil.l.velikov@gmail.com>
     Reviewed-by: Peter Hutterer <peter.hutterer@who-t.net>
     Signed-off-by: Peter Hutterer <peter.hutterer@who-t.net>
@@ -132,9 +132,9 @@ Author: Peter Hutterer <peter.hutterer@who-t.net>
 Date:   Tue Jan 24 10:32:07 2017 +1000
 
     autogen.sh: use exec instead of waiting for configure to finish
-
+    
     Syncs the invocation of configure with the one from the server.
-
+    
     Signed-off-by: Peter Hutterer <peter.hutterer@who-t.net>
     Reviewed-by: Emil Velikov <emil.velikov@collabora.com>
 
@@ -143,9 +143,9 @@ Author: Alan Coopersmith <alan.coopersmith@oracle.com>
 Date:   Sat May 31 23:36:28 2014 -0700
 
     autogen.sh: Honor NOCONFIGURE=1
-
+    
     See http://people.gnome.org/~walters/docs/build-api.txt
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
 
 commit df6964a99d6508f5cc374f49f3ffff8e1bd45152
@@ -153,7 +153,7 @@ Author: Alan Coopersmith <alan.coopersmith@oracle.com>
 Date:   Sat May 31 23:36:28 2014 -0700
 
     configure: Drop AM_MAINTAINER_MODE
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
 
 commit fa46fad55550e100c50a3f4208aa953a29cfc3df
@@ -161,11 +161,11 @@ Author: Alan Coopersmith <alan.coopersmith@oracle.com>
 Date:   Mon Dec 9 21:28:33 2013 -0800
 
     Stop leaking temporary buffer when realloc fails to enlarge it
-
+    
     Fixes cppcheck error:
     [readfile.c:108]: (error) Common realloc mistake: 'cp' nulled
      but not freed upon failure
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
     Reviewed-by: Peter Hutterer <peter.hutterer@who-t.net>
     Reviewed-by: wharms <wharms@bfs.de>
@@ -175,7 +175,7 @@ Author: Alan Coopersmith <alan.coopersmith@oracle.com>
 Date:   Sat Jan 12 22:21:57 2013 -0800
 
     xmessage 1.0.4
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
 
 commit 36d79fb080723a019e18e166c36ccaf2127d199d
@@ -183,10 +183,10 @@ Author: Alan Coopersmith <alan.coopersmith@oracle.com>
 Date:   Sat Jan 12 22:21:05 2013 -0800
 
     config: Add missing AC_CONFIG_SRCDIR
-
+    
     Regroup AC statements under the Autoconf initialization section.
     Regroup AM statements under the Automake initialization section.
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@oracle.com>
 
 commit 2e23c3cf3352eb66b2f9ee78c529d49a195ae0de
@@ -194,10 +194,10 @@ Author: Gaetan Nadon <memsize@videotron.ca>
 Date:   Wed Jan 19 10:06:56 2011 -0500
 
     config: move man pages into their own directory
-
+    
     Use services provided by XORG_MANPAGE_SECTIONS.
     Use standard Makefile for man pages.
-
+    
     Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
 
 commit f84771abead3a89fd77db59d26ca194458e0bf22
@@ -205,7 +205,7 @@ Author: Gaetan Nadon <memsize@videotron.ca>
 Date:   Thu Jan 13 17:15:36 2011 -0500
 
     man: replace hard coded man page section with substitution strings
-
+    
     Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
 
 commit ee508e69c1160abdf339d8e32b575fb5da2598ec
@@ -213,9 +213,9 @@ Author: Gaetan Nadon <memsize@videotron.ca>
 Date:   Thu Jan 13 11:15:47 2011 -0500
 
     man: remove trailing spaces and tabs
-
+    
     Using s/[ \t]*$//
-
+    
     Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
 
 commit 402f6abee4b14c123a58065cb228277ab5c3cae7
@@ -223,7 +223,7 @@ Author: Gaetan Nadon <memsize@videotron.ca>
 Date:   Wed Jan 12 16:28:02 2011 -0500
 
     config: replace deprecated AM_CONFIG_HEADER with AC_CONFIG_HEADERS
-
+    
     This silences an Autoconf warning
 
 commit 48ac5420e3efa494ff8a528ffdf02c94af7f22bb
@@ -231,9 +231,9 @@ Author: Gaetan Nadon <memsize@videotron.ca>
 Date:   Wed Jan 12 15:29:50 2011 -0500
 
     config: replace deprecated AC_HELP_STRING with AS_HELP_STRING
-
+    
     This silences an Automake warning.
-
+    
     Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
 
 commit 40c220b0515dbd0c8d619deed93c8e43d792b8ee
@@ -241,11 +241,11 @@ Author: Gaetan Nadon <memsize@videotron.ca>
 Date:   Wed Jan 12 13:10:21 2011 -0500
 
     config: remove AC_PROG_CC as it overrides AC_PROG_C_C99
-
+    
     XORG_STRICT_OPTION from XORG_DEFAULT_OPTIONS calls
     AC_PROG_C_C99. This sets gcc with -std=gnu99.
     If AC_PROG_CC macro is called afterwards, it resets CC to gcc.
-
+    
     Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
 
 commit 8a534984a4215dd3282efad81f784dc2abc56a51
@@ -253,10 +253,10 @@ Author: Gaetan Nadon <memsize@videotron.ca>
 Date:   Wed Jan 12 11:54:40 2011 -0500
 
     config: use AC_PROG_INSTALL now supplied by XORG_DEFAULT_OPTIONS
-
+    
     It depends on util-macros 1.8 or later
     The existing statement can now be removed from the configuration file.
-
+    
     Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
 
 commit 08996e6dafa255b40264c0ce11e01d501a9f7ab9
@@ -264,10 +264,10 @@ Author: Gaetan Nadon <memsize@videotron.ca>
 Date:   Wed Jan 12 11:23:52 2011 -0500
 
     config: upgrade to util-macros 1.8 for additional man page support
-
+    
     Use MAN_SUBST now supplied in XORG_MANPAGE_SECTIONS
     The value of MAN_SUBST is the same for all X.Org packages.
-
+    
     Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
 
 commit 5c896e0f10fe6f87443f1656cff8cf5466822cf0
@@ -275,20 +275,20 @@ Author: Gaetan Nadon <memsize@videotron.ca>
 Date:   Wed Jan 12 10:21:24 2011 -0500
 
     config: update AC_PREREQ statement to 2.60
-
+    
     Unrelated to the previous patches, the new value simply reflects
     the reality that the minimum level for autoconf to configure
     all x.org modules in one pass is 2.60 dated June 2006.
-
+    
     A version later than 2.60 can be used, but no new features from such
     a later version can be used in configure.ac.
-
+    
     Although the code in this module can be configured with a version earlier
     than 2.60, most of code is now contained in macros from util-macros
     which use features of version 2.60, at the present or in the future.
-
+    
     ftp://ftp.gnu.org/gnu/autoconf/autoconf-2.60.tar.gz
-
+    
     Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
 
 commit 4bebccd8fde390d347df168415204dd296d09e9e
@@ -296,10 +296,10 @@ Author: Julien Cristau <jcristau@debian.org>
 Date:   Mon Nov 8 17:20:29 2010 +0100
 
     man: point to the X manpage for more command line options
-
+    
     It was already listed in 'SEE ALSO', but adding a reference in the
     'OPTIONS' section is probably easier to find.
-
+    
     Reported-by: Ivan Vilata i Balaguer <ivan@selidor.net>
     Cc: 505891@bugs.debian.org
     Signed-off-by: Julien Cristau <jcristau@debian.org>
@@ -310,7 +310,7 @@ Author: Alan Coopersmith <alan.coopersmith@sun.com>
 Date:   Fri Jan 29 23:14:56 2010 -0800
 
     xmessage 1.0.3
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@sun.com>
 
 commit ac722e899333482e96de163eadfed1a540209dce
@@ -318,7 +318,7 @@ Author: Alan Coopersmith <alan.coopersmith@sun.com>
 Date:   Fri Jan 29 23:14:24 2010 -0800
 
     Rely on PKG_CHECK_MODULES to AC_SUBST XMESSAGE_CFLAGS & _LIBS
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@sun.com>
 
 commit 529f0f2125a1f5e7d6382f918af955616a35d657
@@ -326,7 +326,7 @@ Author: Alan Coopersmith <alan.coopersmith@sun.com>
 Date:   Fri Jan 29 23:10:13 2010 -0800
 
     Fill in COPYING file with notices from source code
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@sun.com>
 
 commit 72014bab094682621a206958bb7c62f83d789cde
@@ -334,7 +334,7 @@ Author: Alan Coopersmith <alan.coopersmith@sun.com>
 Date:   Fri Jan 29 23:06:47 2010 -0800
 
     Use AM_V_GEN to silence manpage generation too
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@sun.com>
 
 commit d351d89dd97e8b90e2b6a0421d8e976d22c8fb14
@@ -342,7 +342,7 @@ Author: Alan Coopersmith <alan.coopersmith@sun.com>
 Date:   Fri Jan 29 23:03:51 2010 -0800
 
     Bump xorg-macros requirement to 1.4 for XORG_INSTALL changes
-
+    
     Signed-off-by: Alan Coopersmith <alan.coopersmith@sun.com>
 
 commit 093a45093e98b08763c398fc36955ea4c9350edc
@@ -350,9 +350,9 @@ Author: Gaetan Nadon <memsize@videotron.ca>
 Date:   Sat Dec 19 20:48:48 2009 -0500
 
     configure.ac: use backticks rather than $() for cmd subs
-
+    
     Use "$PKG_CONFIG" rather than hard coded "pkg-config"
-
+    
     Signed-off-by: Gaetan Nadon <memsize@videotron.ca>
 
 commit 7fd49423ac4497443f0e5b53588bc064f9096e7e
@@ -360,7 +360,7 @@ Author: Gaetan Nadon <memsize@videotron.ca>
 Date:   Thu Nov 26 09:19:54 2009 -0500
 
     Makefile.am: add ChangeLog and INSTALL on MAINTAINERCLEANFILES
-
+    
     Now that the INSTALL file is generated.
     Allows running make maintainer-clean.
 
@@ -369,7 +369,7 @@ Author: Gaetan Nadon <memsize@videotron.ca>
 Date:   Wed Oct 28 14:09:08 2009 -0400
 
     INSTALL, NEWS, README or AUTHORS files are missing/incorrect #24206
-
+    
     Add missing INSTALL file. Use standard GNU file on building tarball
     README may have been updated
     Remove AUTHORS file as it is empty and no content available yet.
@@ -380,7 +380,7 @@ Author: Gaetan Nadon <memsize@videotron.ca>
 Date:   Tue Oct 27 15:07:25 2009 -0400
 
     Deploy the new XORG_DEFAULT_OPTIONS #24242
-
+    
     This macro aggregate a number of existing macros that sets commmon
     X.Org components configuration options. It shields the configuration file from
     future changes.
@@ -390,7 +390,7 @@ Author: Gaetan Nadon <memsize@videotron.ca>
 Date:   Mon Oct 26 22:08:39 2009 -0400
 
     Makefile.am: ChangeLog not required: EXTRA_DIST or *CLEANFILES #24432
-
+    
     ChangeLog filename is known to Automake and requires no further
     coding in the makefile.
 
@@ -399,7 +399,7 @@ Author: Gaetan Nadon <memsize@videotron.ca>
 Date:   Thu Oct 22 12:34:15 2009 -0400
 
     .gitignore: use common defaults with custom section # 24239
-
+    
     Using common defaults will reduce errors and maintenance.
     Only the very small or inexistent custom section need periodic maintenance
     when the structure of the component changes. Do not edit defaults.
@@ -415,7 +415,7 @@ Author: Paulo Cesar Pereira de Andrade <pcpa@mandriva.com.br>
 Date:   Sun Mar 16 18:15:54 2008 -0300
 
     Compile warning fixes.
-
+    
       Declare xmessage.c:detab as static to avoid warning about missing prototype.
       Also remove CVS id variable, and the printing of it in "xmessage -help".
 
@@ -430,7 +430,7 @@ Author: Julien Cristau <jcristau@debian.org>
 Date:   Sat Aug 2 17:40:05 2008 +0200
 
     Create the app-defaults dir when using a build dir (build fix)
-
+    
     Also use AM_CFLAGS instead of xmessage_CFLAGS, making AM_PROG_CC_C_O
     unnecessary.
 
@@ -451,10 +451,10 @@ Author: Brice Goglin <bgoglin@debian.org>
 Date:   Tue Sep 4 00:45:50 2007 +0200
 
     unquote_pairs() really unquotes all pairs
-
+    
     Fix unquote_pairs() to unquote every pair in br instead only
     the first one n times.
-
+    
     Reported by Viktor Horvath in Debian bug #440734.
 
 commit 24f1760790a9d2f73cac94bc00d8137fefac9f38
@@ -474,7 +474,7 @@ Author: Matthieu Herrb <matthieu.herrb@laas.fr>
 Date:   Tue Apr 24 22:04:09 2007 +0200
 
     Add rules to generate ChangeLog.
-
+    
     (this file was missed in a previous commit - sorry).
 
 commit 821d4603d701efcb09fcbdd246d6f7d9c3a24f28
@@ -482,7 +482,7 @@ Author: Matthieu Herrb <matthieu.herrb@laas.fr>
 Date:   Sun Apr 15 19:13:36 2007 +0200
 
     Untabify message before inserting it.
-
+    
     From Kevin Ryde in Debian BTS, via bugzilla #10575, Brice Goglin.
 
 commit ed3f8aa0b66e5829836b576e6096bd645e87c50e
@@ -496,7 +496,7 @@ Author: Matthieu Herrb <matthieu.herrb@laas.fr>
 Date:   Sun Apr 15 19:04:51 2007 +0200
 
     Modernize build
-
+    
     - replace ChangeLog by a generated file
     - rename .cvsignore -> .gitignore
 

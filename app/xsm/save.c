@@ -40,7 +40,7 @@ in this Software without prior written authorization from The Open Group.
 #include <X11/Xaw/Toggle.h>
 #include <X11/Xaw/AsciiText.h>
 
-
+
 static Widget savePopup;
 static Widget   saveForm;
 static Widget	   saveMessageLabel;
@@ -93,7 +93,7 @@ static String name_in_use = NULL;
 static Bool name_locked = False;
 
 
-
+
 static void
 MakeCurrentSession(String new_name, Bool name_changed)
 {
@@ -122,11 +122,11 @@ MakeCurrentSession(String new_name, Bool name_changed)
 		client->discardCommand = NULL;
 	    }
 	}
-
+	
 	/*
 	 * Unlock the old session.
 	 */
-
+	
 	if (!need_to_name_session)
 	    UnlockSession (session_name);
     }
@@ -176,7 +176,7 @@ MakeCurrentSession(String new_name, Bool name_changed)
 
 
 
-
+
 #define NAME_OK     0
 #define NAME_EMPTY  1
 #define NAME_EXISTS 2
@@ -231,7 +231,7 @@ GetSaveName(String *nameRet)
 
 	FreeSessionNames (sessionNameCount,
 	    sessionNamesShort, NULL, sessionsLocked);
-
+	
 	if (no_good)
 	    return (locked ? NAME_LOCKED : NAME_EXISTS);
     }
@@ -241,7 +241,7 @@ GetSaveName(String *nameRet)
     return (NAME_OK);
 }
 
-
+
 static void
 GetSaveOptions(int *saveType, int *interactStyle, Bool *fast)
 {
@@ -263,7 +263,7 @@ GetSaveOptions(int *saveType, int *interactStyle, Bool *fast)
 }
 
 
-
+
 void
 DoSave(int saveType, int interactStyle, Bool fast)
 {
@@ -295,7 +295,7 @@ DoSave(int saveType, int interactStyle, Bool fast)
     SetSaveSensitivity (False);
 
     saveInProgress = True;
-
+    
     shutdownCancelled = False;
     phase2InProgress = False;
 
@@ -333,7 +333,7 @@ DoSave(int saveType, int interactStyle, Bool fast)
 }
 
 
-
+
 static void
 SaveOkAction(Widget w, XEvent *event, String *params, Cardinal *num_params)
 {
@@ -341,7 +341,7 @@ SaveOkAction(Widget w, XEvent *event, String *params, Cardinal *num_params)
 }
 
 
-
+
 static void
 DelSaveWinAction(Widget w, XEvent *event, String *params, Cardinal *num_params)
 {
@@ -349,18 +349,18 @@ DelSaveWinAction(Widget w, XEvent *event, String *params, Cardinal *num_params)
 }
 
 
-
+
 static void
-DelNameInUseWinAction(Widget w, XEvent *event, String *params,
+DelNameInUseWinAction(Widget w, XEvent *event, String *params, 
 		      Cardinal *num_params)
 {
     XtCallCallbacks (nameInUseCancelButton, XtNcallback, NULL);
 }
 
 
-
+
 static void
-DelBadSaveWinAction(Widget w, XEvent *event, String *params,
+DelBadSaveWinAction(Widget w, XEvent *event, String *params, 
 		    Cardinal *num_params)
 {
     if (XtIsManaged (badSaveCancelButton))
@@ -370,16 +370,16 @@ DelBadSaveWinAction(Widget w, XEvent *event, String *params,
 }
 
 
-
+
 static void
-DelSaveHelpWinAction(Widget w, XEvent *event, String *params,
+DelSaveHelpWinAction(Widget w, XEvent *event, String *params, 
 		     Cardinal *num_params)
 {
     XtCallCallbacks (helpSaveOkButton, XtNcallback, NULL);
 }
 
 
-
+
 static void
 SaveOkXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -451,7 +451,7 @@ SaveOkXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 void
 LetClientInteract(List *cl)
 {
@@ -533,7 +533,7 @@ FinishUpSave(void)
 	    XtFree (client->discardCommand);
 	    client->discardCommand = NULL;
 	}
-
+	    
 	if (client->saveDiscardCommand)
 	{
 	    client->discardCommand = client->saveDiscardCommand;
@@ -545,7 +545,7 @@ FinishUpSave(void)
     /*
      * Write the save file
      */
-
+    
     WriteSave (sm_id);
 
 
@@ -598,7 +598,7 @@ FinishUpSave(void)
 }
 
 
-
+
 static void
 SaveCancelXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -614,13 +614,13 @@ SaveCancelXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 /*
  * Add toggle button
  */
 
 static Widget
-AddToggle(String widgetName, Widget parent, int state, Widget radioGroup,
+AddToggle(String widgetName, Widget parent, int state, Widget radioGroup, 
 	  XtPointer radioData,  Widget fromHoriz, Widget fromVert)
 {
     Widget toggle;
@@ -638,7 +638,7 @@ AddToggle(String widgetName, Widget parent, int state, Widget radioGroup,
 }
 
 
-
+
 void
 SetSaveSensitivity(Bool on)
 {
@@ -666,9 +666,9 @@ SetSaveSensitivity(Bool on)
 }
 
 
-
+
 void
-SavePopupStructureNotifyXtHandler(Widget w, XtPointer closure, XEvent *event,
+SavePopupStructureNotifyXtHandler(Widget w, XtPointer closure, XEvent *event, 
 				  Boolean *continue_to_dispatch)
 {
     if (event->type == MapNotify)
@@ -701,7 +701,7 @@ SavePopupStructureNotifyXtHandler(Widget w, XtPointer closure, XEvent *event,
 }
 
 
-
+
 static void
 NameInUseOverwriteXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -727,7 +727,7 @@ NameInUseOverwriteXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 static void
 NameInUseCancelXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -738,7 +738,7 @@ NameInUseCancelXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 static void
 BadSaveOkXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -748,7 +748,7 @@ BadSaveOkXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 static void
 BadSaveCancelXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -767,7 +767,7 @@ BadSaveCancelXtProc(Widget w, XtPointer client_data, XtPointer callData)
 
 	    SmsShutdownCancelled (client->smsConn);
 
-	    if (verbose)
+	    if (verbose) 
 	    {
 		printf ("Client Id = %s, sent SHUTDOWN CANCELLED\n",
 			client->clientId);
@@ -779,7 +779,7 @@ BadSaveCancelXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 static void
 BadSaveListXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -787,7 +787,7 @@ BadSaveListXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 static void
 HelpSaveXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -812,7 +812,7 @@ HelpSaveXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 static void
 HelpSaveOkXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -821,7 +821,7 @@ HelpSaveOkXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 void
 create_save_popup(void)
 
@@ -845,7 +845,7 @@ create_save_popup(void)
 	"savePopup", transientShellWidgetClass, topLevel,
 	XtNallowShellResize, True,
 	NULL);
-
+    
     saveForm = XtCreateManagedWidget (
 	"saveForm", formWidgetClass, savePopup, NULL, 0);
 
@@ -996,7 +996,7 @@ create_save_popup(void)
 	"nameInUsePopup", transientShellWidgetClass, topLevel,
 	XtNallowShellResize, True,
 	NULL);
-
+    
 
     nameInUseForm = XtVaCreateManagedWidget (
 	"nameInUseForm", formWidgetClass, nameInUsePopup,
@@ -1019,7 +1019,7 @@ create_save_popup(void)
 	XtNtop, XawChainBottom,
 	XtNbottom, XawChainBottom,
         NULL);
-
+    
     XtAddCallback (nameInUseOverwriteButton, XtNcallback,
 	NameInUseOverwriteXtProc, NULL);
 
@@ -1032,7 +1032,7 @@ create_save_popup(void)
 	XtNtop, XawChainBottom,
 	XtNbottom, XawChainBottom,
         NULL);
-
+    
     XtAddCallback (nameInUseCancelButton, XtNcallback,
 	NameInUseCancelXtProc, NULL);
 
@@ -1044,7 +1044,7 @@ create_save_popup(void)
     helpPopup = XtVaCreatePopupShell (
 	"helpPopup", transientShellWidgetClass, topLevel,
 	NULL);
-
+    
 
     helpForm = XtVaCreateManagedWidget (
 	"helpForm", formWidgetClass, helpPopup,
@@ -1066,7 +1066,7 @@ create_save_popup(void)
 	XtNbottom, XawChainBottom,
         XtNvertDistance, 20,
         NULL);
-
+    
     XtAddCallback (helpSaveOkButton, XtNcallback,
 	HelpSaveOkXtProc, NULL);
 
@@ -1079,7 +1079,7 @@ create_save_popup(void)
 	"badSavePopup", transientShellWidgetClass, topLevel,
 	XtNallowShellResize, True,
 	NULL);
-
+    
 
     badSaveForm = XtVaCreateManagedWidget (
 	"badSaveForm", formWidgetClass, badSavePopup,
@@ -1132,7 +1132,7 @@ create_save_popup(void)
 }
 
 
-
+
 void
 PopupSaveDialog(void)
 
@@ -1169,7 +1169,7 @@ PopupSaveDialog(void)
 
 
 
-
+
 void
 CheckPointXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -1179,7 +1179,7 @@ CheckPointXtProc(Widget w, XtPointer client_data, XtPointer callData)
 
 
 
-
+
 void
 ShutdownSaveXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {
@@ -1188,7 +1188,7 @@ ShutdownSaveXtProc(Widget w, XtPointer client_data, XtPointer callData)
 }
 
 
-
+
 void
 PopupBadSave(void)
 
@@ -1351,7 +1351,7 @@ PopupBadSave(void)
 }
 
 
-
+
 void
 ShutdownDontSaveXtProc(Widget w, XtPointer client_data, XtPointer callData)
 {

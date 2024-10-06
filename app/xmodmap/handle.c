@@ -48,7 +48,7 @@ static XModifierKeymap *map = NULL;
 
 /*
  * The routines in this file manipulate a queue of intructions.  Instead of
- * executing each line as it is entered, we build up a list of actions to
+ * executing each line as it is entered, we build up a list of actions to 
  * take and execute them all at the end.  This allows us to find all errors
  * at once, and to preserve the context in which we are looking up keysyms.
  */
@@ -148,7 +148,7 @@ badheader(void)
 
 #define badmsgn(what,s,len) badmsg (what, copy_to_scratch (s, len))
 
-void
+void 
 initialize_map (void)
 {
     map = XGetModifierMapping (dpy);
@@ -157,7 +157,7 @@ initialize_map (void)
 
 static void do_keycode ( char *line, int len );
 static void do_keysym ( char *line, int len );
-static void finish_keycodes ( const char *line, int len, KeyCode *keycodes,
+static void finish_keycodes ( const char *line, int len, KeyCode *keycodes, 
 			      int count );
 static void do_add ( char *line, int len );
 static void do_remove ( char *line, int len );
@@ -189,7 +189,7 @@ static struct dt {
  * and trailing whitespace removed) and builds up the work queue.
  */
 
-void
+void 
 handle_line(char *line,		/* string to parse */
 	    int len)		/* length of line */
 {
@@ -221,9 +221,9 @@ handle_line(char *line,		/* string to parse */
 
 /*
  * the following routines are useful for parsing
- */
+ */ 
 
-static int
+static int 
 skip_word (const char *s, int len)
 {
     register int n;
@@ -232,7 +232,7 @@ skip_word (const char *s, int len)
     return (n + skip_space (s+n, len-n));
 }
 
-static int
+static int 
 skip_chars(const char *s, int len)
 {
     register int i;
@@ -245,7 +245,7 @@ skip_chars(const char *s, int len)
     return (i);
 }
 
-static int
+static int 
 skip_space(const char *s, int len)
 {
     register int i;
@@ -259,7 +259,7 @@ skip_space(const char *s, int len)
 }
 
 
-static int
+static int 
 skip_until_char(const char *s, int len, char c)
 {
     register int i;
@@ -302,7 +302,7 @@ add_to_work_queue(union op *p)	/* this can become a macro someday */
     return;
 }
 
-static Bool
+static Bool 
 parse_number(const char *str, unsigned long *val)
 {
     const char *fmt = "%ld";
@@ -324,7 +324,7 @@ parse_number(const char *str, unsigned long *val)
     return (sscanf (str, fmt, val) == 1);
 }
 
-static Bool
+static Bool 
 parse_keysym(const char *line, int n, char **name, KeySym *keysym)
 {
     *name = copy_to_scratch (line, n);
@@ -348,7 +348,7 @@ parse_keysym(const char *line, int n, char **name, KeySym *keysym)
  * listed.
  */
 
-static void
+static void 
 do_keycode(char *line, int len)
 {
     int dummy;
@@ -396,7 +396,7 @@ do_keycode(char *line, int len)
  * The left keysyms has to be checked for validity and evaluated.
  */
 
-static void
+static void 
 do_keysym(char *line, int len)
 {
     int n;
@@ -437,17 +437,17 @@ do_keysym(char *line, int len)
     finish_keycodes (line, len, keycodes, n);
 }
 
-static void
+static void 
 finish_keycodes(const char *line, int len, KeyCode *keycodes, int count)
 {
     int n;
     KeySym *kslist;
     union op *uop;
     struct op_keycode *opk;
-
+   
     n = skip_until_char (line, len, '=');
     line += n, len -= n;
-
+    
     if (len < 1 || *line != '=') {	/* = minimum */
 	badmsg0 ("keycode command (missing keysym list),");
 	return;
@@ -501,7 +501,7 @@ struct modtab modifier_table[] = {	/* keep in order so it can be index */
     { "ctrl", 4, 2 },
     { NULL, 0, 0 }};
 
-static int
+static int 
 parse_modifier(char *line, int n)
 {
     register int i;
@@ -529,7 +529,7 @@ parse_modifier(char *line, int n)
  * is not important.  There should also be an alias Ctrl for control.
  */
 
-static void
+static void 
 do_add(char *line, int len)
 {
     int n;
@@ -593,7 +593,7 @@ do_add(char *line, int len)
 /*
  * make_add - stick a single add onto the queue
  */
-static void
+static void 
 make_add(int modifier, KeySym keysym)
 {
     union op *uop;
@@ -633,7 +633,7 @@ make_add(int modifier, KeySym keysym)
  * is not important.  There should also be an alias Ctrl for control.
  */
 
-static void
+static void 
 do_remove(char *line, int len)
 {
     int n;
@@ -708,7 +708,7 @@ do_remove(char *line, int len)
 	if (verbose) {
 	    int j;
 	    char *tmpname = XKeysymToString (kslist[i]);
-	    printf ("! Keysym %s (0x%lx) corresponds to keycode(s)",
+	    printf ("! Keysym %s (0x%lx) corresponds to keycode(s)", 
 		    tmpname ? tmpname : "?", (long) kslist[i]);
 	    for (j = 0; j < num_kcs; j++)
 		printf(" 0x%x", kcs[j]);
@@ -751,7 +751,7 @@ do_remove(char *line, int len)
 /*
  * make_remove - stick a single remove onto the queue
  */
-static void
+static void 
 make_remove(int modifier, KeyCode keycode)
 {
     union op *uop;
@@ -790,7 +790,7 @@ make_remove(int modifier, KeyCode keycode)
  *                       ^
  */
 
-static void
+static void 
 do_clear(char *line, int len)
 {
     int n;
@@ -831,7 +831,7 @@ do_clear(char *line, int len)
 }
 
 #ifndef HAVE_STRNCASECMP
-static int
+static int 
 strncasecmp(const char *a, const char *b, int n)
 {
     int i;
@@ -858,7 +858,7 @@ strncasecmp(const char *a, const char *b, int n)
  *                         ^
  */
 
-static void
+static void 
 do_pointer(char *line, int len)
 {
     int n;
@@ -914,15 +914,15 @@ do_pointer(char *line, int len)
 	    line += n, len -= n;
 	}
     }
-
+    
     if (i > 0 && i != nbuttons) {
 	if (i < nbuttons) {
-	    fprintf (stderr,
+	    fprintf (stderr, 
 		     "Warning: Only changing the first %d of %d buttons.\n",
 		     i, nbuttons);
 	}
-	else {  /* i > nbuttons */
-	    fprintf (stderr,
+	else {  /* i > nbuttons */ 
+	    fprintf (stderr, 
 		     "Warning: Not changing %d extra buttons beyond %d.\n",
 		     i - nbuttons, nbuttons);
 	}
@@ -958,7 +958,7 @@ do_pointer(char *line, int len)
  * and adding it to the list.
  */
 
-static int
+static int 
 get_keysym_list(const char *line, int len, int *np, KeySym **kslistp)
 {
     int havesofar, maxcanhave;
@@ -1036,7 +1036,7 @@ get_keysym_list(const char *line, int len, int *np, KeySym **kslistp)
  * 8 by map->max_keypermod keycodes.
  */
 
-static void
+static void 
 check_special_keys(KeyCode keycode, int n, KeySym *kslist)
 {
     int i;				/* iterator variable */
@@ -1094,7 +1094,7 @@ check_special_keys(KeyCode keycode, int n, KeySym *kslist)
  * print_work_queue - disassemble the work queue and print it on stdout
  */
 
-void
+void 
 print_work_queue(void)
 {
     union op *op;
@@ -1106,7 +1106,7 @@ print_work_queue(void)
     return;
 }
 
-static void
+static void 
 print_opcode(union op *op)
 {
     int i;
@@ -1170,7 +1170,7 @@ static int exec_clear ( struct op_clearmodifier *opcm );
 static int exec_pointer ( struct op_pointer *opp );
 
 
-int
+int 
 execute_work_queue (void)
 {
     union op *op;
@@ -1204,7 +1204,7 @@ execute_work_queue (void)
 		    while (XCheckTypedEvent (dpy, MappingNotify, &event)) ;
 		    XRefreshKeyboardMapping (&event.xmapping);
 		} else {
-		    fprintf (stderr, "%s:  unknown event %ld\n",
+		    fprintf (stderr, "%s:  unknown event %ld\n", 
 		    	     ProgramName, (long) event.type);
 		}
 	    }
@@ -1234,7 +1234,7 @@ execute_work_queue (void)
 	    if (exec_pointer (&op->pointer) < 0) errors++;
 	    break;
 	  default:
-	    fprintf (stderr, "%s:  unknown opcode %d\n",
+	    fprintf (stderr, "%s:  unknown opcode %d\n", 
 		     ProgramName, op->generic.type);
 	    break;
 	}
@@ -1247,7 +1247,7 @@ execute_work_queue (void)
     return (errors > 0 ? -1 : 0);
 }
 
-static int
+static int 
 exec_keycode(struct op_keycode *opk)
 {
     if (!opk->target_keycode) {
@@ -1283,13 +1283,13 @@ exec_keycode(struct op_keycode *opk)
 	XChangeKeyboardMapping (dpy, opk->target_keycode, 1,
 				&dummy, 1);
     } else {
-	XChangeKeyboardMapping (dpy, opk->target_keycode, opk->count,
+	XChangeKeyboardMapping (dpy, opk->target_keycode, opk->count, 
 				opk->keysyms, 1);
     }
     return (0);
 }
 
-static int
+static int 
 exec_add(struct op_addmodifier *opam)
 {
     int i;
@@ -1311,7 +1311,7 @@ exec_add(struct op_addmodifier *opam)
     return (status);
 }
 
-static int
+static int 
 exec_remove(struct op_removemodifier *oprm)
 {
     int i;
@@ -1325,34 +1325,34 @@ exec_remove(struct op_removemodifier *oprm)
     return (status);
 }
 
-static int
+static int 
 exec_clear(struct op_clearmodifier *opcm)
 {
     return (ClearModifier (&map, opcm->modifier));
 }
 
 
-static int
+static int 
 exec_pointer(struct op_pointer *opp)
 {
     return (SetPointerMap (opp->button_codes, opp->count));
 }
 
-void
+void 
 print_modifier_map(void)
 {
     PrintModifierMapping (map, stdout);
     return;
 }
 
-void
+void 
 print_key_table(Bool exprs)
 {
     PrintKeyTable (exprs, stdout);
     return;
 }
 
-void
+void 
 print_pointer_map(void)
 {
     PrintPointerMap (stdout);

@@ -6,20 +6,20 @@
  * the above copyright notice appear in all copies and that both that
  * copyright notice and this permission notice appear in supporting
  * documentation.  No representations are made about the suitability of this
- * software for any purpose.  It is provided "as is" without express or
+ * software for any purpose.  It is provided "as is" without express or 
  * implied warranty.
  */
 
 /* 1999-Nov-21 Modified by Jim Knoble <jmknoble@jmknoble.cx>.
  * Modifications:
- *
+ * 
  *   - Made get_boolean_resource() accept a third parameter, default_value,
  *     which determines the result of get_boolean_resource if either (a)
  *     no such resource exists, or (b) the resource value does not conform
  *     to the syntax of a boolean resource.
- *
+ * 
  *   - Same for get_integer_resource(), get_pixel_resource().
- *
+ * 
  *   - 1999-Dec-24 Moved header includes from utils.h to here.
  *     Trimmed unused functions.
  */
@@ -55,14 +55,14 @@ get_string_resource (char *res_name, char *res_class)
   char full_name [1024], full_class [1024];
   int result;
 
-  result = snprintf(full_name, sizeof(full_name), "%s.%s",
+  result = snprintf(full_name, sizeof(full_name), "%s.%s", 
       progname, res_name);
   if (result == -1 || result >= sizeof(full_name)) {
 	  fprintf(stderr, "%s: resource name too long: %s.%s\n", progname,
 	      progname, res_name);
 	  return 0;
   }
-  result = snprintf(full_class, sizeof(full_class), "%s.%s",
+  result = snprintf(full_class, sizeof(full_class), "%s.%s", 
       progclass, res_class);
   if (result == -1 || result >= sizeof(full_class)) {
 	 fprintf(stderr, "%s: resource name too long: %s.%s\n", progname,
@@ -79,7 +79,7 @@ get_string_resource (char *res_name, char *res_class)
   return 0;
 }
 
-Bool
+Bool 
 get_boolean_resource (char *res_name, char *res_class, Bool default_value)
 {
   char *tmp, buf [100];
@@ -105,7 +105,7 @@ get_boolean_resource (char *res_name, char *res_class, Bool default_value)
   return default_value;
 }
 
-int
+int 
 get_integer_resource (char *res_name, char *res_class, int default_value)
 {
   int val;

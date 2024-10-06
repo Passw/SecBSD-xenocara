@@ -51,7 +51,7 @@ typedef struct _ButtonRecord {
     Widget widget;
 } ButtonRecord;
 
-static void
+static void 
 unquote_pairs (ButtonRecord *br, int n)
 {
     int i;
@@ -80,7 +80,7 @@ unquote_pairs (ButtonRecord *br, int n)
  * sets brptr to point to parsed table
  * returns 0 if successful, -1 if not
  */
-static int
+static int 
 parse_name_and_exit_code_list (char *buttonlist, ButtonRecord **brptr)
 {
     char *cp;
@@ -197,7 +197,7 @@ parse_name_and_exit_code_list (char *buttonlist, ButtonRecord **brptr)
 }
 
 /* ARGSUSED */
-static void
+static void 
 handle_button (Widget w, XtPointer closure, XtPointer client_data)
 {
     ButtonRecord *br = (ButtonRecord *) closure;
@@ -207,7 +207,7 @@ handle_button (Widget w, XtPointer closure, XtPointer client_data)
     exit (br->exitstatus);
 }
 
-Widget
+Widget 
 make_queryform(Widget parent,	/* into whom widget should be placed */
     char *msgstr,		/* message string */
     int msglen,			/* characters in msgstr */

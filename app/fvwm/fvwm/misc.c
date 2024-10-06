@@ -995,8 +995,8 @@ void RaiseWindow(FvwmWindow *t)
          Motif menus. Instead raise wins[0] only above the topmost window
 	 which is managed by us.
       */
-     if (wins[0] != Scr.FvwmRoot.stack_next->frame && wins[0] != Scr.FvwmRoot.stack_next->icon_w && wins[0] != Scr.FvwmRoot.stack_next->icon_pixmap_w)
-      {
+     if (wins[0] != Scr.FvwmRoot.stack_next->frame && wins[0] != Scr.FvwmRoot.stack_next->icon_w && wins[0] != Scr.FvwmRoot.stack_next->icon_pixmap_w) 
+      { 
         if (Scr.FvwmRoot.stack_next->flags & ICONIFIED)
           {
             /*

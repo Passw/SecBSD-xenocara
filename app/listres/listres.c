@@ -1,7 +1,7 @@
 /*
  * $XConsortium: listres.c,v 1.32 94/04/17 20:43:22 dave Exp $
  *
- *
+ * 
 Copyright (c) 1989  X Consortium
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -110,7 +110,7 @@ static void print_tree_level (register XmuWidgetNode *wn, register int level)
     if (!wn) return;
 
     for (i = 0; i < level; i++) {
-	putchar (' '); putchar (' ');
+	putchar (' '); putchar (' '); 
     }
     printf ("%d:  %s/%s\n", level, wn->label, XmuWnClassname(wn));
     print_tree_level (wn->children, level + 1);

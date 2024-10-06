@@ -51,7 +51,7 @@
 
 union MaxMsgSize {
     union __RequestUnion__privileged_startx_subsystem req;
-    union __ReplyUnion__privileged_startx_subsystem rep;
+    union __ReplyUnion__privileged_startx_subsystem rep; 
 };
 
 #ifdef LAUNCH_JOBKEY_MACHSERVICES
@@ -81,31 +81,31 @@ const char *script_dir = SCRIPTDIR;
 static mach_port_t checkin_or_register(char *bname) {
     kern_return_t kr;
     mach_port_t mp;
-
+    
     /* If we're started by launchd or the old mach_init */
     kr = bootstrap_check_in(bootstrap_port, bname, &mp);
     if (kr == KERN_SUCCESS)
         return mp;
-
+    
     /* We probably were not started by launchd or the old mach_init */
     kr = mach_port_allocate(mach_task_self(), MACH_PORT_RIGHT_RECEIVE, &mp);
     if (kr != KERN_SUCCESS) {
         asl_log(NULL, NULL, ASL_LEVEL_ERR, "mach_port_allocate(): %s", mach_error_string(kr));
         exit(EXIT_FAILURE);
     }
-
+    
     kr = mach_port_insert_right(mach_task_self(), mp, mp, MACH_MSG_TYPE_MAKE_SEND);
     if (kr != KERN_SUCCESS) {
         asl_log(NULL, NULL, ASL_LEVEL_ERR, "mach_port_insert_right(): %s", mach_error_string(kr));
         exit(EXIT_FAILURE);
     }
-
+    
     kr = bootstrap_register(bootstrap_port, bname, mp);
     if (kr != KERN_SUCCESS) {
         asl_log(NULL, NULL, ASL_LEVEL_ERR, "bootstrap_register(): %s", mach_error_string(kr));
         exit(EXIT_FAILURE);
     }
-
+    
     return mp;
 }
 #endif

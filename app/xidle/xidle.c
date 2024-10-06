@@ -206,7 +206,7 @@ handler(int sig)
 	ev.window = x.win;
 	if (sig == SIGUSR1)
 		ev.message_type = XIDLE_LOCK;
-	else
+	else 
 		ev.message_type = XIDLE_DIE;
 	ev.format = 8;
 	XSendEvent(x.dpy, x.win, False, 0L, (XEvent *)&ev);

@@ -85,7 +85,7 @@ asprintf(char ** ret, const char *format, ...)
 #endif
 
 
-
+
 static int
 write_byte (FILE *file, unsigned char b)
 {
@@ -130,7 +130,7 @@ write_counted_string(FILE *file, char *string)
 }
 
 
-
+
 static int
 read_byte(FILE *file, unsigned char *bp)
 {
@@ -177,7 +177,7 @@ read_counted_string(FILE *file, char **stringp)
 }
 
 
-
+
 /*
  * An entry in the .smproxy file looks like this:
  *
@@ -208,7 +208,7 @@ WriteProxyFileEntry(FILE *proxyFile, WinInfo *theWindow)
 	return 0;
     if (!write_counted_string (proxyFile, theWindow->wm_name))
 	return 0;
-
+    
     if (!theWindow->wm_command || theWindow->wm_command_count == 0)
     {
 	if (!write_byte (proxyFile, 0))
@@ -254,7 +254,7 @@ ReadProxyFileEntry(FILE *proxyFile, ProxyFileEntry **pentry)
 	goto give_up;
     if (!read_counted_string (proxyFile, &entry->wm_name))
 	goto give_up;
-
+    
     if (!read_byte (proxyFile, &byte))
 	goto give_up;
     entry->wm_command_count = byte;
@@ -336,7 +336,7 @@ ReadProxyFile(char *filename)
 }
 
 
-
+
 static char *
 unique_filename(const char *path, const char *prefix, int *pFd)
 {
@@ -374,7 +374,7 @@ unique_filename(const char *path, const char *prefix, int *pFd)
 }
 
 
-
+
 char *
 WriteProxyFile(void)
 {
@@ -396,7 +396,7 @@ WriteProxyFile(void)
     if ((filename = unique_filename (path, ".prx", &fd)) == NULL)
 	goto bad;
 
-    if (!(proxyFile = fdopen(fd, "wb")))
+    if (!(proxyFile = fdopen(fd, "wb"))) 
 	goto bad;
 
     if (!write_short (proxyFile, SAVEFILE_VERSION))
@@ -435,7 +435,7 @@ WriteProxyFile(void)
 }
 
 
-
+
 char *
 LookupClientID(WinInfo *theWindow)
 {

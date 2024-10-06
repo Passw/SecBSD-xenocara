@@ -43,7 +43,7 @@ The features of
 .Nm
 are as follows:
 .Bl -dash -offset indent
-.It
+.It 
 Configurable via the standard X resource mechanisms
 .Pa /usr/X11R6/share/X11/app-defaults ,
 .Pa ~/.Xdefaults ,

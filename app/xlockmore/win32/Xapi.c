@@ -140,7 +140,7 @@ void SetGraphic(LPBYTE lpBMData, XImage *image)
   int loc = 0;
   int actBytesPerLine;
   int maxLoc;
-
+ 
   // initialise
   actBytesPerLine = (image->width + 7) / 8;
   bmSize = actBytesPerLine * image->height;
@@ -163,7 +163,7 @@ void SetGraphic(LPBYTE lpBMData, XImage *image)
 	    SetByte(lpBMData, w32val, loc, maxLoc);
 		loc++;
 	  }
-
+		
 	  // check for a line of graphic
 	  if (++lineBitCnt == image->width)
 	  {
@@ -210,13 +210,13 @@ LCreateBitmap(XImage *image, HBITMAP *hBitmap, HPALETTE *hPalette)
   palette[1][2] = 000; /* blue  */
 
   /* allocate memory for the bitmap header */
-  lpbi = (LPBITMAPINFO)LocalAlloc(LPTR,
+  lpbi = (LPBITMAPINFO)LocalAlloc(LPTR, 
   				sizeof(BITMAPINFOHEADER) + (2 * sizeof(RGBQUAD)));
   if (lpbi == NULL)
   {
-    return;
+    return; 
   }
-
+  
   /* set bitmap header info */
   lpbi->bmiHeader.biSize        = sizeof(BITMAPINFOHEADER);
   lpbi->bmiHeader.biWidth       = image->width;
@@ -235,7 +235,7 @@ LCreateBitmap(XImage *image, HBITMAP *hBitmap, HPALETTE *hPalette)
 
   /* create bitmap area */
   hScreenDC = CreateCompatibleDC(hdc);
-  *hBitmap = CreateDIBSection(hScreenDC, lpbi, DIB_RGB_COLORS,
+  *hBitmap = CreateDIBSection(hScreenDC, lpbi, DIB_RGB_COLORS, 
   	&lpBMData, NULL, 0);
 
   if (*hBitmap == NULL && lpBMData == NULL)
@@ -253,11 +253,11 @@ LCreateBitmap(XImage *image, HBITMAP *hBitmap, HPALETTE *hPalette)
   SetGraphic(lpBMData, image);
 
   /* create logical palette header */
-  lpLogPal = (LPLOGPALETTE)LocalAlloc(LPTR,
+  lpLogPal = (LPLOGPALETTE)LocalAlloc(LPTR, 
   				sizeof(LOGPALETTE) + (1 * sizeof(PALETTEENTRY)));
   if (lpLogPal == NULL)
   {
-    return;
+    return; 
   }
 
   /* set logical palette info */
@@ -274,7 +274,7 @@ LCreateBitmap(XImage *image, HBITMAP *hBitmap, HPALETTE *hPalette)
   *hPalette = CreatePalette(lpLogPal);
   if (*hPalette == NULL)
   {
-    return;
+    return; 
   }
 
   /* clean up palette creation data */
@@ -283,7 +283,7 @@ LCreateBitmap(XImage *image, HBITMAP *hBitmap, HPALETTE *hPalette)
 
 /* -------------------------------------------------------------------- */
 
-/* the following functions to create, destroy, modify and access the
+/* the following functions to create, destroy, modify and access the 
    GC Info structure
  */
 int GCCreate(void)
@@ -357,7 +357,7 @@ HDC GCGetDC(Drawable d, GC gc)
 	{
 		if (dbhdc == NULL)
 			/* create a compatible DC from the saved intial DC. To draw
-			   to this DC we still need to put a HBITMAP into it (not
+			   to this DC we still need to put a HBITMAP into it (not 
 			   done in this function)
 			 */
 			if ((dbhdc = CreateCompatibleDC(hdc)) == NULL)
@@ -450,7 +450,7 @@ HDC GCGetDC(Drawable d, GC gc)
 
 		switch (gcInfo[gc].lineAttributes.lineStyle)
 		{
-			case LineSolid:
+			case LineSolid: 
 				penstyle |= PS_SOLID; break;
 			case LineOnOffDash:
 				penstyle |= PS_DASH; break;
@@ -498,13 +498,13 @@ HDC GCGetDC(Drawable d, GC gc)
     palarray[1][2] = blue[gcInfo[gc].color.background];  /* blue  */
 
     /* create logical palette header */
-    lpLogPal = (LPLOGPALETTE)LocalAlloc(LPTR,
+    lpLogPal = (LPLOGPALETTE)LocalAlloc(LPTR, 
 				sizeof(LOGPALETTE) + (1 * sizeof(PALETTEENTRY)));
     if (lpLogPal == NULL)
     {
 		sprintf(message, "palette: Cannot alloacte memory for logical palette");
 		xlockmore_set_debug(message);
-		return NULL;
+		return NULL; 
     }
 
     /* set logical palette info */
@@ -524,11 +524,11 @@ HDC GCGetDC(Drawable d, GC gc)
 		sprintf(message, "palette: CreatePalette() returned NULL");
 		xlockmore_set_debug(message);
 		LocalFree(lpLogPal);
-		return NULL;
+		return NULL; 
     }
 
     /* set palette color */
-	palette = SelectPalette(lhdc, palette, FALSE);
+	palette = SelectPalette(lhdc, palette, FALSE); 
 
     /* clean up palette creation data */
 	DeleteObject(palette);
@@ -559,8 +559,8 @@ HDC GCGetDC(Drawable d, GC gc)
 	/* check if we need to FillStippled, and if so don't make a
 	 * brush, we will deal with this later (see XFillRectangle)
 	 */
-	else if (gcInfo[gc].stipple.graphic != -1 &&
-		! (gcInfo[gc].fillStyle.hasFillStyle == TRUE &&
+	else if (gcInfo[gc].stipple.graphic != -1 && 
+		! (gcInfo[gc].fillStyle.hasFillStyle == TRUE && 
 		   gcInfo[gc].fillStyle.value == FillStippled))
 	{
 		/* pattern brush */
@@ -673,7 +673,7 @@ HDC GCGetDC(Drawable d, GC gc)
 		}
 	}
 
-	/*
+	/* 
 	 * if we call this function again and there is no change to the DC
 	 * that needs to be done, we want to just return the DC that had
 	 * already been set up. Set the information to allow this
@@ -783,7 +783,7 @@ int sigmask(int signum)
  *  BlackPixel
  *    returns the color cell of Black
  *    NOTE: this is currently set to the end of the color
- *    palette table,
+ *    palette table, 
  */
 unsigned long BlackPixel(Display *display, int screen_number)
 {
@@ -918,7 +918,7 @@ void XAddHosts(Display *display, XHostAddress *hosts, int num_hosts)
  *  XAllocColor
  *    not currently used
  */
-Status XAllocColor(Display *display, Colormap colormap,
+Status XAllocColor(Display *display, Colormap colormap, 
 				   XColor *screen_in_out)
 {
 	screen_in_out->pixel = 0;
@@ -985,15 +985,15 @@ void XChangeGC(Display *display, GC gc, unsigned long valuemask,
 	}
 	if (valuemask & GCLineWidth)
 	{
-		XSetLineAttributes(display, gc,
-			values->line_width,
+		XSetLineAttributes(display, gc, 
+			values->line_width, 
 			gcInfo[gc].lineAttributes.lineStyle,
 			gcInfo[gc].lineAttributes.capStyle,
 			gcInfo[gc].lineAttributes.joinStyle);
 	}
 	if (valuemask & GCLineStyle)
 	{
-		XSetLineAttributes(display, gc,
+		XSetLineAttributes(display, gc, 
 			gcInfo[gc].lineAttributes.width,
 			values->line_style,
 			gcInfo[gc].lineAttributes.capStyle,
@@ -1001,7 +1001,7 @@ void XChangeGC(Display *display, GC gc, unsigned long valuemask,
 	}
 	if (valuemask & GCCapStyle)
 	{
-		XSetLineAttributes(display, gc,
+		XSetLineAttributes(display, gc, 
 			gcInfo[gc].lineAttributes.width,
 			gcInfo[gc].lineAttributes.lineStyle,
 			values->cap_style,
@@ -1009,7 +1009,7 @@ void XChangeGC(Display *display, GC gc, unsigned long valuemask,
 	}
 	if (valuemask & GCJoinStyle)
 	{
-		XSetLineAttributes(display, gc,
+		XSetLineAttributes(display, gc, 
 			gcInfo[gc].lineAttributes.width,
 			gcInfo[gc].lineAttributes.lineStyle,
 			gcInfo[gc].lineAttributes.capStyle,
@@ -1040,7 +1040,7 @@ void XChangeGC(Display *display, GC gc, unsigned long valuemask,
  *  XCheckMaskEvent
  *    not currently used, return True
  */
-Bool XCheckMaskEvent(Display *display, long event_mask,
+Bool XCheckMaskEvent(Display *display, long event_mask, 
 					 XEvent *event_return)
 {
 	return True;
@@ -1084,8 +1084,8 @@ void XCloseDisplay(Display *display)
  *  XConfigureWindow
  *    not currently used
  */
-void XConfigureWindow(Display *display, Window w,
-					  unsigned int value_mask,
+void XConfigureWindow(Display *display, Window w, 
+					  unsigned int value_mask, 
 					  XWindowChanges *values)
 {
 }
@@ -1094,7 +1094,7 @@ void XConfigureWindow(Display *display, Window w,
  *  XCopyArea
  *    copies one drawable to another
  */
-int XCopyArea(Display *display, Drawable src, Drawable dest, GC gc,
+int XCopyArea(Display *display, Drawable src, Drawable dest, GC gc, 
               int src_x, int src_y, unsigned int width, unsigned height,
 			  int dest_x, int dest_y)
 {
@@ -1144,7 +1144,7 @@ int XCopyArea(Display *display, Drawable src, Drawable dest, GC gc,
 	}
 
 	/* copy src to destination */
-	if (BitBlt(hDestDC, dest_x, dest_y, width, height, hSrcDC,
+	if (BitBlt(hDestDC, dest_x, dest_y, width, height, hSrcDC, 
 		src_x, src_y, SRCCOPY) == 0)
 	{
 		xlockmore_set_debug("XCopyArea: BitBlt() failed");
@@ -1176,7 +1176,7 @@ Colormap XCopyColormapAndFree(Display *display, Colormap colormap)
  *    to be implemented
  */
 int XCopyPlane(Display *display, Drawable src, Drawable dest, GC gc,
-			  int src_x, int src_y, unsigned width, int height,
+			  int src_x, int src_y, unsigned width, int height, 
 			  int dest_x, int dest_y, unsigned long plane)
 {
 	return 0;
@@ -1186,7 +1186,7 @@ int XCopyPlane(Display *display, Drawable src, Drawable dest, GC gc,
  *  XCreateBitmapFromData
  *    used to create a bitmap
  */
-Pixmap XCreateBitmapFromData(Display *display, Drawable drawable,
+Pixmap XCreateBitmapFromData(Display *display, Drawable drawable, 
                              char *data, unsigned int width,
                              unsigned int height)
 {
@@ -1205,7 +1205,7 @@ Pixmap XCreateBitmapFromData(Display *display, Drawable drawable,
 
 	LCreateBitmap(&image, &hBitmap, &hPalette);
 	DeleteObject(hPalette); /* we don't need the palette */
-
+	
 	if (hBitmap == NULL)
 	{
 		bmInfo[pm].isActive = FALSE;
@@ -1223,7 +1223,7 @@ Pixmap XCreateBitmapFromData(Display *display, Drawable drawable,
  *  XCreateColormap
  *    used to create the colormap
  */
-Colormap XCreateColormap(Display *display, Window w,
+Colormap XCreateColormap(Display *display, Window w, 
 						 Visual *visual, int alloc)
 {
 	return None;
@@ -1242,7 +1242,7 @@ Cursor XCreateFontCursor(Display *display, unsigned int shape)
  *  XCreateGC
  *    creates a copy of the GC
  */
-GC XCreateGC(Display *display, Drawable drawable,
+GC XCreateGC(Display *display, Drawable drawable, 
 			 unsigned long valuemask, XGCValues *values)
 {
 	GC		newGc;
@@ -1277,7 +1277,7 @@ GC XCreateGC(Display *display, Drawable drawable,
  *  XCreateImage
  *    creates an XImage structure and populates it
  */
-XImage *XCreateImage(Display *display, Visual *visual,
+XImage *XCreateImage(Display *display, Visual *visual, 
 					 unsigned int depth, int format, int offset,
 					 char *data, unsigned int width,
 					 unsigned int height, int bitmap_pad,
@@ -1287,7 +1287,7 @@ XImage *XCreateImage(Display *display, Visual *visual,
 
 	if ((newImage = malloc(sizeof(XImage))) == NULL)
 		return NULL;
-
+	
 	memset(newImage, 0, sizeof(XImage));
 
 	newImage->width = width;
@@ -1317,8 +1317,8 @@ Pixmap XCreatePixmap(Display *display, Drawable d, unsigned int width,
 		return None;
 
 	/* create the bitmap */
-	if ((hBitmap =
-		(depth == 1) ? CreateBitmap(width, height, depth, 1, NULL) :
+	if ((hBitmap = 
+		(depth == 1) ? CreateBitmap(width, height, depth, 1, NULL) : 
 					   CreateCompatibleBitmap(hdc, width, height)) == NULL)
 	{
 		bmInfo[pm].isActive = FALSE;
@@ -1449,7 +1449,7 @@ void XDrawArc(Display *display, Drawable d, GC gc, int x, int y,
 	if (angle2 == 0) {
 		/* Special case - In X this is a point but Arc in Windows would
 		   do a complete elipse!  Draw a (thick) line instead.  */
-
+	  
 		XDrawLine(display, d, gc, xa1, ya1, xa1, ya1);
 
 	} else {
@@ -1477,7 +1477,7 @@ void XDrawArc(Display *display, Drawable d, GC gc, int x, int y,
  *  XDrawImageString
  *    not currently used
  */
-void XDrawImageString(Display *display, Drawable d, GC gc,
+void XDrawImageString(Display *display, Drawable d, GC gc, 
 					  int x, int y, char *string, int length)
 {
 }
@@ -1486,7 +1486,7 @@ void XDrawImageString(Display *display, Drawable d, GC gc,
  *  XDrawLine
  *    draws a line on the screen in the current pen color
  */
-void XDrawLine(Display *display, Drawable d, GC gc,
+void XDrawLine(Display *display, Drawable d, GC gc, 
 			   int x1, int y1, int x2, int y2)
 {
 	HDC dc;
@@ -1509,8 +1509,8 @@ void XDrawLine(Display *display, Drawable d, GC gc,
 /*-
  *  XDrawLines
  *    draws a series of lines on the screen. Liness may be
- *    specified as being (1) relative to the origin, or
- *    (2) relative to the previous line (with the first line
+ *    specified as being (1) relative to the origin, or 
+ *    (2) relative to the previous line (with the first line 
  *    relative to the origin).
  */
 void XDrawLines(Display *display, Drawable d, GC gc,
@@ -1589,11 +1589,11 @@ void XDrawPoint(Display *display, Drawable d, GC gc, int x, int y)
 /*-
  *  XDrawPoints
  *    draws a series of points on the screen. Points may be
- *    specified as being (1) relative to the origin, or
- *    (2) relative to the previous point (with the first point
+ *    specified as being (1) relative to the origin, or 
+ *    (2) relative to the previous point (with the first point 
  *    relative to the origin).
  */
-void XDrawPoints(Display *display, Drawable d, GC gc,
+void XDrawPoints(Display *display, Drawable d, GC gc, 
 				 XPoint *pts, int numpts, int mode)
 {
 	int i;
@@ -1707,7 +1707,7 @@ void XDrawSegments(Display *display, Drawable d, GC gc,
 	  	lpbTypes[cCount] = PT_LINETO;
 	  	lppt[cCount].x = segs[i].x2;
 	  	lppt[cCount].y = segs[i].y2;
-	  	cCount++;
+	  	cCount++;		  
 	}
 
 	PolyDraw(dc, lppt, lpbTypes, cCount);
@@ -1723,7 +1723,7 @@ void XDrawSegments(Display *display, Drawable d, GC gc,
  *  XDrawString
  *    Draws a string of characters at specified location
  */
-void XDrawString(Display *display, Drawable d, GC gc, int x, int y,
+void XDrawString(Display *display, Drawable d, GC gc, int x, int y, 
 				 char *string, int length)
 {
 	int prevMode;
@@ -1790,7 +1790,7 @@ void XFillArc(Display *display, Drawable d, GC gc, int x, int y,
 	if (angle2 == 0) {
 	  /* Special case - In X this is a point but Arc in Windows would
 		 do a complete elipse!  Draw a (thick) line instead.  */
-
+	  
 	  XDrawLine(display, d, gc, cx, cy, xa1, ya1);
 
 	} else {
@@ -1816,7 +1816,7 @@ void XFillArc(Display *display, Drawable d, GC gc, int x, int y,
 		}
 	  oldPen = SelectObject(dc, noPen);
 
-	  /* should check for a pie or chord filled arc type, but
+	  /* should check for a pie or chord filled arc type, but 
 		 currently assuming pie filled arc */
 	  Pie(dc, x, y, x + width, y + height, xa1, ya1, xa2, ya2);
 
@@ -1861,11 +1861,11 @@ void XFillArcs(Display *display, Drawable d, GC gc,
 		if (arcs[i].angle2 == 0) {
 		  /* Special case - In X this is a point but Arc in Windows would
 			 do a complete elipse!  Draw a (thick) line instead.  */
-
+		  
 		  XDrawLine(display, d, gc, cx, cy, xa1, ya1);
 
 		} else {
-
+		  
 		  if (d > 0 && d < NUMBER_BITMAP)
 			  if (bmInfo[d].isActive == TRUE)
 				  hOldBitmap = SelectObject(dc, DrawableGetBitmap(d));
@@ -1874,9 +1874,9 @@ void XFillArcs(Display *display, Drawable d, GC gc,
 		  xa2 = (int)((rx * cos(a2)) + cx);
 		  ya2 = (int)((ry * sin(a2)) + cy);
 
-		  /* should check for a pie or chord filled arc type, but
+		  /* should check for a pie or chord filled arc type, but 
 			 currently assuming pie filled arc */
-		  Pie(dc, arcs[i].x, arcs[i].y, arcs[i].x + arcs[i].width,
+		  Pie(dc, arcs[i].x, arcs[i].y, arcs[i].x + arcs[i].width, 
 			  arcs[i].y + arcs[i].height, xa1, ya1, xa2, ya2);
 
 		  if (hOldBitmap)
@@ -1930,7 +1930,7 @@ void XFillPolygon(Display *display, Drawable d, GC gc, XPoint *points,
 			pts[i].y = ty;
 		}
 	}
-
+	
 	Polygon(dc, pts, npoints);
 
 	/* free memory */
@@ -1944,13 +1944,13 @@ void XFillPolygon(Display *display, Drawable d, GC gc, XPoint *points,
  *  XFillRectangle
  *    draws a filled rectangle on screen
  */
-void XFillRectangle(Display *display, Drawable d, GC gc, int x, int y,
+void XFillRectangle(Display *display, Drawable d, GC gc, int x, int y, 
 					unsigned int width, unsigned int height)
 {
 	HPEN oldPen;
 	HDC dc;
 	HBITMAP hOldBitmap = NULL;
-
+	
 	if ((dc = GCGetDC(d, gc)) == NULL)
 		return;
 
@@ -1959,7 +1959,7 @@ void XFillRectangle(Display *display, Drawable d, GC gc, int x, int y,
 			hOldBitmap = SelectObject(dc, DrawableGetBitmap(d));
 
     /* check if we are doing a FillStippled fill or a normal rectangle */
-	if (gcInfo[gc].fillStyle.hasFillStyle == TRUE &&
+	if (gcInfo[gc].fillStyle.hasFillStyle == TRUE && 
 		gcInfo[gc].fillStyle.value == FillStippled)
 	{
 		HBITMAP hOldBitmapS = NULL;
@@ -1994,7 +1994,7 @@ void XFillRectangle(Display *display, Drawable d, GC gc, int x, int y,
 
 		for (i=y; i<y+height; i+=sHeight)
 			for (j=x; j<x+width; j+=sWidth)
-				if (MaskBlt(dc, j, i, sWidth, sHeight, hStippleDC, 0, 0, hStipple, 0, 0,
+				if (MaskBlt(dc, j, i, sWidth, sHeight, hStippleDC, 0, 0, hStipple, 0, 0, 
 						MAKEROP4(0x00AA0029, SRCCOPY)) == 0)
 					xlockmore_set_debug("XFillRectangle: MaskBlt() failed");
 
@@ -2074,8 +2074,8 @@ void XFreeColormap(Display *display, Colormap colormap)
  *  XFreeColors
  *    not currently used
  */
-void XFreeColors(Display *display, Colormap colormap,
-				 unsigned long pixels[], int npixels,
+void XFreeColors(Display *display, Colormap colormap, 
+				 unsigned long pixels[], int npixels, 
 				 unsigned long planes)
 {
 }
@@ -2188,7 +2188,7 @@ Status XGetWindowAttributes(Display *display, Window w,
  *  XGrabKeyboard
  *    not currently used
  */
-int XGrabKeyboard(Display *display, Window grab_window,
+int XGrabKeyboard(Display *display, Window grab_window, 
 				  Bool owner_events, int pointer_mode,
 				  int keyboard_mode, Time time)
 {
@@ -2200,7 +2200,7 @@ int XGrabKeyboard(Display *display, Window grab_window,
  *    not currently used
  */
 int XGrabPointer(Display *display, Window grab_window, Bool owner_events,
-				 unsigned int event_mask, int pointer_mode,
+				 unsigned int event_mask, int pointer_mode, 
 				 int keyboard_mode, Window confine_to, Cursor cursor,
 				 Time time)
 {
@@ -2283,7 +2283,7 @@ Display *XOpenDisplay(char *display_name)
  *  XParseColor
  *    not currently used
  */
-Status XParseColor(Display *display, Colormap colormap,
+Status XParseColor(Display *display, Colormap colormap, 
 				   char *spec, XColor *exact_def_return)
 {
 	return 0;
@@ -2333,7 +2333,7 @@ void XPutImage(Display *display, Drawable d, GC gc, XImage *image, int src_x,
 	{
 		if (image->depth != 1)
 			return;
-
+	  
 		if ((hBitmapDC = CreateCompatibleDC(dc)) == NULL)
 			return;
 
@@ -2356,7 +2356,7 @@ void XPutImage(Display *display, Drawable d, GC gc, XImage *image, int src_x,
 		/* set the correct color table */
 		SetDIBColorTable(hBitmapDC, 0, 1, &rgbQuad);
 
-		BitBlt(dc, dest_x, dest_y, width, height, hBitmapDC,
+		BitBlt(dc, dest_x, dest_y, width, height, hBitmapDC, 
 				src_x, src_y, SRCCOPY);
 
 		SelectObject(hBitmapDC, hOldBitmap);
@@ -2378,13 +2378,13 @@ int XPutPixel(XImage *ximage, int x, int y, unsigned long pixel)
 {
 	int pos = 0;
 	unsigned long val = 0;
-
+	
 	/* check ximage points to an image */
 	if (ximage == NULL)
 	{
 		return 0;
 	}
-
+	
 	/* check x & y are within range */
 	if ((x < 0 || x > ximage->width - 1) ||
 	    (y < 0 || y > ximage->height - 1))
@@ -2398,7 +2398,7 @@ int XPutPixel(XImage *ximage, int x, int y, unsigned long pixel)
 		int byte_pos = 0;
 		int oldval = 0;
 		int i = 0;
-
+		
 		pos = (ximage->bytes_per_line * y) + (x / 8);
 		byte_pos = x % 8;
 		oldval = ximage->data[pos];
@@ -2453,7 +2453,7 @@ Bool XQueryPointer(Display *display, Window w, Window *root_return,
  *  XQueryTree
  *    not currently used
  */
-Status XQueryTree(Display *display, Window w, Window *root_return,
+Status XQueryTree(Display *display, Window w, Window *root_return, 
 				 Window *parent_return, Window **children_return,
 				 unsigned int *nchildren_return)
 {
@@ -2541,7 +2541,7 @@ XrmDatabase XrmGetFileDatabase(char *filename)
  *    not currently used, return True
  */
 Bool XrmGetResource(XrmDatabase database, char *str_name,
-					char *str_class, char **str_type_return,
+					char *str_class, char **str_type_return, 
 					XrmValue *value_return)
 {
 	return True;
@@ -2690,7 +2690,7 @@ int XSetGraphicsExposures(Display *display, GC gc, Bool graphics_exposures)
  *  XSetLineAttributes
  *    creates a new pen that has the attributes given
  */
-void XSetLineAttributes(Display *display, GC gc,
+void XSetLineAttributes(Display *display, GC gc, 
 						unsigned int line_width, int line_style,
 						int cap_style, int join_style)
 {
@@ -2772,7 +2772,7 @@ void XStoreColors(Display *display, Colormap colormap, XColor color[],
  *  XStringListToTextProperty
  *    not currently used
  */
-Status XStringListToTextProperty(char **list, int count,
+Status XStringListToTextProperty(char **list, int count, 
 								 XTextProperty *text_prop_return)
 {
 	return 0;
@@ -2810,7 +2810,7 @@ Bool XTranslateCoordinates(Display* display, Window src_w, Window dest_w,
   if (GetDCOrgEx(hdc, &p)) {
 	*dest_x_return = p.x + src_x;
 	*dest_y_return = p.y + src_y;
-
+	
   } else {
 	*dest_x_return = src_x;
 	*dest_y_return = src_y;

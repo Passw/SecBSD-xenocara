@@ -75,7 +75,7 @@ case $host_os in
   linux*)
     OS_MOUSE_NAME=lnx
     ;;
-  freebsd*|kfreebsd*-gnu|dragonfly*|netbsd*|openbsd*|secbsd*)
+  freebsd*|kfreebsd*-gnu|dragonfly*|netbsd*|openbsd*)
     OS_MOUSE_NAME=bsd
     ;;
   solaris*)

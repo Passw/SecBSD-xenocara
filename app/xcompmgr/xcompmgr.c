@@ -1762,7 +1762,7 @@ shape_kind(int kind)
   static char	buf[128];
 
   switch(kind){
-  case ShapeBounding:
+  case ShapeBounding: 
     return "ShapeBounding";
   case ShapeClip:
     return "ShapeClip";
@@ -1796,7 +1796,7 @@ shape_win (Display *dpy, XShapeEvent *se)
 	     se->width, se->height,
 	     se->x, se->y);
 #endif
-
+      
       clipChanged = True;
 
       region0 = XFixesCreateRegion (dpy, &w->shape_bounds, 1);
@@ -1819,7 +1819,7 @@ shape_win (Display *dpy, XShapeEvent *se)
       }
 
       region1 = XFixesCreateRegion (dpy, &w->shape_bounds, 1);
-      XFixesUnionRegion (dpy, region0, region0, region1);
+      XFixesUnionRegion (dpy, region0, region0, region1); 
       XFixesDestroyRegion (dpy, region1);
 
       /* ask for repaint of the old and new region */

@@ -1121,10 +1121,10 @@ draw_cell(ModeInfo * mi, cellstruct info)
 #endif
 		    {
 			(void) XPutImage(display, MI_WINDOW(mi), gc, lp->logo,
-				info.age%XPATTERNS * TRUE_CELL_WIDTH,
-				(info.age/XPATTERNS) * TRUE_CELL_HEIGHT,
+				info.age%XPATTERNS * TRUE_CELL_WIDTH, 
+				(info.age/XPATTERNS) * TRUE_CELL_HEIGHT, 
 				lp->xb + lp->xs * col, lp->yb + lp->ys * row,
-				lp->logo->width/XPATTERNS, lp->logo->height/YPATTERNS);
+				lp->logo->width/XPATTERNS, lp->logo->height/YPATTERNS); 
 		    }
 		}
 	} else {		/* TRI */
@@ -2288,7 +2288,7 @@ init_life(ModeInfo * mi)
 				lp->height > MINGRIDSIZE * lp->logo->height/YPATTERNS) {
 				lp->pixelmode = False;
 				lp->xs = lp->logo->width/XPATTERNS;
-				lp->ys = lp->logo->height/YPATTERNS;
+				lp->ys = lp->logo->height/YPATTERNS;    
 			} else
 			{
 				int min = MIN(lp->width, lp->height) / (8 * MINGRIDSIZE);

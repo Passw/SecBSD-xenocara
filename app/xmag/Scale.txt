@@ -7,9 +7,9 @@ Class Name		Scale
 Superclass		Simple
 
 The Scale widget is an immutable image displayed within a rectangular
-region of the screen.  When the widget is selected, it is highlighted,
+region of the screen.  When the widget is selected, it is highlighted, 
 and an application callback routine is invoked.  When the
-widget is resized the image can be autoscaled to fit new size of the
+widget is resized the image can be autoscaled to fit new size of the 
 widget window.  The widget can also cut and paste its contents.
 
 When creating a Scale widget instance, the following resources are
@@ -38,8 +38,8 @@ All the Simple Widget resources plus...
 
  aspectRatio	This resource specifies the aspect ratio of the scaled image
 		in the x / y * aspectRatio = 1 form.  It is effective within
-		the precision resource only if proportional resource is set
-		to true.  AspectRatio resource can be any positive number
+		the precision resource only if proportional resource is set 
+		to true.  AspectRatio resource can be any positive number 
 		greater than zero.
 
  autoscale	If this resource is set to True then the image will be
@@ -49,7 +49,7 @@ All the Simple Widget resources plus...
 		according to the gravity resource value.
 
  bufferSize	This resource specifies the buffer size in XRectangle's for
-		buffering the XFillRectangle calls.  It is effective only
+		buffering the XFillRectangle calls.  It is effective only 
 		for XYBitmap image type.
 
  background	This resource has the same meaning as for the Simple widget.
@@ -61,36 +61,36 @@ All the Simple Widget resources plus...
 		If the image is XYPixmap or ZPixmap format, the foreground
 		resource has no effect.
 
- gravity	This resource will determine where to put the image if it does
+ gravity	This resource will determine where to put the image if it does 
 		not fit the window size minus internal width and height.
 		The widget will try to preserve gravity rather than internal
 		width and height resources.
 
  image		This is the image to be displayed in the widget window.
-		If no image is desired, the NULL value can be passed.
+		If no image is desired, the NULL value can be passed.  
 		The passed image is copied and set to the resource value.
 		Applications should destroy the passed image argument
 		if they do not intend to use it at some later time.
 
- internalHeight
- internalWidth	These resources specify the minimum distance from the boarder
-		of the widget window to be maintanied when manipulating the
-		image.  If image is too big or small to satisfy given
-		conditions, the	widget will position the image to preserve
+ internalHeight	
+ internalWidth	These resources specify the minimum distance from the boarder 
+		of the widget window to be maintanied when manipulating the 
+		image.  If image is too big or small to satisfy given 
+		conditions, the	widget will position the image to preserve 
 		gravity rather than internalWidth or internalHeight.
 
  pasteBuffer	If this resource is true then the widget owns the paste
 		selection buffer.  This resource can only be queried.
 
  precision	This resource specifies the precision of the scale factors
-		when scaling the image.  The precision resource can be any
+		when scaling the image.  The precision resource can be any 
 		positive number greater than zero. (For example, if precision
 		is 1.0 then the image will be scaled only by integer values.)
 
- proportional	If this resource is set to true it will make sure that the
+ proportional	If this resource is set to true it will make sure that the 
                 image proportions, as specified by aspectRatio resource,
-                are being kept whenever it is scaled.
-
+                are being kept whenever it is scaled.  
+		
  resize		If this resource is true the widget will try to resize when
 		addopting a new image thus preserveing the scale values.
 		If it is false the scale values will not be preserved unless

@@ -309,7 +309,7 @@ static const struct {{
             print('')
 
     print('},')
-
+	
     print('{')
     for i, s in enumerate(sets):
         if duplicate[i]:
@@ -383,5 +383,5 @@ static const struct {{
     # And flush out the rest of the input file
     for line in tmpl_file:
         print(line, end='')
-
+    
     sys.stdout.flush()

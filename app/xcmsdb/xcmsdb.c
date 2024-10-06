@@ -212,13 +212,13 @@ main(int argc, char *argv[])
     exit(0);
     /*NOTREACHED*/
 }
-
+
 static Atom
 ParseAtom(Display *dpy, const char *name, int only_flag)
 {
     return (XInternAtom(dpy, name, only_flag));
 }
-
+
 /*
  *	NAME
  *		PrintTableType0
@@ -273,7 +273,7 @@ PrintTableType0(int format, char **pChar, unsigned long *pCount)
         return;
     }
 }
-
+
 /*
  *	NAME
  *		PrintTableType1
@@ -328,7 +328,7 @@ PrintTableType1(int format, char **pChar, unsigned long *pCount)
         return;
     }
 }
-
+
 /*
  *      NAME
  *		QuerySCCData - Query for the SCC data on the root window
@@ -558,7 +558,7 @@ QuerySCCDataRGB(Display * dpy, Window root)
 }
 
 #ifdef GRAY
-
+
 /*
  *      NAME
  *		QuerySCCDataGray - Query for the SCC data on the root window
@@ -723,7 +723,7 @@ QuerySCCDataGray(Display * dpy, Window root)
     printf("Fatal error in %s property\n", XDCCC_CORRECT_ATOM_NAME);
 }
 #endif                          /* GRAY */
-
+
 /*
  *      NAME
  *		RemoveSCCData - Remove for the SCC data on the root window
@@ -851,7 +851,7 @@ _XcmsGetElement(int format, char **pValue, unsigned long *pCount)
     }
     return (value);
 }
-
+
 /*
  *	NAME
  *		_XcmsGetProperty -- Determine the existence of a property

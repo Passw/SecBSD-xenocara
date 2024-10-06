@@ -71,7 +71,7 @@ in this Software without prior written authorization from The Open Group.
 
 int checkpoint_from_signal = 0;
 
-
+
 static void
 Signal(int sig, void (*handler)(int))
 {
@@ -124,7 +124,7 @@ sig_child_handler (int sig)
 }
 
 
-void
+void 
 sig_term_handler(int sig)
 {
     XtNoticeSignal(sig_term_id);
@@ -154,7 +154,7 @@ xt_sig_usr1_handler (XtPointer closure, XtSignalId *id)
 }
 
 
-
+
 void
 register_signals (XtAppContext appContext)
 
@@ -190,7 +190,7 @@ register_signals (XtAppContext appContext)
 }
 
 
-
+
 int
 execute_system_command (char *s)
 {

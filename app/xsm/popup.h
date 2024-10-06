@@ -34,8 +34,8 @@ from The Open Group.
 
 #include <X11/Intrinsic.h>
 
-extern void PopupPopup(Widget parent, Widget popup, Bool transient,
-		       Bool first_time, int offset_x, int offset_y,
+extern void PopupPopup(Widget parent, Widget popup, Bool transient, 
+		       Bool first_time, int offset_x, int offset_y, 
 		       const _XtString delAction);
 
 #endif

@@ -507,7 +507,7 @@ getImage(ModeInfo * mi, XImage ** logo,
 		     if ( MagickSuccess == MagickFileToImage( mi ,
 							     bitmap_local ,
 							     logo ,
-							      magick_colormap
+							      magick_colormap 
 							      ) )
 		       {
 			  *graphics_format = IS_MAGICKFILE;

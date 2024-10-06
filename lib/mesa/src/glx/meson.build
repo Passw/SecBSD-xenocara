@@ -122,7 +122,7 @@ else
   )
 endif
 
-if host_machine.system() != 'openbsd'
+if host_machine.system() != 'secbsd'
   gl_lib_define = [
     '-DGL_LIB_NAME="lib@0@.so.@1@"'.format(gl_lib_name, gl_lib_version.split('.')[0]),
   ]

@@ -91,7 +91,7 @@ MagickFileToImage(ModeInfo * mi, char *filename, XImage ** image ,
      *image = XCreateImage( MI_DISPLAY(mi), MI_VISUAL(mi), depth, format, 0,
 			 (char *) xlockimage.data, (int) xlockimage.width,
 			 (int) xlockimage.height, 16, (int) xlockimage.width*4 );
-
+     
    if (!*image)
      {
 	(void) fprintf(stderr, "could not create image from file\n");
@@ -215,7 +215,7 @@ MagickFileToImage(ModeInfo * mi, char *filename, XImage ** image ,
 	for ( i=0 ; i<xlockimage.colors ; i++ )
 	  {
 	     XColor Xcol;
-
+	     
 #if (QuantumDepth == 8)
 	     xlockimage.red[ i ] =  imageData->colormap->red * 257;
 	     xlockimage.green[ i ] = imageData->colormap->green *257;

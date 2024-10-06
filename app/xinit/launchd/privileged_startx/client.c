@@ -45,7 +45,7 @@
 int client_main(void) {
     kern_return_t kr;
     mach_port_t mp;
-
+    
     kr = bootstrap_look_up(bootstrap_port, BOOTSTRAP_NAME, &mp);
     if (kr != KERN_SUCCESS) {
 #if MAC_OS_X_VERSION_MIN_REQUIRED >= 1050
@@ -55,12 +55,12 @@ int client_main(void) {
 #endif
         exit(EXIT_FAILURE);
     }
-
+    
     kr = privileged_startx(mp);
     if (kr != KERN_SUCCESS) {
         fprintf(stderr, "privileged_startx client: %s\n", mach_error_string(kr));
         exit(EXIT_FAILURE);
     }
-
+    
     exit(EXIT_SUCCESS);
 }

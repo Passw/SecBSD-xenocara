@@ -30,7 +30,7 @@ in this Software without prior written authorization from The Open Group.
 #include "choose.h"
 #include <sys/types.h>
 
-
+
 static const char *
 GetPath(void)
 {

@@ -150,7 +150,7 @@ main (int argc, char **argv)
 	    format = format_optarg = (FcChar8 *) strdup (optarg);
 	    break;
 	case 'V':
-	    fprintf (stderr, "fontconfig version %d.%d.%d\n",
+	    fprintf (stderr, "fontconfig version %d.%d.%d\n", 
 		     FC_MAJOR, FC_MINOR, FC_REVISION);
 	    exit (0);
 	case 'h':
@@ -187,7 +187,7 @@ main (int argc, char **argv)
 
     FcConfigSubstitute (0, pat, FcMatchPattern);
     FcDefaultSubstitute (pat);
-
+    
     fs = FcFontSetCreate ();
 
     if (sort || all)
