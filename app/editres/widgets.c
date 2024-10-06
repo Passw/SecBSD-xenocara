@@ -53,7 +53,7 @@ in this Software without prior written authorization from The Open Group.
 
 #include "editresP.h"
 
-
+
 
 /*
  * functions.
@@ -74,7 +74,7 @@ static void PopupOnNode ( WNode * node, Widget shell );
 static void FreeClientData ( Widget w, XtPointer ptr, XtPointer junk );
 static void FreeResBox ( Widget w, XtPointer ptr, XtPointer junk );
 
-
+
 
 /*      Function Name: RebuildMenusAndLabel
  *      Description: Determines if the user has selected an application
@@ -156,7 +156,7 @@ RebuildMenusAndLabel(const char *toolkit)
   }
 }
 
-
+
 
 /*      Function Name: BuildWidgetTree
  *      Description: Creates all widgets for Editres.
@@ -189,7 +189,7 @@ BuildWidgetTree(Widget parent)
     global_tree_parent = porthole;
 }
 
-
+
 
 
 /*	Function Name: CreateTopArea
@@ -229,7 +229,7 @@ CreateTopArea(Widget parent)
     return(panner);
 }
 
-
+
 
 /*	Function Name: SetEntriesInsensitive
  *	Description: Make menu entries unusable.
@@ -244,7 +244,7 @@ SetEntriesSensitive(Widget *entries, int num, Boolean sensitive)
 int i; for (i=0; i<num; i++) XtSetSensitive(entries[i], sensitive);
 }
 
-
+
 
 /*	Function Name: CreateCommandMenu
  *	Description: Creates the command menu.
@@ -311,7 +311,7 @@ CreateCommandMenu(Widget parent, const char *toolkit)
       SetEntriesSensitive(&CM_entries[CM_OFFSET], CM_NUM, False);
 }
 
-
+
 
 /*	Function Name: CreateTreeCommandMenu
  *	Description: Creates the command menu.
@@ -406,7 +406,7 @@ CreateTreeCommandMenu(Widget parent, const char *toolkit)
 						 TM_NUM, False);
 }
 
-
+
 
 static Pixmap old_pixmap;
 
@@ -430,7 +430,7 @@ PrepareToLayoutTree(Widget tree)
     XtUnmapWidget(tree);
 }
 
-
+
 
 /*	Function Name: LayoutTree
  *	Description: Laysout the tree widget.
@@ -450,7 +450,7 @@ LayoutTree(Widget tree)
     XtSetValues(XtParent(tree), args, ONE);
 }
 
-
+
 
 /************************************************************
  *
@@ -533,7 +533,7 @@ CreateResourceBoxWidgets(WNode *node, char **names, char **cons_names)
     PopupOnNode(node, res_box->shell);
 }
 
-
+
 
 /*	Function Name: CreateResourceNameForm
  *	Description: Creates the Form widget with children that represent
@@ -672,7 +672,7 @@ CreateResourceNameForm(Widget parent, WNode *node)
     XtFree((char *)classes);
 }
 
-
+
 
 /*	Function Name: SetToggleGroupLeaders
  *	Description: Sets the leaders of each toggle group.
@@ -697,7 +697,7 @@ SetToggleGroupLeaders(WNode *node)
     SetResourceString(NULL, (XtPointer) node, NULL);
 }
 
-
+
 
 /*	Function Name: MakeBoxLookNice
  *	Description: Resizes the box that contains the resource names
@@ -807,7 +807,7 @@ MakeBoxLookNice(Widget dot, Widget star, Widget any, Widget single,
     XtSetValues(single, args, num_args);
 }
 
-
+
 
 /*	Function Name: CreateLists
  *	Description: Creates the list widgets for the normal and constraint
@@ -911,7 +911,7 @@ CreateValueWidget(Widget parent, WNode *node)
 #endif
 }
 
-
+
 
 /*	Function Name: PopupOnNode
  *	Description: Pops a shell widget up centered on the node specified.
@@ -969,7 +969,7 @@ PopupOnNode(WNode *node, Widget shell)
     XtPopup(shell, XtGrabNone);
 }
 
-
+
 
 /*	Function Name: FreeClientData
  *	Description: Frees the client data passed to this function.
@@ -986,7 +986,7 @@ FreeClientData(Widget w, XtPointer ptr, XtPointer junk)
     XtFree(ptr);
 }
 
-
+
 
 /*	Function Name: FreeResBox.
  *	Description: Frees resource box allocated memory.

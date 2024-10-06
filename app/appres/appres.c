@@ -1,5 +1,5 @@
 /*
- * 
+ *
 Copyright 1989, 1998  The Open Group
 
 Permission to use, copy, modify, distribute, and sell this software and its
@@ -54,8 +54,8 @@ usage (int exitval)
 }
 
 /* stolen from Xlib Xrm.c */
-static void 
-PrintBindingQuarkList(XrmBindingList bindings, 
+static void
+PrintBindingQuarkList(XrmBindingList bindings,
 				  XrmQuarkList quarks,
 				  FILE* stream)
 {
@@ -75,12 +75,12 @@ PrintBindingQuarkList(XrmBindingList bindings,
 /* stolen from Xlib Xrm.c */
 /* output out the entry in correct file syntax */
 /*ARGSUSED*/
-static Bool 
-DumpEntry(XrmDatabase *db, 
-	  XrmBindingList bindings, 
-	  XrmQuarkList quarks, 
-	  XrmRepresentation *type, 
-	  XrmValuePtr value, 
+static Bool
+DumpEntry(XrmDatabase *db,
+	  XrmBindingList bindings,
+	  XrmQuarkList quarks,
+	  XrmRepresentation *type,
+	  XrmValuePtr value,
 	  XPointer data)
 {
     FILE			*stream = (FILE *)data;

@@ -735,7 +735,7 @@ kbfunc_menu_ssh(void *ctx, struct cargs *cargs)
 		buf = lbuf;
 		if (buf[slen - 1] == '\n')
 			buf[slen - 1] = '\0';
-		
+
 		/* skip hashed hosts */
 		if (strncmp(buf, HASH_MARKER, strlen(HASH_MARKER)) == 0)
 			continue;
