@@ -26,6 +26,6 @@ jobs:
         git branch -vv
     - name: RUN `git pull current -r`
       run: |
-        git remote add up https://code.laylo.cloud/SecBSD/xenocara.git
+        git remote add up https://code.laylo.nl/SecBSD/xenocara.git
         git pull up current -r
         git push origin HEAD:master --force
